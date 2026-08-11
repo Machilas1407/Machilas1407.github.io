@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marcello Queiróz — Desenvolvedor Full Stack</title>
+<meta name="description" content="Portfólio de Marcello Queiróz, desenvolvedor full stack com experiência em saúde, gestão pública, plataformas digitais, mobilidade, dados e transportes.">
+<meta name="author" content="Marcello Queiróz">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0a0c0f">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Marcello Queiróz — Desenvolvedor Full Stack">
+<meta property="og:description" content="Plataformas digitais de ponta a ponta para saúde, gestão pública, mobilidade, dados e transportes.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Marcello Queiróz — Desenvolvedor Full Stack">
+<meta name="twitter:description" content="Plataformas digitais de ponta a ponta para saúde, gestão pública, mobilidade, dados e transportes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0c0f;
+    --bg-elevated:#12151a;
+    --surface:#171b21;
+    --surface-hover:#1d222a;
+    --border:#262b33;
+    --text:#ece9e2;
+    --text-dim:#8d949e;
+    --text-faint:#565c66;
+    --accent:#f2b705;
+    --accent-dim:#8a6a08;
+    --accent-soft:rgba(242,183,5,0.10);
+    --accent-2:#34d399;
+    --accent-2-soft:rgba(52,211,153,0.10);
+    --font-display:'Space Grotesk',sans-serif;
+    --font-body:'Inter',sans-serif;
+    --font-mono:'JetBrains Mono',monospace;
+    --spine-x:28px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--font-body);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:var(--accent-soft);color:var(--accent);}
+
+  /* ---------- layout shell ---------- */
+  .wrap{max-width:920px;margin:0 auto;padding:0 28px;}
+  section{position:relative;padding:96px 0 96px 56px;}
+  @media (max-width:720px){
+    section{padding:72px 0 72px 40px;}
+    .wrap{padding:0 18px;}
+    :root{--spine-x:18px;}
+  }
+
+  /* ---------- spine (route line) ---------- */
+  .spine{
+    position:absolute;
+    left:var(--spine-x);
+    top:0;
+    bottom:0;
+    width:2px;
+    background-image:linear-gradient(var(--border) 60%, transparent 40%);
+    background-size:2px 16px;
+    background-repeat:repeat-y;
+    z-index:0;
+  }
+  .waypoint{
+    position:absolute;
+    left:calc(var(--spine-x) - 7px);
+    top:6px;
+    width:16px;height:16px;
+    border-radius:50%;
+    background:var(--bg);
+    border:2px solid var(--text-faint);
+    z-index:2;
+    transition:border-color .4s ease, box-shadow .4s ease, background .4s ease;
+  }
+  .waypoint::after{
+    content:'';
+    position:absolute;
+    inset:3px;
+    border-radius:50%;
+    background:var(--text-faint);
+    transition:background .4s ease;
+  }
+  section.in-view .waypoint{
+    border-color:var(--accent);
+    box-shadow:0 0 0 4px var(--accent-soft);
+  }
+  section.in-view .waypoint::after{background:var(--accent);}
+
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:0.12em;
+    color:var(--text-faint);
+    text-transform:uppercase;
+    margin-bottom:14px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    transition:color .4s ease;
+  }
+  section.in-view .eyebrow{color:var(--accent);}
+
+  h2.section-title{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:clamp(22px,3vw,30px);
+    margin-bottom:36px;
+    color:var(--text);
+  }
+
+  /* ---------- nav ---------- */
+  nav{
+    position:fixed;
+    top:0;left:0;right:0;
+    z-index:50;
+    backdrop-filter:blur(10px);
+    background:rgba(10,12,15,0.75);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-inner{
+    max-width:920px;margin:0 auto;padding:0 28px;
+    height:64px;display:flex;align-items:center;justify-content:space-between;
+  }
+  .logo{
+    font-family:var(--font-mono);
+    font-weight:500;font-size:15px;
+    color:var(--text);
+    display:flex;align-items:center;gap:8px;
+  }
+  .logo .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent);}
+  .nav-links{display:flex;gap:28px;font-size:14px;color:var(--text-dim);}
+  .nav-links a{transition:color .2s ease;position:relative;}
+  .nav-links a:hover, .nav-links a.active{color:var(--text);}
+  .nav-links a.active::after{
+    content:'';position:absolute;left:0;right:0;bottom:-8px;height:1px;background:var(--accent);
+  }
+  @media (max-width:640px){ .nav-links{display:none;} }
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding:150px 0 90px;
+    position:relative;
+  }
+  .hero .wrap{position:relative;z-index:2;}
+  .hero-route-svg{
+    position:absolute;
+    top:0; left:0; right:0;
+    height:100%;
+    z-index:1;
+    opacity:0.55;
+    pointer-events:none;
+  }
+  .hero-route-svg path{
+    fill:none;
+    stroke:var(--border);
+    stroke-width:1.5;
+  }
+  .hero-route-svg path.draw{
+    stroke:var(--accent);
+    stroke-dasharray:1400;
+    stroke-dashoffset:1400;
+    animation:draw 2.6s ease forwards 0.3s;
+    opacity:0.5;
+  }
+  @keyframes draw{ to{stroke-dashoffset:0;} }
+
+  .coords{
+    font-family:var(--font-mono);
+    font-size:12px;
+    color:var(--text-faint);
+    letter-spacing:0.06em;
+    margin-bottom:22px;
+  }
+  .coords .sep{color:var(--accent-dim);margin:0 8px;}
+
+  h1{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:clamp(38px,7vw,64px);
+    line-height:1.04;
+    letter-spacing:-0.01em;
+    margin-bottom:18px;
+  }
+  h1 .accent{color:var(--accent);}
+
+  .role{
+    font-family:var(--font-mono);
+    font-size:clamp(15px,2vw,18px);
+    color:var(--accent-2);
+    margin-bottom:26px;
+  }
+  .role::before{content:'// ';color:var(--text-faint);}
+
+  .lede{
+    max-width:560px;
+    color:var(--text-dim);
+    font-size:16px;
+    margin-bottom:38px;
+  }
+
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:56px;}
+  .btn{
+    font-family:var(--font-body);
+    font-weight:500;
+    font-size:14px;
+    padding:12px 22px;
+    border-radius:8px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    transition:all .2s ease;
+    border:1px solid transparent;
+  }
+  .btn-primary{background:var(--accent);color:#0a0c0f;}
+  .btn-primary:hover{background:#ffcb2e;transform:translateY(-1px);}
+  .btn-ghost{border-color:var(--border);color:var(--text);}
+  .btn-ghost:hover{border-color:var(--text-faint);background:var(--surface);}
+
+  .hero-stats{
+    display:grid;
+    grid-template-columns:repeat(3,auto);
+    gap:40px;
+  }
+  @media(max-width:560px){ .hero-stats{grid-template-columns:repeat(2,1fr);gap:24px;} }
+  .stat-num{
+    font-family:var(--font-display);
+    font-size:26px;
+    font-weight:600;
+    color:var(--text);
+  }
+  .stat-num .unit{color:var(--accent);}
+  .stat-label{
+    font-size:12px;
+    color:var(--text-faint);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    margin-top:2px;
+  }
+
+  /* ---------- sobre ---------- */
+  .about-body{color:var(--text-dim);max-width:640px;font-size:15.5px;margin-bottom:30px;}
+  .edu-grid{display:grid;gap:14px;}
+  .edu-item{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:16px 18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .edu-item .name{font-weight:500;font-size:14.5px;}
+  .edu-item .place{color:var(--text-faint);font-size:13px;}
+  .edu-status{
+    font-family:var(--font-mono);
+    font-size:11px;
+    padding:3px 9px;
+    border-radius:20px;
+    white-space:nowrap;
+  }
+  .edu-status.done{background:var(--accent-2-soft);color:var(--accent-2);}
+  .edu-status.progress{background:var(--accent-soft);color:var(--accent);}
+
+  /* ---------- experiência ---------- */
+  .job{margin-bottom:44px;}
+  .job:last-child{margin-bottom:0;}
+  .job-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:16px;
+    flex-wrap:wrap;
+    margin-bottom:6px;
+  }
+  .job-title{font-family:var(--font-display);font-weight:600;font-size:18px;}
+  .job-period{
+    font-family:var(--font-mono);
+    font-size:12px;
+    color:var(--bg);
+    background:var(--text-faint);
+    padding:3px 10px;
+    border-radius:20px;
+    white-space:nowrap;
+  }
+  .job.current .job-period{background:var(--accent-2);}
+  .job-company{color:var(--accent);font-size:13.5px;margin-bottom:14px;font-weight:500;}
+  .job-list{list-style:none;display:grid;gap:8px;}
+  .job-list li{
+    color:var(--text-dim);
+    font-size:14.5px;
+    padding-left:18px;
+    position:relative;
+  }
+  .job-list li::before{
+    content:'';
+    position:absolute;left:0;top:8px;
+    width:6px;height:1px;
+    background:var(--text-faint);
+  }
+
+  /* ---------- projetos ---------- */
+  .project-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media(max-width:640px){ .project-grid{grid-template-columns:1fr;} }
+  .project-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:22px;
+    display:flex;
+    flex-direction:column;
+    transition:border-color .25s ease, transform .25s ease, background .25s ease;
+  }
+  .project-card:hover{border-color:var(--accent-dim);transform:translateY(-2px);background:var(--surface-hover);}
+  .project-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;}
+  .project-name{font-family:var(--font-display);font-weight:600;font-size:16.5px;}
+  .project-link-icon{
+    width:28px;height:28px;
+    border-radius:7px;
+    border:1px solid var(--border);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--text-faint);
+    flex-shrink:0;
+    transition:all .2s ease;
+  }
+  .project-card:hover .project-link-icon{color:var(--accent);border-color:var(--accent-dim);}
+  .project-desc{color:var(--text-dim);font-size:13.5px;margin-bottom:16px;flex-grow:1;}
+  .project-tags{display:flex;flex-wrap:wrap;gap:6px;}
+  .tag{
+    font-family:var(--font-mono);
+    font-size:10.5px;
+    color:var(--text-faint);
+    border:1px solid var(--border);
+    padding:3px 8px;
+    border-radius:5px;
+  }
+
+  /* ---------- skills ---------- */
+  .skill-group{margin-bottom:26px;}
+  .skill-group:last-child{margin-bottom:0;}
+  .skill-group-label{
+    font-family:var(--font-mono);
+    font-size:12px;
+    color:var(--text-faint);
+    margin-bottom:12px;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+  }
+  .chip-row{display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{
+    font-size:13px;
+    padding:7px 13px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:20px;
+    color:var(--text-dim);
+    transition:all .2s ease;
+  }
+  .chip:hover{border-color:var(--accent-dim);color:var(--text);background:var(--accent-soft);}
+
+  .courses-toggle{
+    margin-top:34px;
+    border-top:1px dashed var(--border);
+    padding-top:22px;
+  }
+  .courses-summary{
+    cursor:pointer;
+    font-family:var(--font-mono);
+    font-size:12.5px;
+    color:var(--accent-2);
+    list-style:none;
+    display:flex;align-items:center;gap:8px;
+  }
+  .courses-summary::-webkit-details-marker{display:none;}
+  .courses-summary::before{content:'▸';transition:transform .2s ease;}
+  details[open] .courses-summary::before{transform:rotate(90deg);}
+  .courses-list{
+    margin-top:16px;
+    display:grid;
+    gap:9px;
+  }
+  .courses-list li{
+    font-size:13.5px;
+    color:var(--text-dim);
+    padding-left:16px;
+    position:relative;
+  }
+  .courses-list li::before{content:'—';position:absolute;left:0;color:var(--text-faint);}
+
+  /* ---------- contato ---------- */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  @media(max-width:560px){.contact-grid{grid-template-columns:1fr;}}
+  .contact-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:18px 20px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    transition:all .2s ease;
+  }
+  .contact-card:hover{border-color:var(--accent-dim);background:var(--surface-hover);}
+  .contact-icon{
+    width:38px;height:38px;
+    border-radius:9px;
+    background:var(--bg-elevated);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--accent);
+    flex-shrink:0;
+  }
+  .contact-label{font-size:11px;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.06em;}
+  .contact-value{font-size:14px;color:var(--text);font-weight:500;word-break:break-word;}
+
+  footer{
+    text-align:center;
+    padding:40px 20px 50px;
+    color:var(--text-faint);
+    font-size:12.5px;
+    font-family:var(--font-mono);
+  }
+  footer .dot{color:var(--accent);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo"><span class="dot"></span>MQ<span style="color:var(--text-faint)">.dev</span></div>
+    <div class="nav-links">
+      <a href="#sobre" data-nav>Sobre</a>
+      <a href="#experiencia" data-nav>Experiência</a>
+      <a href="#projetos" data-nav>Projetos</a>
+      <a href="#skills" data-nav>Skills</a>
+      <a href="#contato" data-nav>Contato</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <svg class="hero-route-svg" viewBox="0 0 920 520" preserveAspectRatio="none">
+    <path d="M -20 420 C 150 380, 220 460, 380 400 S 620 260, 760 300 S 940 220, 980 180" />
+    <path class="draw" d="M -20 420 C 150 380, 220 460, 380 400 S 620 260, 760 300 S 940 220, 980 180" />
+  </svg>
+  <div class="wrap">
+    <div class="coords"></span>Brasília, DF, Brasil</div>
+    <h1>Marcello<br><span class="accent">Queiróz</span></h1>
+    <div class="role">desenvolvedor full stack</div>
+    <p class="lede">Desenvolvo plataformas digitais de ponta a ponta para saúde, gestão pública, mobilidade e dados — de sistemas nacionais e soluções de gestão a aplicações geoespaciais, dashboards analíticos e APIs. Atualmente sou Engenheiro de Software Sênior na ONTL, Infra S.A. / Ministério dos Transportes.</p>
+    <div class="hero-actions">
+      <a href="#projetos" class="btn btn-primary">Ver projetos →</a>
+      <a href="#contato" class="btn btn-ghost">Falar comigo</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">6<span class="unit">+</span></div>
+        <div class="stat-label">Anos de estrada</div>
+      </div>
+      <div>
+        <div class="stat-num">10</div>
+        <div class="stat-label">Projetos em produção</div>
+      </div>
+      <div>
+        <div class="stat-num">20<span class="unit">+</span></div>
+        <div class="stat-label">Tecnologias</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="spine"></div>
+  <div class="waypoint"></div>
+  <div class="wrap">
+    <div class="eyebrow">◍ Sobre</div>
+    <h2 class="section-title">Tecnologia para serviços públicos e negócios</h2>
+    <p class="about-body">
+      Formado em Análise e Desenvolvimento de Sistemas em 2021, comecei a carreira ainda durante a graduação e construí uma trajetória em plataformas digitais para saúde, gestão pública, gestão de pessoas, mobilidade e dados. Participei de projetos ligados ao Ministério da Saúde, UNOPS, Ministério Público Federal, Hospital Alemão Oswaldo Cruz, universidades e empresas privadas. Hoje curso Engenharia de Software com Inteligência Artificial e lidero tecnicamente o desenvolvimento de aplicações geoespaciais, dashboards analíticos e sistemas de gestão de dados na ONTL, mantendo transportes como uma das minhas áreas de maior experiência.
+    </p>
+    <div class="edu-grid">
+      <div class="edu-item">
+        <div>
+          <div class="name">Análise e Desenvolvimento de Sistemas</div>
+          <div class="place">Centro Universitário</div>
+        </div>
+        <span class="edu-status done">Concluído · 2021</span>
+      </div>
+      <div class="edu-item">
+        <div>
+          <div class="name">Engenharia de Software com Inteligência Artificial</div>
+          <div class="place">Graduação</div>
+        </div>
+        <span class="edu-status progress">Cursando</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIÊNCIA -->
+<section id="experiencia">
+  <div class="spine"></div>
+  <div class="waypoint"></div>
+  <div class="wrap">
+    <div class="eyebrow">◍ Experiência</div>
+    <h2 class="section-title">Histórico profissional</h2>
+
+    <div class="job current">
+      <div class="job-head">
+        <div class="job-title">Engenheiro de Software Sênior</div>
+        <span class="job-period">2023 — presente</span>
+      </div>
+      <div class="job-company">ONTL — Infra S.A. · Ministério dos Transportes</div>
+         <ul class="job-list">
+        <li>Desenvolvimento em Java Script para experience builder com Arcgis</li>
+        <li>Dashboards e painéis analíticos com integração a Google Maps, OpenStreetMap, Leaflet, Arcgis Server e Qgis</li>
+        <li>Deploy e CI/CD com GitLab, ambientes com Docker e Nginx, segurança com Helmet e CORS</li>
+        <li>Liderança técnica e apoio à equipe de desenvolvimento</li>
+        <li>Back-end com Node.js, PHP e Laravel · Front-end com Vue.js, React e React Native</li>
+        <li>Modelagem e administração de banco de dados PostgreSQL, com APIs REST autenticadas via JWT</li>
+
+         </li>e CI/CD com GitLab, ambientes com Docker e Nginx, segurança com Helmet e CORS</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <div class="job-title">Desenvolvedor Full-Stack</div>
+        <span class="job-period">2019 — 2023</span>
+      </div>
+      <div class="job-company">Manatus Soluções em Tecnologia</div>
+      <ul class="job-list">
+        <li>Back-end com Node.js, PHP e Laravel · Front-end com Vue.js, React e React Native</li>
+        <li>Modelagem de banco de dados PostgreSQL e manutenção de aplicações web e mobile</li>
+        <li>Projetos para o Ministério da Saúde e empresas privadas, com foco em gestão de pessoas</li>
+        <li>Rotina em times ágeis com Scrum e Kanban</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <div class="job-title">Analista de Desenvolvimento de Sistemas</div>
+        <span class="job-period">2021 — 2023</span>
+      </div>
+      <div class="job-company">FEPESE — Fundação de Estudos e Pesquisas Socioeconômicas</div>
+      <ul class="job-list">
+        <li>Back-end com Nest.js · Front-end com Vue 3 e TypeScript</li>
+        <li>Criação de roteiros de teste e times ágeis com Scrum/Kanban</li>
+        <li>Projetos para o Ministério da Saúde e a Universidade Federal de Santa Catarina</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROJETOS -->
+<section id="projetos">
+  <div class="spine"></div>
+  <div class="waypoint"></div>
+  <div class="wrap">
+    <div class="eyebrow">◍ Projetos</div>
+    <h2 class="section-title">Plataformas que geram impacto</h2>
+
+    <div class="project-grid">
+
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-name">Rota Segura</div>
+          <a class="project-link-icon" href="https://ontl.infrasa.gov.br/aplicacoes/rota-segura/" target="_blank" rel="noopener">↗</a>
+        </div>
+        <p class="project-desc">Aplicação full stack para análise de rotas, cálculo de riscos rodoviários, geolocalização e visualização em mapas.</p>
+        <div class="project-tags"><span class="tag">Vue.js</span><span class="tag">Node.js</span><span class="tag">Python</span><span class="tag">Leaflet</span><span class="tag">PostgreSQL</span></div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-name">APIM</div>
+          <a class="project-link-icon" href="https://ontl.infrasa.gov.br/dados/consulta-a-base-de-dados/" target="_blank" rel="noopener">↗</a>
+        </div>
+        <p class="project-desc">Gerenciamento de datasets, APIs, dashboards e documentação automatizada para consulta de dados.</p>
+        <div class="project-tags"><span class="tag">Vue.js</span><span class="tag">PHP</span><span class="tag">Laravel</span><span class="tag">PostgreSQL</span></div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-name">Simulador TRIC</div>
+          <a class="project-link-icon" href="https://ontl.infrasa.gov.br/aplicacoes/simulador-para-transporte-rodoviario-internacional-de-carga-tric/" target="_blank" rel="noopener">↗</a>
+        </div>
+        <p class="project-desc">Simulador para Transporte Rodoviário Internacional de Carga, com ferramentas de cálculo para o setor.</p>
+        <div class="project-tags"><span class="tag">Vue.js</span><span class="tag">PHP</span><span class="tag">Laravel</span></div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-name">Espaço Conecta</div>
+          <a class="project-link-icon" href="https://conecta.infrasa.gov.br/login" target="_blank" rel="noopener">↗</a>
+        </div>
+        <p class="project-desc">Gestão de propostas, startups, instituições e projetos em uma plataforma centralizada.</p>
+        <div class="project-tags"><span class="tag">Vue.js</span><span class="tag">PHP</span><span class="tag">Laravel</span></div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-name">Simuladores ONTL</div>
+          <a class="project-link-icon" href="https://simuladores.infrasa.gov.br/" target="_blank" rel="noopener">↗</a>
+        </div>
+        <p class="project-desc">Suíte de simuladores e ferramentas de cálculo voltadas para o setor de transportes.</p>
+        <div class="project-tags"><span class="tag">Vue.js</span><span class="tag">PHP</span><span class="tag">Laravel</span></div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-name">Painéis ONTL</div>
+          <a class="project-link-icon" href="https://paineis.infrasa.gov.br/" target="_blank" rel="noopener">↗</a>
+        </div>
+        <p class="project-desc">Dashboards e painéis analíticos para visualização de dados do setor de transportes.</p>
+        <div class="project-tags"><span class="tag">Vue.js</span><span class="tag">D3.js</span><span class="tag">PostgreSQL</span></div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-name">Nosso Chão Nossa História</div>
+          <a class="project-link-icon" href="https://nossochaomaceio.org/" target="_blank" rel="noopener" aria-label="Abrir Nosso Chão Nossa História">↗</a>
+        </div>
+        <p class="project-desc">Projeto da UNOPS e do Ministério Público Federal voltado à informação pública e à memória das comunidades afetadas pelo desastre socioambiental em Maceió. Participação durante a atuação na Manatus.</p>
+        <div class="project-tags"><span class="tag">Gestão pública</span><span class="tag">UNOPS</span><span class="tag">MPF</span></div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-name">DigiSUS Gestor</div>
+          <a class="project-link-icon" href="https://digisusgmp.saude.gov.br/" target="_blank" rel="noopener" aria-label="Abrir DigiSUS Gestor">↗</a>
+        </div>
+        <p class="project-desc">Plataforma digital do Ministério da Saúde que apoia gestores no planejamento, monitoramento e prestação de contas do SUS. Participação durante a atuação na Manatus.</p>
+        <div class="project-tags"><span class="tag">Saúde pública</span><span class="tag">Gestão</span><span class="tag">SUS</span></div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-name">Conecte SUS Cidadão</div>
+          <a class="project-link-icon" href="https://meususdigital.saude.gov.br/login" target="_blank" rel="noopener" aria-label="Abrir Meu SUS Digital">↗</a>
+        </div>
+        <p class="project-desc">Participação no antigo Conecte SUS Cidadão, plataforma nacional que evoluiu para o Meu SUS Digital e aproxima cidadãos de seus dados e serviços de saúde.</p>
+        <div class="project-tags"><span class="tag">Saúde digital</span><span class="tag">Serviço público</span><span class="tag">Cidadania</span></div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-name">Hospital Alemão Oswaldo Cruz</div>
+          <a class="project-link-icon" href="https://ead.proadihaoc.org.br/" target="_blank" rel="noopener" aria-label="Abrir plataforma do Hospital Alemão Oswaldo Cruz">↗</a>
+        </div>
+        <p class="project-desc">Sistema digital de gestão e capacitação de pessoas para apoiar jornadas de aprendizagem e desenvolvimento profissional no Hospital Alemão Oswaldo Cruz. Participação durante a atuação na Manatus.</p>
+        <div class="project-tags"><span class="tag">Gestão de pessoas</span><span class="tag">Capacitação</span><span class="tag">Saúde</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="spine"></div>
+  <div class="waypoint"></div>
+  <div class="wrap">
+    <div class="eyebrow">◍ Skills</div>
+    <h2 class="section-title">Caixa de ferramentas</h2>
+
+    <div class="skill-group">
+      <div class="skill-group-label">Linguagens</div>
+      <div class="chip-row">
+        <span class="chip">JavaScript</span><span class="chip">TypeScript</span><span class="chip">Python</span><span class="chip">SQL</span><span class="chip">GoLang</span><span class="chip">HTML</span><span class="chip">CSS</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-label">Frontend</div>
+      <div class="chip-row">
+        <span class="chip">Vue.js 2 / 3</span><span class="chip">React</span><span class="chip">React Native</span><span class="chip">Redux</span><span class="chip">Vuetify</span><span class="chip">Tailwind CSS</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-label">Backend</div>
+      <div class="chip-row">
+        <span class="chip">Node.js</span><span class="chip">PHP</span><span class="chip">Laravel</span><span class="chip">Nest.js</span><span class="chip">APIs REST</span><span class="chip">Swagger / OpenAPI</span><span class="chip">JWT</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-label">Dados &amp; Infra</div>
+      <div class="chip-row">
+        <span class="chip">PostgreSQL</span><span class="chip">MySQL</span><span class="chip">MongoDB</span><span class="chip">Docker</span><span class="chip">Nginx</span><span class="chip">Git / Git Flow</span><span class="chip">GitLab CI/CD</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-label">Mapas, testes &amp; processo</div>
+      <div class="chip-row">
+        <span class="chip">Leaflet</span><span class="chip">OpenStreetMap</span><span class="chip">Google Maps API</span><span class="chip">D3.js</span><span class="chip">Cypress</span><span class="chip">TDD</span><span class="chip">Scrum</span><span class="chip">Kanban</span>
+      </div>
+    </div>
+
+    <details class="courses-toggle">
+      <summary class="courses-summary">Cursos e certificações</summary>
+      <ul class="courses-list">
+        <li>Scrum Foundation Professional Certificate — Certiprof</li>
+        <li>Docker para Desenvolvedores JavaScript / Node.js — Udemy</li>
+        <li>Vue JS 3: Desenvolvimento Web Moderno com Vuex &amp; Vue Router — Udemy</li>
+        <li>Semana OmniStack 11: Node.js, ReactJS e React Native — Rocketseat</li>
+        <li>Desenvolvimento Web Avançado com PHP, Laravel e Vue.js — Udemy</li>
+        <li>Curso Completo do Desenvolvedor NodeJS e MongoDB — Udemy</li>
+        <li>Node.js: Criando uma API REST com Express e MongoDB — Alura</li>
+        <li>Node.js: Continue seu Projeto Full Stack Criando uma API com Express — Alura</li>
+        <li>Vue 3: Entendendo Componentes, Diretivas e Reatividade no Framework — Alura</li>
+        <li>Curso Específico de Implementação da LGPD — Infra S.A.</li>
+      </ul>
+    </details>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato">
+  <div class="spine"></div>
+  <div class="waypoint"></div>
+  <div class="wrap">
+    <div class="eyebrow">◍ Contato</div>
+    <h2 class="section-title">Ponto de chegada</h2>
+
+    <div class="contact-grid">
+      <a class="contact-card" href="mailto:marcello.machilas@gmail.com">
+        <div class="contact-icon">✉</div>
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-value">marcello.machilas@gmail.com</div>
+        </div>
+      </a>
+      <a class="contact-card" href="tel:+5561996083943">
+        <div class="contact-icon">☎</div>
+        <div>
+          <div class="contact-label">Telefone</div>
+          <div class="contact-value">+55 (61) 99608-3943</div>
+        </div>
+      </a>
+      <a class="contact-card" href="https://www.linkedin.com/in/marcello-machilas/" target="_blank" rel="noopener">
+        <div class="contact-icon">in</div>
+        <div>
+          <div class="contact-label">LinkedIn</div>
+          <div class="contact-value">/marcello-machilas</div>
+        </div>
+      </a>
+      <a class="contact-card" href="https://github.com/Machilas1407" target="_blank" rel="noopener">
+        <div class="contact-icon">⌥</div>
+        <div>
+          <div class="contact-label">GitHub</div>
+          <div class="contact-value">github.com/Machilas1407</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>Marcello Queiróz <span class="dot">·</span> Santa Maria, DF <span class="dot">·</span> 2026</footer>
+
+<script>
+  // active nav link on scroll + waypoint highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      const id = entry.target.getAttribute('id');
+      const link = document.querySelector('.nav-links a[href="#'+id+'"]');
+      if(entry.isIntersecting){
+        entry.target.classList.add('in-view');
+        navLinks.forEach(l=>l.classList.remove('active'));
+        if(link) link.classList.add('active');
+      } else {
+        entry.target.classList.remove('in-view');
+      }
+    });
+  }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
+
+  sections.forEach(s=>observer.observe(s));
+</script>
+
+</body>
+</html>
