@@ -244,6 +244,7 @@
   .hero{
     padding:150px 0 90px;
     position:relative;
+    perspective:1200px;
   }
   .hero .wrap{position:relative;z-index:2;}
   .hero-route-svg{
@@ -253,6 +254,7 @@
     z-index:1;
     opacity:0.55;
     pointer-events:none;
+    overflow:visible;
   }
   .hero-route-svg path{
     fill:none;
@@ -267,6 +269,20 @@
     opacity:0.5;
   }
   @keyframes draw{ to{stroke-dashoffset:0;} }
+
+  /* parallax depth layers in the hero illustration */
+  .route-layer{
+    transition:transform .35s ease-out;
+    transform-box:fill-box;
+    will-change:transform;
+  }
+  .route-dot{
+    fill:var(--accent);
+    opacity:0.55;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .route-layer{transition:none;}
+  }
 
   .coords{
     font-family:var(--font-mono);
@@ -405,7 +421,7 @@
   }
 
   /* ---------- projetos ---------- */
-  .project-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .project-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;perspective:1000px;}
   @media(max-width:640px){ .project-grid{grid-template-columns:1fr;} }
   .project-card{
     background:var(--surface);
@@ -414,9 +430,14 @@
     padding:22px;
     display:flex;
     flex-direction:column;
-    transition:border-color .25s ease, transform .25s ease, background .25s ease;
+    transition:border-color .25s ease, transform .12s ease-out, background .25s ease, box-shadow .25s ease;
+    transform-style:preserve-3d;
+    will-change:transform;
   }
-  .project-card:hover{border-color:var(--accent-dim);transform:translateY(-2px);background:var(--surface-hover);}
+  .project-card:hover{border-color:var(--accent-dim);background:var(--surface-hover);box-shadow:0 16px 30px -18px rgba(0,0,0,0.6);}
+  @media (prefers-reduced-motion: reduce){
+    .project-card{transition:border-color .25s ease, background .25s ease;}
+  }
   .project-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;}
   .project-name{font-family:var(--font-display);font-weight:600;font-size:16.5px;}
   .project-link-icon{
@@ -577,10 +598,21 @@
 <main id="conteudo">
 
 <!-- HERO -->
-<header class="hero">
+<header class="hero" id="hero">
   <svg class="hero-route-svg" viewBox="0 0 920 520" preserveAspectRatio="none">
-    <path d="M -20 420 C 150 380, 220 460, 380 400 S 620 260, 760 300 S 940 220, 980 180" />
-    <path class="draw" d="M -20 420 C 150 380, 220 460, 380 400 S 620 260, 760 300 S 940 220, 980 180" />
+    <g class="route-layer" data-depth="0.15">
+      <path d="M -30 470 C 130 445, 190 510, 350 465 S 590 360, 730 385 S 930 320, 990 285" opacity="0.35" />
+    </g>
+    <g class="route-layer" data-depth="0.35">
+      <path d="M -20 420 C 150 380, 220 460, 380 400 S 620 260, 760 300 S 940 220, 980 180" />
+      <path class="draw" d="M -20 420 C 150 380, 220 460, 380 400 S 620 260, 760 300 S 940 220, 980 180" />
+    </g>
+    <g class="route-layer" data-depth="0.6">
+      <circle class="route-dot" cx="380" cy="400" r="4" />
+      <circle class="route-dot" cx="760" cy="300" r="3" />
+      <circle class="route-dot" cx="150" cy="380" r="3" />
+      <circle class="route-dot" cx="940" cy="220" r="3.5" />
+    </g>
   </svg>
   <div class="wrap">
     <div class="coords">Brasília, DF, Brasil</div>
@@ -964,6 +996,71 @@
   toTopBtn.addEventListener('click', ()=>{
     window.scrollTo({top:0, behavior:'smooth'});
   });
+
+  // respect reduced-motion preference before wiring up the 3D extras
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  if(!prefersReducedMotion){
+
+    // hero route: layered parallax depth (mouse + scroll)
+    const hero = document.getElementById('hero');
+    const routeLayers = document.querySelectorAll('.route-layer');
+    if(hero && routeLayers.length){
+      let heroMouseX = 0, heroMouseY = 0;
+
+      function updateRouteLayers(){
+        const scrollShift = window.scrollY;
+        routeLayers.forEach(layer=>{
+          const depth = parseFloat(layer.dataset.depth) || 0.2;
+          const moveX = heroMouseX * depth * 45;
+          const moveY = (heroMouseY * depth * 45) - (scrollShift * depth * 0.12);
+          layer.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        });
+      }
+
+      if(hasFinePointer){
+        hero.addEventListener('mousemove', (e)=>{
+          const rect = hero.getBoundingClientRect();
+          heroMouseX = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
+          heroMouseY = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
+          updateRouteLayers();
+        });
+        hero.addEventListener('mouseleave', ()=>{
+          heroMouseX = 0;
+          heroMouseY = 0;
+          updateRouteLayers();
+        });
+      }
+
+      window.addEventListener('scroll', updateRouteLayers, { passive:true });
+    }
+
+    // project cards: subtle 3D tilt following the cursor
+    if(hasFinePointer){
+      document.querySelectorAll('.project-card').forEach(card=>{
+        let cardRect = null;
+
+        card.addEventListener('mouseenter', ()=>{
+          cardRect = card.getBoundingClientRect();
+        });
+
+        card.addEventListener('mousemove', (e)=>{
+          if(!cardRect) cardRect = card.getBoundingClientRect();
+          const x = e.clientX - cardRect.left;
+          const y = e.clientY - cardRect.top;
+          const rotateY = ((x - cardRect.width / 2) / (cardRect.width / 2)) * 6;
+          const rotateX = -((y - cardRect.height / 2) / (cardRect.height / 2)) * 6;
+          card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-3px)`;
+        });
+
+        card.addEventListener('mouseleave', ()=>{
+          card.style.transform = '';
+          cardRect = null;
+        });
+      });
+    }
+  }
 </script>
 
 </body>
