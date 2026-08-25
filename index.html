@@ -491,6 +491,12 @@
     position:relative;
   }
   .courses-list li::before{content:'—';position:absolute;left:0;color:var(--text-faint);}
+  .courses-list .course-date{
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    color:var(--text-faint);
+    white-space:nowrap;
+  }
 
   /* ---------- contato ---------- */
   .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
@@ -836,16 +842,25 @@
     <details class="courses-toggle">
       <summary class="courses-summary">Cursos e certificações</summary>
       <ul class="courses-list">
-        <li>Scrum Foundation Professional Certificate — Certiprof</li>
-        <li>Docker para Desenvolvedores JavaScript / Node.js — Udemy</li>
-        <li>Vue JS 3: Desenvolvimento Web Moderno com Vuex &amp; Vue Router — Udemy</li>
-        <li>Semana OmniStack 11: Node.js, ReactJS e React Native — Rocketseat</li>
-        <li>Desenvolvimento Web Avançado com PHP, Laravel e Vue.js — Udemy</li>
-        <li>Curso Completo do Desenvolvedor NodeJS e MongoDB — Udemy</li>
-        <li>Node.js: Criando uma API REST com Express e MongoDB — Alura</li>
-        <li>Node.js: Continue seu Projeto Full Stack Criando uma API com Express — Alura</li>
-        <li>Vue 3: Entendendo Componentes, Diretivas e Reatividade no Framework — Alura</li>
-        <li>Curso Específico de Implementação da LGPD — Infra S.A.</li>
+        <li>Node.js: lidando com buscas, filtros, paginação e erros em uma API — Alura <span class="course-date">· nov/2024</span></li>
+        <li>Node.js: criando uma API REST com Express e MongoDB — Alura <span class="course-date">· nov/2024</span></li>
+        <li>Node.js: continue seu projeto full stack criando uma API com Express — Alura <span class="course-date">· out/2024</span></li>
+        <li>Curso Específico de Implementação da LGPD — Infra S.A. <span class="course-date">· mar/2024</span></li>
+        <li>Vue 3: entendendo componentes, diretivas e reatividade no framework — Alura <span class="course-date">· jan/2024</span></li>
+        <li>Desenvolvimento Web Avançado com PHP, Laravel e Vue.js — Udemy <span class="course-date">· out/2023</span></li>
+        <li>Curso de JavaScript e TypeScript do básico ao avançado — Udemy <span class="course-date">· out/2023</span></li>
+        <li>Vue JS 3: Desenvolvimento Web Moderno com Vuex &amp; Vue Router — Udemy <span class="course-date">· mai/2022</span></li>
+        <li>Curso Completo do Desenvolvedor NodeJS e MongoDB — Udemy <span class="course-date">· dez/2021</span></li>
+        <li>Docker para Desenvolvedores JavaScript / Node.js — Udemy <span class="course-date">· abr/2021</span></li>
+        <li>Participação do DoWhile 2020 — Rocketseat <span class="course-date">· dez/2020</span></li>
+        <li>Lifelong Learning — Certiprof <span class="course-date">· ago/2020</span></li>
+        <li>Semana OmniStack 11: Node.js, ReactJS e React Native — Rocketseat <span class="course-date">· abr/2020</span></li>
+        <li>Curso de Introdução ao JavaScript — DevMedia <span class="course-date">· dez/2019</span></li>
+        <li>Primeiros passos com JavaScript — DevMedia <span class="course-date">· dez/2019</span></li>
+        <li>HTML na prática: criando mais uma página web — DevMedia <span class="course-date">· nov/2019</span></li>
+        <li>Introdução ao CSS na prática — DevMedia <span class="course-date">· out/2019</span></li>
+        <li>Curso de HTML básico — DevMedia <span class="course-date">· out/2019</span></li>
+        <li>Scrum Foundation Professional Certificate — Certiprof <span class="course-date">· ago/2019</span></li>
       </ul>
     </details>
   </div>
