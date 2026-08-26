@@ -18,29 +18,10 @@
 <meta name="twitter:title" content="Marcello Queiróz — Desenvolvedor Full Stack">
 <meta name="twitter:description" content="Plataformas digitais de ponta a ponta para saúde, gestão pública, mobilidade, dados e transportes.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a0c0f'/%3E%3Ccircle cx='50' cy='50' r='14' fill='%23f2b705'/%3E%3C/svg%3E">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Marcello Queiróz",
-  "jobTitle": "Engenheiro de Software Sênior",
-  "worksFor": {
-    "@type": "Organization",
-    "name": "ONTL — Infra S.A. / Ministério dos Transportes"
-  },
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Santa Maria",
-    "addressRegion": "DF",
-    "addressCountry": "BR"
-  },
-  "email": "mailto:marcello.machilas@gmail.com",
-  "sameAs": [
-    "https://www.linkedin.com/in/marcello-machilas/",
-    "https://github.com/Machilas1407"
-  ]
-}
-</script>
+
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -201,7 +182,6 @@
     content:'';position:absolute;left:0;right:0;bottom:-8px;height:1px;background:var(--accent);
   }
 
-  /* mobile menu toggle */
   .nav-toggle{
     display:none;
     width:38px;height:38px;
@@ -270,7 +250,6 @@
   }
   @keyframes draw{ to{stroke-dashoffset:0;} }
 
-  /* parallax depth layers in the hero illustration */
   .route-layer{
     transition:transform .35s ease-out;
     transform-box:fill-box;
@@ -291,7 +270,6 @@
     letter-spacing:0.06em;
     margin-bottom:22px;
   }
-  .coords .sep{color:var(--accent-dim);margin:0 8px;}
 
   h1{
     font-family:var(--font-display);
@@ -462,6 +440,51 @@
   }
 
   /* ---------- skills ---------- */
+  .skills-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+  @media (max-width: 800px) {
+    .skills-layout { grid-template-columns: 1fr; }
+  }
+  .skills-charts {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .chart-container {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: border-color .25s ease;
+  }
+  .chart-container:hover {
+    border-color: var(--accent-dim);
+  }
+  .chart-title {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text);
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    width: 100%;
+    text-align: center;
+  }
+  .chart-wrapper {
+    position: relative;
+    height: 220px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
   .skill-group{margin-bottom:26px;}
   .skill-group:last-child{margin-bottom:0;}
   .skill-group-label{
@@ -737,7 +760,7 @@
     <h2 class="section-title">Plataformas que geram impacto</h2>
 
     <div class="project-grid">
-
+      <!-- (Os mesmos projetos já existentes) -->
       <div class="project-card">
         <div class="project-top">
           <div class="project-name">Rota Segura</div>
@@ -746,7 +769,6 @@
         <p class="project-desc">Aplicação full stack para análise de rotas, cálculo de riscos rodoviários, geolocalização e visualização em mapas.</p>
         <div class="project-tags"><span class="tag">Vue.js</span><span class="tag">Node.js</span><span class="tag">Python</span><span class="tag">Leaflet</span><span class="tag">PostgreSQL</span></div>
       </div>
-
       <div class="project-card">
         <div class="project-top">
           <div class="project-name">APIM</div>
@@ -755,7 +777,6 @@
         <p class="project-desc">Gerenciamento de datasets, APIs, dashboards e documentação automatizada para consulta de dados.</p>
         <div class="project-tags"><span class="tag">Vue.js</span><span class="tag">PHP</span><span class="tag">Laravel</span><span class="tag">PostgreSQL</span></div>
       </div>
-
       <div class="project-card">
         <div class="project-top">
           <div class="project-name">Simulador TRIC</div>
@@ -764,7 +785,6 @@
         <p class="project-desc">Simulador para Transporte Rodoviário Internacional de Carga, com ferramentas de cálculo para o setor.</p>
         <div class="project-tags"><span class="tag">Vue.js</span><span class="tag">PHP</span><span class="tag">Laravel</span></div>
       </div>
-
       <div class="project-card">
         <div class="project-top">
           <div class="project-name">Espaço Conecta</div>
@@ -773,7 +793,6 @@
         <p class="project-desc">Gestão de propostas, startups, instituições e projetos em uma plataforma centralizada.</p>
         <div class="project-tags"><span class="tag">Vue.js</span><span class="tag">PHP</span><span class="tag">Laravel</span></div>
       </div>
-
       <div class="project-card">
         <div class="project-top">
           <div class="project-name">Simuladores ONTL</div>
@@ -782,7 +801,6 @@
         <p class="project-desc">Suíte de simuladores e ferramentas de cálculo voltadas para o setor de transportes.</p>
         <div class="project-tags"><span class="tag">Vue.js</span><span class="tag">PHP</span><span class="tag">Laravel</span></div>
       </div>
-
       <div class="project-card">
         <div class="project-top">
           <div class="project-name">Painéis ONTL</div>
@@ -791,48 +809,27 @@
         <p class="project-desc">Dashboards e painéis analíticos para visualização de dados do setor de transportes.</p>
         <div class="project-tags"><span class="tag">Vue.js</span><span class="tag">D3.js</span><span class="tag">PostgreSQL</span></div>
       </div>
-
       <div class="project-card">
         <div class="project-top">
           <div class="project-name">Nosso Chão Nossa História</div>
-          <a class="project-link-icon" href="https://nossochaomaceio.org/" target="_blank" rel="noopener noreferrer" aria-label="Abrir Nosso Chão Nossa História">↗</a>
+          <a class="project-link-icon" href="https://nossochaomaceio.org/" target="_blank" rel="noopener noreferrer">↗</a>
         </div>
-        <p class="project-desc">Projeto da UNOPS e do Ministério Público Federal voltado à informação pública e à memória das comunidades afetadas pelo desastre socioambiental em Maceió. Participação durante a atuação na Manatus.</p>
+        <p class="project-desc">Projeto da UNOPS e do MPF voltado à informação pública e à memória das comunidades afetadas em Maceió.</p>
         <div class="project-tags"><span class="tag">Gestão pública</span><span class="tag">UNOPS</span><span class="tag">MPF</span></div>
       </div>
-
       <div class="project-card">
         <div class="project-top">
           <div class="project-name">DigiSUS Gestor</div>
-          <a class="project-link-icon" href="https://digisusgmp.saude.gov.br/" target="_blank" rel="noopener noreferrer" aria-label="Abrir DigiSUS Gestor">↗</a>
+          <a class="project-link-icon" href="https://digisusgmp.saude.gov.br/" target="_blank" rel="noopener noreferrer">↗</a>
         </div>
-        <p class="project-desc">Plataforma digital do Ministério da Saúde que apoia gestores no planejamento, monitoramento e prestação de contas do SUS. Participação durante a atuação na Manatus.</p>
+        <p class="project-desc">Plataforma digital do Ministério da Saúde que apoia gestores no planejamento, monitoramento e prestação de contas do SUS.</p>
         <div class="project-tags"><span class="tag">Saúde pública</span><span class="tag">Gestão</span><span class="tag">SUS</span></div>
       </div>
-
-      <div class="project-card">
-        <div class="project-top">
-          <div class="project-name">Conecte SUS Cidadão</div>
-          <a class="project-link-icon" href="https://meususdigital.saude.gov.br/login" target="_blank" rel="noopener noreferrer" aria-label="Abrir Meu SUS Digital">↗</a>
-        </div>
-        <p class="project-desc">Participação no antigo Conecte SUS Cidadão, plataforma nacional que evoluiu para o Meu SUS Digital e aproxima cidadãos de seus dados e serviços de saúde.</p>
-        <div class="project-tags"><span class="tag">Saúde digital</span><span class="tag">Serviço público</span><span class="tag">Cidadania</span></div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-top">
-          <div class="project-name">Hospital Alemão Oswaldo Cruz</div>
-          <a class="project-link-icon" href="https://ead.proadihaoc.org.br/" target="_blank" rel="noopener noreferrer" aria-label="Abrir plataforma do Hospital Alemão Oswaldo Cruz">↗</a>
-        </div>
-        <p class="project-desc">Sistema digital de gestão e capacitação de pessoas para apoiar jornadas de aprendizagem e desenvolvimento profissional no Hospital Alemão Oswaldo Cruz. Participação durante a atuação na Manatus.</p>
-        <div class="project-tags"><span class="tag">Gestão de pessoas</span><span class="tag">Capacitação</span><span class="tag">Saúde</span></div>
-      </div>
-
     </div>
   </div>
 </section>
 
-<!-- SKILLS -->
+<!-- SKILLS COM GRÁFICOS -->
 <section id="skills">
   <div class="spine"></div>
   <div class="waypoint"></div>
@@ -840,34 +837,55 @@
     <div class="eyebrow">◍ Skills</div>
     <h2 class="section-title">Caixa de ferramentas</h2>
 
-    <div class="skill-group">
-      <div class="skill-group-label">Linguagens</div>
-      <div class="chip-row">
-        <span class="chip">JavaScript</span><span class="chip">TypeScript</span><span class="chip">Python</span><span class="chip">SQL</span><span class="chip">Java</span><span class="chip">GoLang</span><span class="chip">HTML</span><span class="chip">CSS</span>
+    <div class="skills-layout">
+      <!-- Coluna Esquerda: Gráficos -->
+      <div class="skills-charts">
+        <div class="chart-container">
+          <div class="chart-title">Equilíbrio Full Stack</div>
+          <div class="chart-wrapper">
+            <canvas id="radarChart"></canvas>
+          </div>
+        </div>
+        <div class="chart-container">
+          <div class="chart-title">Ecossistemas Mais Utilizados</div>
+          <div class="chart-wrapper">
+            <canvas id="doughnutChart"></canvas>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="skill-group">
-      <div class="skill-group-label">Frontend</div>
-      <div class="chip-row">
-        <span class="chip">Vue.js 2 / 3</span><span class="chip">React</span><span class="chip">React Native</span><span class="chip">Redux</span><span class="chip">Vuetify</span><span class="chip">Tailwind CSS</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <div class="skill-group-label">Backend</div>
-      <div class="chip-row">
-        <span class="chip">Node.js</span><span class="chip">PHP</span><span class="chip">Laravel</span><span class="chip">Nest.js</span><span class="chip">Quarkus</span><span class="chip">Spring Boot</span><span class="chip">APIs REST</span><span class="chip">Swagger / OpenAPI</span><span class="chip">JWT</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <div class="skill-group-label">Dados &amp; Infra</div>
-      <div class="chip-row">
-        <span class="chip">PostgreSQL</span><span class="chip">MySQL</span><span class="chip">MongoDB</span><span class="chip">Docker</span><span class="chip">Nginx</span><span class="chip">Git / Git Flow</span><span class="chip">GitLab CI/CD</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <div class="skill-group-label">Mapas, testes &amp; processo</div>
-      <div class="chip-row">
-        <span class="chip">Leaflet</span><span class="chip">OpenStreetMap</span><span class="chip">Google Maps API</span><span class="chip">ArcGIS Server</span><span class="chip">ArcGIS Experience Builder</span><span class="chip">QGIS</span><span class="chip">D3.js</span><span class="chip">Cypress</span><span class="chip">TDD</span><span class="chip">Scrum</span><span class="chip">Kanban</span>
+
+      <!-- Coluna Direita: Chips/Tags -->
+      <div class="skills-chips">
+        <div class="skill-group">
+          <div class="skill-group-label">Linguagens</div>
+          <div class="chip-row">
+            <span class="chip">JavaScript</span><span class="chip">TypeScript</span><span class="chip">Python</span><span class="chip">SQL</span><span class="chip">Java</span><span class="chip">GoLang</span><span class="chip">HTML</span><span class="chip">CSS</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-label">Frontend</div>
+          <div class="chip-row">
+            <span class="chip">Vue.js 2 / 3</span><span class="chip">React</span><span class="chip">React Native</span><span class="chip">Redux</span><span class="chip">Vuetify</span><span class="chip">Tailwind CSS</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-label">Backend</div>
+          <div class="chip-row">
+            <span class="chip">Node.js</span><span class="chip">PHP</span><span class="chip">Laravel</span><span class="chip">Nest.js</span><span class="chip">Quarkus</span><span class="chip">Spring Boot</span><span class="chip">APIs REST</span><span class="chip">Swagger / OpenAPI</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-label">Dados &amp; Infra</div>
+          <div class="chip-row">
+            <span class="chip">PostgreSQL</span><span class="chip">MySQL</span><span class="chip">MongoDB</span><span class="chip">Docker</span><span class="chip">Nginx</span><span class="chip">Git / Git Flow</span><span class="chip">GitLab CI/CD</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-label">Mapas, testes &amp; processo</div>
+          <div class="chip-row">
+            <span class="chip">Leaflet</span><span class="chip">OpenStreetMap</span><span class="chip">Google Maps API</span><span class="chip">ArcGIS Server</span><span class="chip">QGIS</span><span class="chip">D3.js</span><span class="chip">Cypress</span><span class="chip">Scrum</span>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -884,15 +902,6 @@
         <li>Vue JS 3: Desenvolvimento Web Moderno com Vuex &amp; Vue Router — Udemy <span class="course-date">· mai/2022</span></li>
         <li>Curso Completo do Desenvolvedor NodeJS e MongoDB — Udemy <span class="course-date">· dez/2021</span></li>
         <li>Docker para Desenvolvedores JavaScript / Node.js — Udemy <span class="course-date">· abr/2021</span></li>
-        <li>Participação do DoWhile 2020 — Rocketseat <span class="course-date">· dez/2020</span></li>
-        <li>Lifelong Learning — Certiprof <span class="course-date">· ago/2020</span></li>
-        <li>Semana OmniStack 11: Node.js, ReactJS e React Native — Rocketseat <span class="course-date">· abr/2020</span></li>
-        <li>Curso de Introdução ao JavaScript — DevMedia <span class="course-date">· dez/2019</span></li>
-        <li>Primeiros passos com JavaScript — DevMedia <span class="course-date">· dez/2019</span></li>
-        <li>HTML na prática: criando mais uma página web — DevMedia <span class="course-date">· nov/2019</span></li>
-        <li>Introdução ao CSS na prática — DevMedia <span class="course-date">· out/2019</span></li>
-        <li>Curso de HTML básico — DevMedia <span class="course-date">· out/2019</span></li>
-        <li>Scrum Foundation Professional Certificate — Certiprof <span class="course-date">· ago/2019</span></li>
       </ul>
     </details>
   </div>
@@ -941,14 +950,79 @@
 
 </main>
 
-<footer>Marcello Queiróz <span class="dot">·</span> Santa Maria, DF <span class="dot">·</span> 2026</footer>
+<footer>Marcello Queiróz <span class="dot">·</span> Brasília, DF <span class="dot">·</span> 2026</footer>
 
 <button class="to-top" id="toTop" aria-label="Voltar ao topo">
   <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
 </button>
 
 <script>
-  // active nav link on scroll + waypoint highlight
+  // Inicialização do Chart.js
+  Chart.defaults.color = '#8d949e';
+  Chart.defaults.font.family = "'Inter', sans-serif";
+
+  // 1. Gráfico Radar (Domínio)
+  const ctxRadar = document.getElementById('radarChart').getContext('2d');
+  new Chart(ctxRadar, {
+    type: 'radar',
+    data: {
+      labels: ['Backend', 'Frontend', 'Geoprocessamento (GIS)', 'Banco de Dados', 'DevOps & Infra'],
+      datasets: [{
+        label: 'Proficiência',
+        data: [95, 85, 90, 90, 80],
+        backgroundColor: 'rgba(242, 183, 5, 0.2)', // var(--accent) com transparência
+        borderColor: '#f2b705',
+        pointBackgroundColor: '#f2b705',
+        pointBorderColor: '#0a0c0f',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: '#f2b705',
+        borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        r: {
+          angleLines: { color: 'rgba(255, 255, 255, 0.05)' },
+          grid: { color: 'rgba(255, 255, 255, 0.05)' },
+          pointLabels: { color: '#ece9e2', font: { size: 11, weight: '500' } },
+          ticks: { display: false, max: 100, min: 0 }
+        }
+      },
+      plugins: { legend: { display: false }, tooltip: { enabled: false } }
+    }
+  });
+
+  // 2. Gráfico Doughnut (Linguagens/Ecossistemas)
+  const ctxDoughnut = document.getElementById('doughnutChart').getContext('2d');
+  new Chart(ctxDoughnut, {
+    type: 'doughnut',
+    data: {
+      labels: ['Node / JS / TS', 'PHP / Laravel', 'Python', 'Java / Spring'],
+      datasets: [{
+        data: [35, 25, 20, 20],
+        backgroundColor: [
+          '#f2b705', // var(--accent)
+          '#34d399', // var(--accent-2)
+          '#8a6a08', // var(--accent-dim)
+          '#565c66'  // var(--text-faint)
+        ],
+        borderWidth: 0,
+        hoverOffset: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      cutout: '70%',
+      plugins: {
+        legend: { position: 'bottom', labels: { boxWidth: 12, padding: 20 } }
+      }
+    }
+  });
+
+  // existing active nav link logic
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-links a');
 
@@ -997,18 +1071,15 @@
     window.scrollTo({top:0, behavior:'smooth'});
   });
 
-  // respect reduced-motion preference before wiring up the 3D extras
+  // 3D/Parallax logic
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
   if(!prefersReducedMotion){
-
-    // hero route: layered parallax depth (mouse + scroll)
     const hero = document.getElementById('hero');
     const routeLayers = document.querySelectorAll('.route-layer');
     if(hero && routeLayers.length){
       let heroMouseX = 0, heroMouseY = 0;
-
       function updateRouteLayers(){
         const scrollShift = window.scrollY;
         routeLayers.forEach(layer=>{
@@ -1018,7 +1089,6 @@
           layer.style.transform = `translate(${moveX}px, ${moveY}px)`;
         });
       }
-
       if(hasFinePointer){
         hero.addEventListener('mousemove', (e)=>{
           const rect = hero.getBoundingClientRect();
@@ -1032,19 +1102,13 @@
           updateRouteLayers();
         });
       }
-
       window.addEventListener('scroll', updateRouteLayers, { passive:true });
     }
 
-    // project cards: subtle 3D tilt following the cursor
     if(hasFinePointer){
       document.querySelectorAll('.project-card').forEach(card=>{
         let cardRect = null;
-
-        card.addEventListener('mouseenter', ()=>{
-          cardRect = card.getBoundingClientRect();
-        });
-
+        card.addEventListener('mouseenter', ()=>{ cardRect = card.getBoundingClientRect(); });
         card.addEventListener('mousemove', (e)=>{
           if(!cardRect) cardRect = card.getBoundingClientRect();
           const x = e.clientX - cardRect.left;
@@ -1053,7 +1117,6 @@
           const rotateX = -((y - cardRect.height / 2) / (cardRect.height / 2)) * 6;
           card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-3px)`;
         });
-
         card.addEventListener('mouseleave', ()=>{
           card.style.transform = '';
           cardRect = null;
