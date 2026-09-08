@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <style>
+    .bg {
+      fill: #0b0d10;
+    }
+
+    .mark {
+      fill: none;
+      stroke: #eee9df;
+      stroke-width: 3.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .point {
+      fill: #eee9df;
+    }
+
+    @media (prefers-color-scheme: light) {
+      .bg {
+        fill: #eee9df;
+      }
+
+      .mark {
+        stroke: #0b0d10;
+      }
+
+      .point {
+        fill: #0b0d10;
+      }
+    }
+  </style>
+
+  <!-- fundo -->
+  <rect
+    class="bg"
+    x="2"
+    y="2"
+    width="60"
+    height="60"
+    rx="15"
+  />
+
+  <path
+    class="mark"
+    d="M15 43V21L24 32L32 21V43"
+  />
+  <circle
+    class="mark"
+    cx="43"
+    cy="31"
+    r="10"
+  />
+
+  <path
+    class="mark"
+    d="M48 38L54 44"
+  />
+
+  <circle
+    class="point"
+    cx="43"
+    cy="31"
+    r="2.7"
+  />
+</svg>
