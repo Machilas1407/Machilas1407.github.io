@@ -1,1067 +1,1004 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Marcello Queiróz — Desenvolvedor Full Stack</title>
-<meta name="description" content="Portfólio de Marcello Queiróz, desenvolvedor full stack com experiência em saúde, gestão pública, plataformas digitais, mobilidade, dados e transportes.">
-<meta name="author" content="Marcello Queiróz">
-<meta name="robots" content="index, follow">
-<meta name="theme-color" content="#0a0c0f">
-<link rel="canonical" href="https://marcelloqueiroz.dev/">
-<meta property="og:type" content="website">
-<meta property="og:locale" content="pt_BR">
-<meta property="og:title" content="Marcello Queiróz — Desenvolvedor Full Stack">
-<meta property="og:description" content="Plataformas digitais de ponta a ponta para saúde, gestão pública, mobilidade, dados e transportes.">
-<meta property="og:image" content="https://marcelloqueiroz.dev/og-image.png">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Marcello Queiróz — Desenvolvedor Full Stack">
-<meta name="twitter:description" content="Plataformas digitais de ponta a ponta para saúde, gestão pública, mobilidade, dados e transportes.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a0c0f'/%3E%3Ccircle cx='50' cy='50' r='14' fill='%23f2b705'/%3E%3C/svg%3E">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Marcello Queiróz",
-  "jobTitle": "Engenheiro de Software Sênior",
-  "worksFor": {
-    "@type": "Organization",
-    "name": "ONTL — Infra S.A. / Ministério dos Transportes"
-  },
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Santa Maria",
-    "addressRegion": "DF",
-    "addressCountry": "BR"
-  },
-  "email": "mailto:marcello.machilas@gmail.com",
-  "sameAs": [
-    "https://www.linkedin.com/in/marcello-machilas/",
-    "https://github.com/Machilas1407"
-  ]
-}
-</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#0a0c0f;
-    --bg-elevated:#12151a;
-    --surface:#171b21;
-    --surface-hover:#1d222a;
-    --border:#262b33;
-    --text:#ece9e2;
-    --text-dim:#8d949e;
-    --text-faint:#565c66;
-    --accent:#f2b705;
-    --accent-dim:#8a6a08;
-    --accent-soft:rgba(242,183,5,0.10);
-    --accent-2:#34d399;
-    --accent-2-soft:rgba(52,211,153,0.10);
-    --font-display:'Space Grotesk',sans-serif;
-    --font-body:'Inter',sans-serif;
-    --font-mono:'JetBrains Mono',monospace;
-    --spine-x:28px;
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  @media (prefers-reduced-motion: reduce){
-    html{scroll-behavior:auto;}
-    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
-  }
-  body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:var(--font-body);
-    line-height:1.6;
-    overflow-x:hidden;
-  }
-  a{color:inherit;text-decoration:none;}
-  ::selection{background:var(--accent-soft);color:var(--accent);}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  /* focus visibility for keyboard nav */
-  a:focus-visible,
-  button:focus-visible,
-  summary:focus-visible{
-    outline:2px solid var(--accent);
-    outline-offset:3px;
-    border-radius:4px;
-  }
+  <title>Marcello Queiróz — Desenvolvedor Full Stack Sênior | Especialista em Software</title>
+  <meta
+    name="description"
+    content="Portfólio profissional de Marcello Queiróz, Desenvolvedor Full Stack Sênior em Brasília-DF, com experiência em sistemas web e mobile, geoprocessamento, APIs, dados e soluções para o setor público."
+  />
+  <meta
+    name="keywords"
+    content="Marcello Queiróz, Desenvolvedor Full Stack Sênior, React, Vue.js, Node.js, Java, Laravel, Quarkus, Spring Boot, PostgreSQL, geoprocessamento, Brasília"
+  />
+  <meta name="author" content="Marcello Queiróz" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0b0d10" />
 
-  .skip-link{
-    position:absolute;
-    left:-9999px;
-    top:auto;
-    background:var(--accent);
-    color:#0a0c0f;
-    padding:10px 16px;
-    border-radius:0 0 8px 0;
-    z-index:100;
-    font-family:var(--font-mono);
-    font-size:13px;
-  }
-  .skip-link:focus{
-    left:0;top:0;
-  }
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Marcello Queiróz — Desenvolvedor Full Stack Sênior" />
+  <meta
+    property="og:description"
+    content="Desenvolvedor Full Stack Sênior com experiência em sistemas de alto impacto, geoprocessamento, arquitetura de APIs e soluções governamentais."
+  />
+  <meta property="og:locale" content="pt_BR" />
 
-  /* ---------- layout shell ---------- */
-  .wrap{max-width:920px;margin:0 auto;padding:0 28px;}
-  section{position:relative;padding:96px 0 96px 56px;}
-  @media (max-width:720px){
-    section{padding:72px 0 72px 40px;}
-    .wrap{padding:0 18px;}
-    :root{--spine-x:18px;}
-  }
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Marcello Queiróz — Desenvolvedor Full Stack Sênior" />
+  <meta
+    name="twitter:description"
+    content="Portfólio profissional de Marcello Queiróz, Desenvolvedor Full Stack Sênior com atuação em sistemas web e mobile, APIs, dados e geoprocessamento."
+  />
 
-  /* ---------- spine (route line) ---------- */
-  .spine{
-    position:absolute;
-    left:var(--spine-x);
-    top:0;
-    bottom:0;
-    width:2px;
-    background-image:linear-gradient(var(--border) 60%, transparent 40%);
-    background-size:2px 16px;
-    background-repeat:repeat-y;
-    z-index:0;
-  }
-  .waypoint{
-    position:absolute;
-    left:calc(var(--spine-x) - 7px);
-    top:6px;
-    width:16px;height:16px;
-    border-radius:50%;
-    background:var(--bg);
-    border:2px solid var(--text-faint);
-    z-index:2;
-    transition:border-color .4s ease, box-shadow .4s ease, background .4s ease;
-  }
-  .waypoint::after{
-    content:'';
-    position:absolute;
-    inset:3px;
-    border-radius:50%;
-    background:var(--text-faint);
-    transition:background .4s ease;
-  }
-  section.in-view .waypoint{
-    border-color:var(--accent);
-    box-shadow:0 0 0 4px var(--accent-soft);
-  }
-  section.in-view .waypoint::after{background:var(--accent);}
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
 
-  .eyebrow{
-    font-family:var(--font-mono);
-    font-size:12px;
-    letter-spacing:0.12em;
-    color:var(--text-faint);
-    text-transform:uppercase;
-    margin-bottom:14px;
-    display:flex;
-    align-items:center;
-    gap:8px;
-    transition:color .4s ease;
-  }
-  section.in-view .eyebrow{color:var(--accent);}
+  <script>
+    (() => {
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
 
-  h2.section-title{
-    font-family:var(--font-display);
-    font-weight:600;
-    font-size:clamp(22px,3vw,30px);
-    margin-bottom:36px;
-    color:var(--text);
-  }
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['DM Sans', 'system-ui', 'sans-serif'],
+            mono: ['IBM Plex Mono', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+          },
+          maxWidth: {
+            content: '1180px',
+          },
+          boxShadow: {
+            soft: '0 20px 60px rgba(15, 23, 42, 0.08)',
+          },
+        },
+      },
+    };
+  </script>
 
-  /* ---------- nav ---------- */
-  nav{
-    position:fixed;
-    top:0;left:0;right:0;
-    z-index:50;
-    backdrop-filter:blur(10px);
-    background:rgba(10,12,15,0.75);
-    border-bottom:1px solid var(--border);
-  }
-  .nav-inner{
-    max-width:920px;margin:0 auto;padding:0 28px;
-    height:64px;display:flex;align-items:center;justify-content:space-between;
-    position:relative;
-  }
-  .logo{
-    font-family:var(--font-mono);
-    font-weight:500;font-size:15px;
-    color:var(--text);
-    display:flex;align-items:center;gap:8px;
-  }
-  .logo .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent);}
-  .nav-links{display:flex;gap:28px;font-size:14px;color:var(--text-dim);}
-  .nav-links a{transition:color .2s ease;position:relative;}
-  .nav-links a:hover, .nav-links a.active{color:var(--text);}
-  .nav-links a.active::after{
-    content:'';position:absolute;left:0;right:0;bottom:-8px;height:1px;background:var(--accent);
-  }
-
-  /* mobile menu toggle */
-  .nav-toggle{
-    display:none;
-    width:38px;height:38px;
-    border-radius:8px;
-    border:1px solid var(--border);
-    background:transparent;
-    color:var(--text);
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-  }
-  .nav-toggle svg{width:18px;height:18px;}
-
-  @media (max-width:640px){
-    .nav-toggle{display:flex;}
-    .nav-links{
-      display:flex;
-      flex-direction:column;
-      gap:0;
-      position:absolute;
-      top:64px;
-      left:0;right:0;
-      background:var(--bg-elevated);
-      border-bottom:1px solid var(--border);
-      max-height:0;
-      overflow:hidden;
-      transition:max-height .3s ease;
+  <style>
+    :root {
+      --page: #f6f5f1;
+      --surface: #ffffff;
+      --surface-2: #ecebe6;
+      --text: #15171a;
+      --muted: #686b70;
+      --line: #d7d5ce;
+      --accent: #0f766e;
+      --accent-soft: #ccfbf1;
+      --selection: #99f6e4;
     }
-    .nav-links.open{max-height:320px;}
-    .nav-links a{
-      padding:14px 20px;
-      border-top:1px solid var(--border);
-      width:100%;
+
+    .dark {
+      --page: #0b0d10;
+      --surface: #12151a;
+      --surface-2: #181c22;
+      --text: #f2f4f7;
+      --muted: #9ca3af;
+      --line: #2a3038;
+      --accent: #5eead4;
+      --accent-soft: #123a36;
+      --selection: #115e59;
     }
-    .nav-links a.active::after{display:none;}
-    .nav-links a.active{color:var(--accent);}
-  }
 
-  /* ---------- hero ---------- */
-  .hero{
-    padding:150px 0 90px;
-    position:relative;
-    perspective:1200px;
-  }
-  .hero .wrap{position:relative;z-index:2;}
-  .hero-route-svg{
-    position:absolute;
-    top:0; left:0; right:0;
-    height:100%;
-    z-index:1;
-    opacity:0.55;
-    pointer-events:none;
-    overflow:visible;
-  }
-  .hero-route-svg path{
-    fill:none;
-    stroke:var(--border);
-    stroke-width:1.5;
-  }
-  .hero-route-svg path.draw{
-    stroke:var(--accent);
-    stroke-dasharray:1400;
-    stroke-dashoffset:1400;
-    animation:draw 2.6s ease forwards 0.3s;
-    opacity:0.5;
-  }
-  @keyframes draw{ to{stroke-dashoffset:0;} }
+    html {
+      background: var(--page);
+    }
 
-  /* parallax depth layers in the hero illustration */
-  .route-layer{
-    transition:transform .35s ease-out;
-    transform-box:fill-box;
-    will-change:transform;
-  }
-  .route-dot{
-    fill:var(--accent);
-    opacity:0.55;
-  }
-  @media (prefers-reduced-motion: reduce){
-    .route-layer{transition:none;}
-  }
+    body {
+      background: var(--page);
+      color: var(--text);
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
 
-  .coords{
-    font-family:var(--font-mono);
-    font-size:12px;
-    color:var(--text-faint);
-    letter-spacing:0.06em;
-    margin-bottom:22px;
-  }
-  .coords .sep{color:var(--accent-dim);margin:0 8px;}
+    ::selection {
+      background: var(--selection);
+      color: var(--text);
+    }
 
-  h1{
-    font-family:var(--font-display);
-    font-weight:700;
-    font-size:clamp(38px,7vw,64px);
-    line-height:1.04;
-    letter-spacing:-0.01em;
-    margin-bottom:18px;
-  }
-  h1 .accent{color:var(--accent);}
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: var(--line) transparent;
+    }
 
-  .role{
-    font-family:var(--font-mono);
-    font-size:clamp(15px,2vw,18px);
-    color:var(--accent-2);
-    margin-bottom:26px;
-  }
-  .role::before{content:'// ';color:var(--text-faint);}
+    .editorial-grid {
+      background-image:
+        linear-gradient(to right, color-mix(in srgb, var(--line) 35%, transparent) 1px, transparent 1px),
+        linear-gradient(to bottom, color-mix(in srgb, var(--line) 25%, transparent) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(to bottom, black, transparent 78%);
+      -webkit-mask-image: linear-gradient(to bottom, black, transparent 78%);
+    }
 
-  .lede{
-    max-width:560px;
-    color:var(--text-dim);
-    font-size:16px;
-    margin-bottom:38px;
-  }
+    .section-kicker::before {
+      content: '';
+      width: 2.5rem;
+      height: 1px;
+      background: var(--accent);
+      display: inline-block;
+      margin-right: 0.75rem;
+      vertical-align: middle;
+    }
 
-  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:56px;}
-  .btn{
-    font-family:var(--font-body);
-    font-weight:500;
-    font-size:14px;
-    padding:12px 22px;
-    border-radius:8px;
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    transition:all .2s ease;
-    border:1px solid transparent;
-  }
-  .btn-primary{background:var(--accent);color:#0a0c0f;}
-  .btn-primary:hover{background:#ffcb2e;transform:translateY(-1px);}
-  .btn-ghost{border-color:var(--border);color:var(--text);}
-  .btn-ghost:hover{border-color:var(--text-faint);background:var(--surface);}
+    .nav-link[aria-current='true'] {
+      color: var(--text);
+    }
 
-  .hero-stats{
-    display:grid;
-    grid-template-columns:repeat(3,auto);
-    gap:40px;
-  }
-  @media(max-width:560px){ .hero-stats{grid-template-columns:repeat(2,1fr);gap:24px;} }
-  .stat-num{
-    font-family:var(--font-display);
-    font-size:26px;
-    font-weight:600;
-    color:var(--text);
-  }
-  .stat-num .unit{color:var(--accent);}
-  .stat-label{
-    font-size:12px;
-    color:var(--text-faint);
-    text-transform:uppercase;
-    letter-spacing:0.08em;
-    margin-top:2px;
-  }
+    .nav-link[aria-current='true']::after {
+      transform: scaleX(1);
+    }
 
-  /* ---------- sobre ---------- */
-  .about-body{color:var(--text-dim);max-width:640px;font-size:15.5px;margin-bottom:30px;}
-  .edu-grid{display:grid;gap:14px;}
-  .edu-item{
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:10px;
-    padding:16px 18px;
-    display:flex;
-    justify-content:space-between;
-    align-items:baseline;
-    gap:12px;
-    flex-wrap:wrap;
-  }
-  .edu-item .name{font-weight:500;font-size:14.5px;}
-  .edu-item .place{color:var(--text-faint);font-size:13px;}
-  .edu-status{
-    font-family:var(--font-mono);
-    font-size:11px;
-    padding:3px 9px;
-    border-radius:20px;
-    white-space:nowrap;
-  }
-  .edu-status.done{background:var(--accent-2-soft);color:var(--accent-2);}
-  .edu-status.progress{background:var(--accent-soft);color:var(--accent);}
+    .nav-link::after {
+      content: '';
+      display: block;
+      height: 1px;
+      margin-top: 0.25rem;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 180ms ease;
+    }
 
-  /* ---------- experiência ---------- */
-  .job{margin-bottom:44px;}
-  .job:last-child{margin-bottom:0;}
-  .job-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-    gap:16px;
-    flex-wrap:wrap;
-    margin-bottom:6px;
-  }
-  .job-title{font-family:var(--font-display);font-weight:600;font-size:18px;}
-  .job-period{
-    font-family:var(--font-mono);
-    font-size:12px;
-    color:var(--bg);
-    background:var(--text-faint);
-    padding:3px 10px;
-    border-radius:20px;
-    white-space:nowrap;
-  }
-  .job.current .job-period{background:var(--accent-2);}
-  .job-company{color:var(--accent);font-size:13.5px;margin-bottom:14px;font-weight:500;}
-  .job-list{list-style:none;display:grid;gap:8px;}
-  .job-list li{
-    color:var(--text-dim);
-    font-size:14.5px;
-    padding-left:18px;
-    position:relative;
-  }
-  .job-list li::before{
-    content:'';
-    position:absolute;left:0;top:8px;
-    width:6px;height:1px;
-    background:var(--text-faint);
-  }
+    .nav-link:hover::after {
+      transform: scaleX(1);
+    }
 
-  /* ---------- projetos ---------- */
-  .project-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;perspective:1000px;}
-  @media(max-width:640px){ .project-grid{grid-template-columns:1fr;} }
-  .project-card{
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:12px;
-    padding:22px;
-    display:flex;
-    flex-direction:column;
-    transition:border-color .25s ease, transform .12s ease-out, background .25s ease, box-shadow .25s ease;
-    transform-style:preserve-3d;
-    will-change:transform;
-  }
-  .project-card:hover{border-color:var(--accent-dim);background:var(--surface-hover);box-shadow:0 16px 30px -18px rgba(0,0,0,0.6);}
-  @media (prefers-reduced-motion: reduce){
-    .project-card{transition:border-color .25s ease, background .25s ease;}
-  }
-  .project-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;}
-  .project-name{font-family:var(--font-display);font-weight:600;font-size:16.5px;}
-  .project-link-icon{
-    width:28px;height:28px;
-    border-radius:7px;
-    border:1px solid var(--border);
-    display:flex;align-items:center;justify-content:center;
-    color:var(--text-faint);
-    flex-shrink:0;
-    transition:all .2s ease;
-  }
-  .project-card:hover .project-link-icon{color:var(--accent);border-color:var(--accent-dim);}
-  .project-desc{color:var(--text-dim);font-size:13.5px;margin-bottom:16px;flex-grow:1;}
-  .project-tags{display:flex;flex-wrap:wrap;gap:6px;}
-  .tag{
-    font-family:var(--font-mono);
-    font-size:10.5px;
-    color:var(--text-faint);
-    border:1px solid var(--border);
-    padding:3px 8px;
-    border-radius:5px;
-  }
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 550ms ease, transform 550ms ease;
+    }
 
-  /* ---------- skills ---------- */
-  .skill-group{margin-bottom:26px;}
-  .skill-group:last-child{margin-bottom:0;}
-  .skill-group-label{
-    font-family:var(--font-mono);
-    font-size:12px;
-    color:var(--text-faint);
-    margin-bottom:12px;
-    text-transform:uppercase;
-    letter-spacing:0.06em;
-  }
-  .chip-row{display:flex;flex-wrap:wrap;gap:8px;}
-  .chip{
-    font-size:13px;
-    padding:7px 13px;
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:20px;
-    color:var(--text-dim);
-    transition:all .2s ease;
-  }
-  .chip:hover{border-color:var(--accent-dim);color:var(--text);background:var(--accent-soft);}
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-  .courses-toggle{
-    margin-top:34px;
-    border-top:1px dashed var(--border);
-    padding-top:22px;
-  }
-  .courses-summary{
-    cursor:pointer;
-    font-family:var(--font-mono);
-    font-size:12.5px;
-    color:var(--accent-2);
-    list-style:none;
-    display:flex;align-items:center;gap:8px;
-  }
-  .courses-summary::-webkit-details-marker{display:none;}
-  .courses-summary::before{content:'▸';transition:transform .2s ease;}
-  details[open] .courses-summary::before{transform:rotate(90deg);}
-  .courses-list{
-    margin-top:16px;
-    display:grid;
-    gap:9px;
-  }
-  .courses-list li{
-    font-size:13.5px;
-    color:var(--text-dim);
-    padding-left:16px;
-    position:relative;
-  }
-  .courses-list li::before{content:'—';position:absolute;left:0;color:var(--text-faint);}
-  .courses-list .course-date{
-    font-family:var(--font-mono);
-    font-size:11.5px;
-    color:var(--text-faint);
-    white-space:nowrap;
-  }
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto !important;
+      }
 
-  /* ---------- contato ---------- */
-  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-  @media(max-width:560px){.contact-grid{grid-template-columns:1fr;}}
-  .contact-card{
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:12px;
-    padding:18px 20px;
-    display:flex;
-    align-items:center;
-    gap:14px;
-    transition:all .2s ease;
-  }
-  .contact-card:hover{border-color:var(--accent-dim);background:var(--surface-hover);}
-  .contact-icon{
-    width:38px;height:38px;
-    border-radius:9px;
-    background:var(--bg-elevated);
-    display:flex;align-items:center;justify-content:center;
-    color:var(--accent);
-    flex-shrink:0;
-  }
-  .contact-label{font-size:11px;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.06em;}
-  .contact-value{font-size:14px;color:var(--text);font-weight:500;word-break:break-word;}
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
 
-  /* back to top */
-  .to-top{
-    position:fixed;
-    right:22px;
-    bottom:22px;
-    width:44px;height:44px;
-    border-radius:50%;
-    background:var(--surface);
-    border:1px solid var(--border);
-    color:var(--accent);
-    display:flex;align-items:center;justify-content:center;
-    cursor:pointer;
-    opacity:0;
-    pointer-events:none;
-    transform:translateY(10px);
-    transition:opacity .25s ease, transform .25s ease, border-color .2s ease;
-    z-index:40;
-  }
-  .to-top.visible{opacity:1;pointer-events:auto;transform:translateY(0);}
-  .to-top:hover{border-color:var(--accent-dim);}
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
 
-  footer{
-    text-align:center;
-    padding:40px 20px 50px;
-    color:var(--text-faint);
-    font-size:12.5px;
-    font-family:var(--font-mono);
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Marcello Queiróz",
+    "jobTitle": "Desenvolvedor Full Stack Sênior",
+    "email": "mailto:marcello.machilas@gmail.com",
+    "telephone": "+55 61 99608-3943",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Brasília",
+      "addressRegion": "DF",
+      "addressCountry": "BR"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/in/marcello-machilas/",
+      "https://github.com/Machilas1407"
+    ],
+    "knowsAbout": [
+      "JavaScript",
+      "TypeScript",
+      "Python",
+      "SQL",
+      "Golang",
+      "Node.js",
+      "PHP",
+      "Laravel",
+      "Java",
+      "Quarkus",
+      "Spring Boot",
+      "NestJS",
+      "React",
+      "React Native",
+      "Vue.js",
+      "Angular",
+      "PostgreSQL",
+      "MySQL",
+      "MongoDB",
+      "Docker",
+      "Nginx",
+      "GitLab CI/CD",
+      "Geoprocessamento"
+    ]
   }
-  footer .dot{color:var(--accent);}
-</style>
+  </script>
 </head>
-<body>
 
-<a href="#conteudo" class="skip-link">Pular para o conteúdo</a>
+<body class="min-h-screen font-sans antialiased bg-[var(--page)] text-[var(--text)]">
+  <a
+    href="#conteudo"
+    class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-[var(--text)] focus:px-4 focus:py-2 focus:text-[var(--page)]"
+  >
+    Ir para o conteúdo
+  </a>
 
-<nav>
-  <div class="nav-inner">
-    <div class="logo"><span class="dot"></span>MQ<span style="color:var(--text-faint)">.dev</span></div>
-    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-    </button>
-    <div class="nav-links" id="navLinks">
-      <a href="#sobre" data-nav>Sobre</a>
-      <a href="#experiencia" data-nav>Experiência</a>
-      <a href="#projetos" data-nav>Projetos</a>
-      <a href="#skills" data-nav>Skills</a>
-      <a href="#contato" data-nav>Contato</a>
-    </div>
-  </div>
-</nav>
-
-<main id="conteudo">
-
-<!-- HERO -->
-<header class="hero" id="hero">
-  <svg class="hero-route-svg" viewBox="0 0 920 520" preserveAspectRatio="none">
-    <g class="route-layer" data-depth="0.15">
-      <path d="M -30 470 C 130 445, 190 510, 350 465 S 590 360, 730 385 S 930 320, 990 285" opacity="0.35" />
-    </g>
-    <g class="route-layer" data-depth="0.35">
-      <path d="M -20 420 C 150 380, 220 460, 380 400 S 620 260, 760 300 S 940 220, 980 180" />
-      <path class="draw" d="M -20 420 C 150 380, 220 460, 380 400 S 620 260, 760 300 S 940 220, 980 180" />
-    </g>
-    <g class="route-layer" data-depth="0.6">
-      <circle class="route-dot" cx="380" cy="400" r="4" />
-      <circle class="route-dot" cx="760" cy="300" r="3" />
-      <circle class="route-dot" cx="150" cy="380" r="3" />
-      <circle class="route-dot" cx="940" cy="220" r="3.5" />
-    </g>
-  </svg>
-  <div class="wrap">
-    <div class="coords">Brasília, DF, Brasil</div>
-    <h1>Marcello<br><span class="accent">Queiróz</span></h1>
-    <div class="role">desenvolvedor full stack</div>
-    <p class="lede">Desenvolvo plataformas digitais de ponta a ponta para saúde, gestão pública, mobilidade e dados — de sistemas nacionais e soluções de gestão a aplicações geoespaciais, dashboards analíticos e APIs. Atualmente sou Engenheiro de Software Sênior na ONTL, Infra S.A. / Ministério dos Transportes.</p>
-    <div class="hero-actions">
-      <a href="#projetos" class="btn btn-primary">Ver projetos →</a>
-      <a href="#contato" class="btn btn-ghost">Falar comigo</a>
-    </div>
-    <div class="hero-stats">
-      <div>
-        <div class="stat-num">6<span class="unit">+</span></div>
-        <div class="stat-label">Anos de estrada</div>
-      </div>
-      <div>
-        <div class="stat-num">10</div>
-        <div class="stat-label">Projetos em produção</div>
-      </div>
-      <div>
-        <div class="stat-num">20<span class="unit">+</span></div>
-        <div class="stat-label">Tecnologias</div>
-      </div>
-    </div>
-  </div>
-</header>
-
-<!-- SOBRE -->
-<section id="sobre">
-  <div class="spine"></div>
-  <div class="waypoint"></div>
-  <div class="wrap">
-    <div class="eyebrow">◍ Sobre</div>
-    <h2 class="section-title">Tecnologia para serviços públicos e negócios</h2>
-    <p class="about-body">
-      Formado em Análise e Desenvolvimento de Sistemas em 2021, comecei a carreira ainda durante a graduação e construí uma trajetória em plataformas digitais para saúde, gestão pública, gestão de pessoas, mobilidade e dados. Participei de projetos ligados ao Ministério da Saúde, UNOPS, Ministério Público Federal, Hospital Alemão Oswaldo Cruz, universidades e empresas privadas. Hoje curso Engenharia de Software com Inteligência Artificial e lidero tecnicamente o desenvolvimento de aplicações geoespaciais, dashboards analíticos e sistemas de gestão de dados na ONTL, mantendo transportes como uma das minhas áreas de maior experiência.
-    </p>
-    <div class="edu-grid">
-      <div class="edu-item">
-        <div>
-          <div class="name">Tecnólogo em Análise e Desenvolvimento de Sistemas</div>
-          <div class="place">Centro Universitário</div>
-        </div>
-        <span class="edu-status done">Concluído · 2021</span>
-      </div>
-      <div class="edu-item">
-        <div>
-          <div class="name">Pós-graduação em Engenharia de Software com Inteligência Artificial</div>
-          <div class="place">Pós-graduação</div>
-        </div>
-        <span class="edu-status progress">Cursando</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- EXPERIÊNCIA -->
-<section id="experiencia">
-  <div class="spine"></div>
-  <div class="waypoint"></div>
-  <div class="wrap">
-    <div class="eyebrow">◍ Experiência</div>
-    <h2 class="section-title">Histórico profissional</h2>
-
-    <div class="job current">
-      <div class="job-head">
-        <div class="job-title">Engenheiro de Software Sênior</div>
-        <span class="job-period">2023 — presente</span>
-      </div>
-      <div class="job-company">ONTL — Infra S.A. · Ministério dos Transportes</div>
-      <ul class="job-list">
-        <li>Liderança técnica e apoio à equipe de desenvolvimento</li>
-        <li>Desenvolvimento de Back-end com Node.js, PHP, Laravel, Java, Quarkus e Spring Boot</li>
-        <li>Desenvolvimento de Front-end com Vue.js, React e React Native</li>
-        <li>Desenvolvimento em JavaScript para Experience Builder com ArcGIS</li>
-        <li>Desenvolvimento de Sistemas com Google Maps API, OpenStreetMap, Leaflet, ArcGIS Server e QGIS</li>
-        <li>Modelagem e Administração de Banco de Dados PostgreSQL</li>
-        <li>Desenvolvimento e Integração de APIs REST, com Autenticação e Autorização via JWT</li>
-        <li>Desenvolvimento de Scripts e Processamento de Dados com Python</li>
-        <li>Integração com APIs Externas e Serviços de Geolocalização</li>
-        <li>Controle de Versionamento com Git e Git Flow</li>
-        <li>Configuração de Deploy e CI/CD com GitLab, ambientes com Docker e Nginx</li>
-        <li>Segurança de Aplicações com Helmet, CORS e Sanitização de Dados</li>
-      </ul>
-    </div>
-
-    <div class="job">
-      <div class="job-head">
-        <div class="job-title">Desenvolvedor Full-Stack</div>
-        <span class="job-period">2019 — 2023</span>
-      </div>
-      <div class="job-company">Manatus Soluções em Tecnologia</div>
-      <ul class="job-list">
-        <li>Back-end com Node.js, PHP e Laravel · Front-end com Vue.js, React e React Native</li>
-        <li>Modelagem de banco de dados PostgreSQL e manutenção de aplicações web e mobile</li>
-        <li>Projetos para o Ministério da Saúde e empresas privadas, com foco em gestão de pessoas</li>
-        <li>Rotina em times ágeis com Scrum e Kanban</li>
-      </ul>
-    </div>
-
-    <div class="job">
-      <div class="job-head">
-        <div class="job-title">Analista de Desenvolvimento de Sistemas</div>
-        <span class="job-period">2021 — 2023</span>
-      </div>
-      <div class="job-company">FEPESE — Fundação de Estudos e Pesquisas Socioeconômicas</div>
-      <ul class="job-list">
-        <li>Back-end com Nest.js · Front-end com Vue 3 e TypeScript</li>
-        <li>Criação de roteiros de teste e times ágeis com Scrum/Kanban</li>
-        <li>Projetos para o Ministério da Saúde e a Universidade Federal de Santa Catarina</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- PROJETOS -->
-<section id="projetos">
-  <div class="spine"></div>
-  <div class="waypoint"></div>
-  <div class="wrap">
-    <div class="eyebrow">◍ Projetos</div>
-    <h2 class="section-title">Plataformas que geram impacto</h2>
-
-    <div class="project-grid">
-
-      <div class="project-card">
-        <div class="project-top">
-          <div class="project-name">Rota Segura</div>
-          <a class="project-link-icon" href="https://ontl.infrasa.gov.br/aplicacoes/rota-segura/" target="_blank" rel="noopener noreferrer">↗</a>
-        </div>
-        <p class="project-desc">Aplicação full stack para análise de rotas, cálculo de riscos rodoviários, geolocalização e visualização em mapas.</p>
-        <div class="project-tags"><span class="tag">Vue.js</span><span class="tag">Node.js</span><span class="tag">Python</span><span class="tag">Leaflet</span><span class="tag">PostgreSQL</span></div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-top">
-          <div class="project-name">APIM</div>
-          <a class="project-link-icon" href="https://ontl.infrasa.gov.br/dados/consulta-a-base-de-dados/" target="_blank" rel="noopener noreferrer">↗</a>
-        </div>
-        <p class="project-desc">Gerenciamento de datasets, APIs, dashboards e documentação automatizada para consulta de dados.</p>
-        <div class="project-tags"><span class="tag">Vue.js</span><span class="tag">PHP</span><span class="tag">Laravel</span><span class="tag">PostgreSQL</span></div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-top">
-          <div class="project-name">Simulador TRIC</div>
-          <a class="project-link-icon" href="https://ontl.infrasa.gov.br/aplicacoes/simulador-para-transporte-rodoviario-internacional-de-carga-tric/" target="_blank" rel="noopener noreferrer">↗</a>
-        </div>
-        <p class="project-desc">Simulador para Transporte Rodoviário Internacional de Carga, com ferramentas de cálculo para o setor.</p>
-        <div class="project-tags"><span class="tag">Vue.js</span><span class="tag">PHP</span><span class="tag">Laravel</span></div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-top">
-          <div class="project-name">Espaço Conecta</div>
-          <a class="project-link-icon" href="https://conecta.infrasa.gov.br/login" target="_blank" rel="noopener noreferrer">↗</a>
-        </div>
-        <p class="project-desc">Gestão de propostas, startups, instituições e projetos em uma plataforma centralizada.</p>
-        <div class="project-tags"><span class="tag">Vue.js</span><span class="tag">PHP</span><span class="tag">Laravel</span></div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-top">
-          <div class="project-name">Simuladores ONTL</div>
-          <a class="project-link-icon" href="https://simuladores.infrasa.gov.br/" target="_blank" rel="noopener noreferrer">↗</a>
-        </div>
-        <p class="project-desc">Suíte de simuladores e ferramentas de cálculo voltadas para o setor de transportes.</p>
-        <div class="project-tags"><span class="tag">Vue.js</span><span class="tag">PHP</span><span class="tag">Laravel</span></div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-top">
-          <div class="project-name">Painéis ONTL</div>
-          <a class="project-link-icon" href="https://paineis.infrasa.gov.br/" target="_blank" rel="noopener noreferrer">↗</a>
-        </div>
-        <p class="project-desc">Dashboards e painéis analíticos para visualização de dados do setor de transportes.</p>
-        <div class="project-tags"><span class="tag">Vue.js</span><span class="tag">D3.js</span><span class="tag">PostgreSQL</span></div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-top">
-          <div class="project-name">Nosso Chão Nossa História</div>
-          <a class="project-link-icon" href="https://nossochaomaceio.org/" target="_blank" rel="noopener noreferrer" aria-label="Abrir Nosso Chão Nossa História">↗</a>
-        </div>
-        <p class="project-desc">Projeto da UNOPS e do Ministério Público Federal voltado à informação pública e à memória das comunidades afetadas pelo desastre socioambiental em Maceió. Participação durante a atuação na Manatus.</p>
-        <div class="project-tags"><span class="tag">Gestão pública</span><span class="tag">UNOPS</span><span class="tag">MPF</span></div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-top">
-          <div class="project-name">DigiSUS Gestor</div>
-          <a class="project-link-icon" href="https://digisusgmp.saude.gov.br/" target="_blank" rel="noopener noreferrer" aria-label="Abrir DigiSUS Gestor">↗</a>
-        </div>
-        <p class="project-desc">Plataforma digital do Ministério da Saúde que apoia gestores no planejamento, monitoramento e prestação de contas do SUS. Participação durante a atuação na Manatus.</p>
-        <div class="project-tags"><span class="tag">Saúde pública</span><span class="tag">Gestão</span><span class="tag">SUS</span></div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-top">
-          <div class="project-name">Conecte SUS Cidadão</div>
-          <a class="project-link-icon" href="https://meususdigital.saude.gov.br/login" target="_blank" rel="noopener noreferrer" aria-label="Abrir Meu SUS Digital">↗</a>
-        </div>
-        <p class="project-desc">Participação no antigo Conecte SUS Cidadão, plataforma nacional que evoluiu para o Meu SUS Digital e aproxima cidadãos de seus dados e serviços de saúde.</p>
-        <div class="project-tags"><span class="tag">Saúde digital</span><span class="tag">Serviço público</span><span class="tag">Cidadania</span></div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-top">
-          <div class="project-name">Hospital Alemão Oswaldo Cruz</div>
-          <a class="project-link-icon" href="https://ead.proadihaoc.org.br/" target="_blank" rel="noopener noreferrer" aria-label="Abrir plataforma do Hospital Alemão Oswaldo Cruz">↗</a>
-        </div>
-        <p class="project-desc">Sistema digital de gestão e capacitação de pessoas para apoiar jornadas de aprendizagem e desenvolvimento profissional no Hospital Alemão Oswaldo Cruz. Participação durante a atuação na Manatus.</p>
-        <div class="project-tags"><span class="tag">Gestão de pessoas</span><span class="tag">Capacitação</span><span class="tag">Saúde</span></div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills">
-  <div class="spine"></div>
-  <div class="waypoint"></div>
-  <div class="wrap">
-    <div class="eyebrow">◍ Skills</div>
-    <h2 class="section-title">Caixa de ferramentas</h2>
-
-    <div class="skill-group">
-      <div class="skill-group-label">Linguagens</div>
-      <div class="chip-row">
-        <span class="chip">JavaScript</span><span class="chip">TypeScript</span><span class="chip">Python</span><span class="chip">SQL</span><span class="chip">Java</span><span class="chip">GoLang</span><span class="chip">HTML</span><span class="chip">CSS</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <div class="skill-group-label">Frontend</div>
-      <div class="chip-row">
-        <span class="chip">Vue.js 2 / 3</span><span class="chip">React</span><span class="chip">React Native</span><span class="chip">Redux</span><span class="chip">Vuetify</span><span class="chip">Tailwind CSS</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <div class="skill-group-label">Backend</div>
-      <div class="chip-row">
-        <span class="chip">Node.js</span><span class="chip">PHP</span><span class="chip">Laravel</span><span class="chip">Nest.js</span><span class="chip">Quarkus</span><span class="chip">Spring Boot</span><span class="chip">APIs REST</span><span class="chip">Swagger / OpenAPI</span><span class="chip">JWT</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <div class="skill-group-label">Dados &amp; Infra</div>
-      <div class="chip-row">
-        <span class="chip">PostgreSQL</span><span class="chip">MySQL</span><span class="chip">MongoDB</span><span class="chip">Docker</span><span class="chip">Nginx</span><span class="chip">Git / Git Flow</span><span class="chip">GitLab CI/CD</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <div class="skill-group-label">Mapas, testes &amp; processo</div>
-      <div class="chip-row">
-        <span class="chip">Leaflet</span><span class="chip">OpenStreetMap</span><span class="chip">Google Maps API</span><span class="chip">ArcGIS Server</span><span class="chip">ArcGIS Experience Builder</span><span class="chip">QGIS</span><span class="chip">D3.js</span><span class="chip">Cypress</span><span class="chip">TDD</span><span class="chip">Scrum</span><span class="chip">Kanban</span>
-      </div>
-    </div>
-
-    <details class="courses-toggle">
-      <summary class="courses-summary">Cursos e certificações</summary>
-      <ul class="courses-list">
-        <li>Node.js: lidando com buscas, filtros, paginação e erros em uma API — Alura <span class="course-date">· nov/2024</span></li>
-        <li>Node.js: criando uma API REST com Express e MongoDB — Alura <span class="course-date">· nov/2024</span></li>
-        <li>Node.js: continue seu projeto full stack criando uma API com Express — Alura <span class="course-date">· out/2024</span></li>
-        <li>Curso Específico de Implementação da LGPD — Infra S.A. <span class="course-date">· mar/2024</span></li>
-        <li>Vue 3: entendendo componentes, diretivas e reatividade no framework — Alura <span class="course-date">· jan/2024</span></li>
-        <li>Desenvolvimento Web Avançado com PHP, Laravel e Vue.js — Udemy <span class="course-date">· out/2023</span></li>
-        <li>Curso de JavaScript e TypeScript do básico ao avançado — Udemy <span class="course-date">· out/2023</span></li>
-        <li>Vue JS 3: Desenvolvimento Web Moderno com Vuex &amp; Vue Router — Udemy <span class="course-date">· mai/2022</span></li>
-        <li>Curso Completo do Desenvolvedor NodeJS e MongoDB — Udemy <span class="course-date">· dez/2021</span></li>
-        <li>Docker para Desenvolvedores JavaScript / Node.js — Udemy <span class="course-date">· abr/2021</span></li>
-        <li>Participação do DoWhile 2020 — Rocketseat <span class="course-date">· dez/2020</span></li>
-        <li>Lifelong Learning — Certiprof <span class="course-date">· ago/2020</span></li>
-        <li>Semana OmniStack 11: Node.js, ReactJS e React Native — Rocketseat <span class="course-date">· abr/2020</span></li>
-        <li>Curso de Introdução ao JavaScript — DevMedia <span class="course-date">· dez/2019</span></li>
-        <li>Primeiros passos com JavaScript — DevMedia <span class="course-date">· dez/2019</span></li>
-        <li>HTML na prática: criando mais uma página web — DevMedia <span class="course-date">· nov/2019</span></li>
-        <li>Introdução ao CSS na prática — DevMedia <span class="course-date">· out/2019</span></li>
-        <li>Curso de HTML básico — DevMedia <span class="course-date">· out/2019</span></li>
-        <li>Scrum Foundation Professional Certificate — Certiprof <span class="course-date">· ago/2019</span></li>
-      </ul>
-    </details>
-  </div>
-</section>
-
-<!-- CONTATO -->
-<section id="contato">
-  <div class="spine"></div>
-  <div class="waypoint"></div>
-  <div class="wrap">
-    <div class="eyebrow">◍ Contato</div>
-    <h2 class="section-title">Vamos conversar</h2>
-
-    <div class="contact-grid">
-      <a class="contact-card" href="mailto:marcello.machilas@gmail.com">
-        <div class="contact-icon">✉</div>
-        <div>
-          <div class="contact-label">Email</div>
-          <div class="contact-value">marcello.machilas@gmail.com</div>
-        </div>
+  <!-- HEADER -->
+  <header class="fixed inset-x-0 top-0 z-50 border-b border-[var(--line)] bg-[color:var(--page)]/90 backdrop-blur-xl">
+    <div class="mx-auto flex h-16 max-w-content items-center justify-between px-5 sm:px-6 lg:px-8">
+      <a href="#inicio" class="group inline-flex items-center gap-3" aria-label="Ir para o início">
+        <span class="grid size-9 place-items-center rounded-full border border-[var(--line)] bg-[var(--surface)] font-mono text-xs font-semibold">
+          MQ
+        </span>
+        <span class="hidden text-sm font-semibold sm:inline">Marcello Queiróz</span>
       </a>
-      <a class="contact-card" href="tel:+5561996083943">
-        <div class="contact-icon">☎</div>
-        <div>
-          <div class="contact-label">Telefone</div>
-          <div class="contact-value">+55 (61) 99608-3943</div>
-        </div>
-      </a>
-      <a class="contact-card" href="https://www.linkedin.com/in/marcello-machilas/" target="_blank" rel="noopener noreferrer">
-        <div class="contact-icon">in</div>
-        <div>
-          <div class="contact-label">LinkedIn</div>
-          <div class="contact-value">/marcello-machilas</div>
-        </div>
-      </a>
-      <a class="contact-card" href="https://github.com/Machilas1407" target="_blank" rel="noopener noreferrer">
-        <div class="contact-icon">⌥</div>
-        <div>
-          <div class="contact-label">GitHub</div>
-          <div class="contact-value">github.com/Machilas1407</div>
-        </div>
-      </a>
+
+      <nav class="hidden items-center gap-6 lg:flex" aria-label="Navegação principal">
+        <a class="nav-link text-sm text-[var(--muted)] transition hover:text-[var(--text)]" href="#sobre">Sobre</a>
+        <a class="nav-link text-sm text-[var(--muted)] transition hover:text-[var(--text)]" href="#experiencia">Experiência</a>
+        <a class="nav-link text-sm text-[var(--muted)] transition hover:text-[var(--text)]" href="#projetos">Projetos</a>
+        <a class="nav-link text-sm text-[var(--muted)] transition hover:text-[var(--text)]" href="#skills">Skills</a>
+        <a class="nav-link text-sm text-[var(--muted)] transition hover:text-[var(--text)]" href="#formacao">Formação</a>
+      </nav>
+
+      <div class="flex items-center gap-1.5">
+        <a
+          href="https://github.com/Machilas1407"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="grid size-10 place-items-center rounded-full text-[var(--muted)] transition hover:bg-[var(--surface-2)] hover:text-[var(--text)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
+          aria-label="GitHub de Marcello Queiróz"
+        >
+          <svg viewBox="0 0 24 24" class="size-5 fill-current" aria-hidden="true">
+            <path d="M12 .7a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.56v-2.24c-3.22.7-3.9-1.37-3.9-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.04 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.74-1.55-2.57-.29-5.27-1.29-5.27-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.16 1.18a10.95 10.95 0 0 1 5.76 0c2.19-1.49 3.15-1.18 3.15-1.18.63 1.59.23 2.77.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.42-2.71 5.39-5.29 5.68.42.36.79 1.07.79 2.16v3.2c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .7Z"/>
+          </svg>
+        </a>
+
+        <a
+          href="https://www.linkedin.com/in/marcello-machilas/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="grid size-10 place-items-center rounded-full text-[var(--muted)] transition hover:bg-[var(--surface-2)] hover:text-[var(--text)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
+          aria-label="LinkedIn de Marcello Queiróz"
+        >
+          <svg viewBox="0 0 24 24" class="size-5 fill-current" aria-hidden="true">
+            <path d="M6.94 8.5H3.56V19h3.38V8.5Zm.22-3.24c0-1.08-.82-1.95-1.91-1.95-1.09 0-1.91.87-1.91 1.95 0 1.07.82 1.95 1.87 1.95h.02c1.11 0 1.93-.88 1.93-1.95ZM20.66 12.98c0-3.16-1.69-4.63-3.94-4.63-1.81 0-2.63 1-3.09 1.7V8.5h-3.38c.04 1.03 0 10.5 0 10.5h3.38v-5.86c0-.31.02-.63.11-.85.25-.63.82-1.28 1.78-1.28 1.26 0 1.76.96 1.76 2.36V19h3.38v-6.02Z"/>
+          </svg>
+        </a>
+
+        <a
+          href="mailto:marcello.machilas@gmail.com"
+          class="hidden rounded-full border border-[var(--line)] bg-[var(--surface)] px-4 py-2 text-sm font-semibold transition hover:border-[var(--accent)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] sm:inline-flex"
+        >
+          E-mail
+        </a>
+
+        <button
+          id="theme-toggle"
+          type="button"
+          class="grid size-10 place-items-center rounded-full border border-transparent text-[var(--muted)] transition hover:bg-[var(--surface-2)] hover:text-[var(--text)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
+          aria-label="Alternar tema"
+          aria-pressed="false"
+        >
+          <svg id="sun-icon" viewBox="0 0 24 24" class="hidden size-5" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+          </svg>
+          <svg id="moon-icon" viewBox="0 0 24 24" class="size-5" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/>
+          </svg>
+        </button>
+
+        <button
+          id="menu-toggle"
+          type="button"
+          class="grid size-10 place-items-center rounded-full text-[var(--muted)] transition hover:bg-[var(--surface-2)] hover:text-[var(--text)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] lg:hidden"
+          aria-label="Abrir menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
+          <svg id="menu-open-icon" viewBox="0 0 24 24" class="size-5" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16"/>
+          </svg>
+          <svg id="menu-close-icon" viewBox="0 0 24 24" class="hidden size-5" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path d="m6 6 12 12M18 6 6 18"/>
+          </svg>
+        </button>
+      </div>
     </div>
-  </div>
-</section>
 
-</main>
+    <div id="mobile-menu" class="hidden border-t border-[var(--line)] bg-[var(--page)] lg:hidden">
+      <nav class="mx-auto grid max-w-content gap-1 px-5 py-4" aria-label="Navegação mobile">
+        <a class="mobile-nav rounded-lg px-3 py-3 text-sm font-medium hover:bg-[var(--surface-2)]" href="#sobre">Sobre</a>
+        <a class="mobile-nav rounded-lg px-3 py-3 text-sm font-medium hover:bg-[var(--surface-2)]" href="#experiencia">Experiência</a>
+        <a class="mobile-nav rounded-lg px-3 py-3 text-sm font-medium hover:bg-[var(--surface-2)]" href="#projetos">Projetos</a>
+        <a class="mobile-nav rounded-lg px-3 py-3 text-sm font-medium hover:bg-[var(--surface-2)]" href="#skills">Skills</a>
+        <a class="mobile-nav rounded-lg px-3 py-3 text-sm font-medium hover:bg-[var(--surface-2)]" href="#formacao">Formação</a>
+        <a class="rounded-lg px-3 py-3 text-sm font-medium hover:bg-[var(--surface-2)]" href="mailto:marcello.machilas@gmail.com">Contato</a>
+      </nav>
+    </div>
+  </header>
 
-<footer>Marcello Queiróz <span class="dot">·</span> Santa Maria, DF <span class="dot">·</span> 2026</footer>
+  <main id="conteudo">
+    <!-- HERO -->
+    <section id="inicio" class="relative overflow-hidden border-b border-[var(--line)] pt-16">
+      <div class="editorial-grid pointer-events-none absolute inset-0 opacity-60"></div>
 
-<button class="to-top" id="toTop" aria-label="Voltar ao topo">
-  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
-</button>
+      <div class="relative mx-auto grid min-h-[calc(100svh-4rem)] max-w-content items-end gap-12 px-5 py-16 sm:px-6 sm:py-20 lg:grid-cols-[1.35fr_.65fr] lg:px-8 lg:py-24">
+        <div class="max-w-4xl self-center reveal">
+          <p class="mb-7 font-mono text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent)]">
+            Brasília — DF · Engenharia de Software
+          </p>
 
-<script>
-  // active nav link on scroll + waypoint highlight
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a');
+          <h1 class="max-w-5xl text-5xl font-semibold leading-[0.95] tracking-[-0.055em] sm:text-6xl md:text-7xl lg:text-[5.5rem]">
+            Desenvolvedor Full Stack Sênior
+          </h1>
 
-  const observer = new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{
-      const id = entry.target.getAttribute('id');
-      const link = document.querySelector('.nav-links a[href="#'+id+'"]');
-      if(entry.isIntersecting){
-        entry.target.classList.add('in-view');
-        navLinks.forEach(l=>l.classList.remove('active'));
-        if(link) link.classList.add('active');
-      } else {
-        entry.target.classList.remove('in-view');
-      }
-    });
-  }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
+          <p class="mt-8 max-w-2xl text-lg leading-8 text-[var(--muted)] sm:text-xl">
+            Arquitetura de software, APIs, geoprocessamento e sistemas de alto impacto.
+          </p>
 
-  sections.forEach(s=>observer.observe(s));
+          <div class="mt-10 flex flex-col gap-3 sm:flex-row">
+            <a
+              href="#projetos"
+              class="inline-flex min-h-12 items-center justify-center rounded-full bg-[var(--text)] px-6 text-sm font-semibold text-[var(--page)] transition hover:opacity-85 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--page)]"
+            >
+              Ver projetos
+              <svg viewBox="0 0 24 24" class="ml-2 size-4" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6"/>
+              </svg>
+            </a>
 
-  // mobile menu toggle
-  const navToggle = document.getElementById('navToggle');
-  const navLinksEl = document.getElementById('navLinks');
+            <!-- Coloque o PDF real com este nome na raiz do projeto para habilitar o download. -->
+            <a
+              href="./curriculo-marcello-queiroz.pdf"
+              download
+              class="inline-flex min-h-12 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface)] px-6 text-sm font-semibold transition hover:border-[var(--accent)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
+            >
+              Baixar currículo
+              <svg viewBox="0 0 24 24" class="ml-2 size-4" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M12 3v12M7 10l5 5 5-5M5 21h14"/>
+              </svg>
+            </a>
+          </div>
+        </div>
 
-  navToggle.addEventListener('click', ()=>{
-    const isOpen = navLinksEl.classList.toggle('open');
-    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-  });
+        <aside class="self-end reveal" aria-label="Informações rápidas">
+          <div class="border-l border-[var(--line)] pl-6 sm:pl-8">
+            <p class="font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--muted)]">Perfil</p>
+            <p class="mt-3 text-2xl font-semibold tracking-tight">Marcello Queiróz</p>
+            <p class="mt-2 max-w-xs text-sm leading-6 text-[var(--muted)]">
+              Full Stack · APIs · Geoprocessamento · Dados · Sistemas governamentais
+            </p>
 
-  navLinksEl.querySelectorAll('a').forEach(link=>{
-    link.addEventListener('click', ()=>{
-      navLinksEl.classList.remove('open');
-      navToggle.setAttribute('aria-expanded', 'false');
-    });
-  });
+            <dl class="mt-8 space-y-4 border-t border-[var(--line)] pt-6 text-sm">
+              <div class="flex items-center justify-between gap-4">
+                <dt class="text-[var(--muted)]">Localização</dt>
+                <dd class="font-medium">Brasília - DF</dd>
+              </div>
+              <div class="flex items-center justify-between gap-4">
+                <dt class="text-[var(--muted)]">Experiência</dt>
+                <dd class="font-medium">2019 — Presente</dd>
+              </div>
+              <div class="flex items-center justify-between gap-4">
+                <dt class="text-[var(--muted)]">Atuação</dt>
+                <dd class="font-medium">Web & Mobile</dd>
+              </div>
+            </dl>
+          </div>
+        </aside>
+      </div>
+    </section>
 
-  // back to top button
-  const toTopBtn = document.getElementById('toTop');
-  window.addEventListener('scroll', ()=>{
-    if(window.scrollY > 500){
-      toTopBtn.classList.add('visible');
-    } else {
-      toTopBtn.classList.remove('visible');
-    }
-  });
-  toTopBtn.addEventListener('click', ()=>{
-    window.scrollTo({top:0, behavior:'smooth'});
-  });
+    <!-- SOBRE -->
+    <section id="sobre" class="scroll-mt-20 border-b border-[var(--line)]">
+      <div class="mx-auto grid max-w-content gap-12 px-5 py-20 sm:px-6 md:py-28 lg:grid-cols-[.45fr_1fr] lg:px-8">
+        <div class="reveal">
+          <p class="section-kicker font-mono text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent)]">Sobre mim</p>
+        </div>
 
-  // respect reduced-motion preference before wiring up the 3D extras
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+        <div class="reveal">
+          <p class="max-w-4xl text-2xl font-medium leading-[1.35] tracking-[-0.025em] sm:text-3xl md:text-4xl">
+            Desenvolvedor Full Stack Sênior com sólida experiência no desenvolvimento de sistemas web e mobile de alto impacto, com forte atuação em órgãos públicos e governamentais.
+          </p>
 
-  if(!prefersReducedMotion){
+          <div class="mt-10 grid gap-8 text-base leading-7 text-[var(--muted)] md:grid-cols-2">
+            <p>
+              Atuação em contextos como Infra S.A. / Ministério dos Transportes e Ministério da Saúde, desenvolvendo soluções que conectam software, dados, logística e necessidades institucionais.
+            </p>
+            <p>
+              Especialista em ecossistemas modernos de front-end e back-end, geoprocessamento, arquitetura de microsserviços e APIs, além de modelagem e integração de dados.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    // hero route: layered parallax depth (mouse + scroll)
-    const hero = document.getElementById('hero');
-    const routeLayers = document.querySelectorAll('.route-layer');
-    if(hero && routeLayers.length){
-      let heroMouseX = 0, heroMouseY = 0;
+    <!-- EXPERIÊNCIA -->
+    <section id="experiencia" class="scroll-mt-20 border-b border-[var(--line)]">
+      <div class="mx-auto max-w-content px-5 py-20 sm:px-6 md:py-28 lg:px-8">
+        <div class="mb-14 grid gap-6 lg:grid-cols-[.45fr_1fr] reveal">
+          <p class="section-kicker font-mono text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent)]">Experiência</p>
+          <div>
+            <h2 class="text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">Engenharia aplicada a produtos e serviços reais.</h2>
+            <p class="mt-5 max-w-2xl text-lg leading-8 text-[var(--muted)]">Histórico profissional em sistemas governamentais, saúde, transporte, logística e projetos institucionais.</p>
+          </div>
+        </div>
 
-      function updateRouteLayers(){
-        const scrollShift = window.scrollY;
-        routeLayers.forEach(layer=>{
-          const depth = parseFloat(layer.dataset.depth) || 0.2;
-          const moveX = heroMouseX * depth * 45;
-          const moveY = (heroMouseY * depth * 45) - (scrollShift * depth * 0.12);
-          layer.style.transform = `translate(${moveX}px, ${moveY}px)`;
-        });
-      }
+        <div class="border-t border-[var(--line)]">
+          <!-- Infra S.A. -->
+          <article class="grid gap-7 border-b border-[var(--line)] py-10 lg:grid-cols-[.45fr_1fr] reveal">
+            <div>
+              <p class="font-mono text-xs text-[var(--accent)]">2023 — PRESENTE</p>
+              <p class="mt-3 text-sm text-[var(--muted)]">ONTL · Infra S.A.<br />Ministério dos Transportes</p>
+            </div>
+            <div>
+              <h3 class="text-2xl font-semibold tracking-tight">Engenheiro de Software Sênior</h3>
+              <p class="mt-4 max-w-3xl leading-7 text-[var(--muted)]">Desenvolvimento de sistemas de transporte, logística, análise de dados e geoprocessamento.</p>
 
-      if(hasFinePointer){
-        hero.addEventListener('mousemove', (e)=>{
-          const rect = hero.getBoundingClientRect();
-          heroMouseX = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
-          heroMouseY = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
-          updateRouteLayers();
-        });
-        hero.addEventListener('mouseleave', ()=>{
-          heroMouseX = 0;
-          heroMouseY = 0;
-          updateRouteLayers();
-        });
-      }
+              <div class="mt-6 flex flex-wrap gap-2">
+                <span class="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs">Google Maps API</span>
+                <span class="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs">OpenStreetMap</span>
+                <span class="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs">Leaflet</span>
+                <span class="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs">ArcGIS Server</span>
+                <span class="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs">QGIS</span>
+                <span class="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs">PostgreSQL</span>
+                <span class="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs">Node.js</span>
+                <span class="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs">PHP</span>
+                <span class="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs">Laravel</span>
+                <span class="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs">Java</span>
+                <span class="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs">Quarkus</span>
+                <span class="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs">Spring Boot</span>
+                <span class="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs">Vue.js</span>
+                <span class="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs">React</span>
+                <span class="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs">React Native</span>
+                <span class="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs">Python</span>
+                <span class="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs">Docker</span>
+                <span class="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs">Nginx</span>
+                <span class="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs">GitLab CI/CD</span>
+                <span class="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs">JWT</span>
+                <span class="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs">Tailwind CSS</span>
+              </div>
+            </div>
+          </article>
 
-      window.addEventListener('scroll', updateRouteLayers, { passive:true });
-    }
+          <!-- Manatus -->
+          <article class="grid gap-7 border-b border-[var(--line)] py-10 lg:grid-cols-[.45fr_1fr] reveal">
+            <div>
+              <p class="font-mono text-xs text-[var(--accent)]">2019 — 2023</p>
+              <p class="mt-3 text-sm text-[var(--muted)]">Manatus Soluções em Tecnologia</p>
+            </div>
+            <div>
+              <h3 class="text-2xl font-semibold tracking-tight">Desenvolvedor Full-Stack</h3>
+              <p class="mt-4 max-w-3xl leading-7 text-[var(--muted)]">Projetos para o Ministério da Saúde, empresas privadas e Hospital Alemão Oswaldo Cruz, com foco em gestão de pessoas e propostas sociais.</p>
 
-    // project cards: subtle 3D tilt following the cursor
-    if(hasFinePointer){
-      document.querySelectorAll('.project-card').forEach(card=>{
-        let cardRect = null;
+              <div class="mt-6 flex flex-wrap gap-2">
+                <span class="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs">Scrum / Kanban</span>
+                <span class="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs">Node.js</span>
+                <span class="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs">PHP</span>
+                <span class="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs">Laravel</span>
+                <span class="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs">Vue.js</span>
+                <span class="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs">React</span>
+                <span class="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs">React Native</span>
+                <span class="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs">Angular</span>
+                <span class="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs">PostgreSQL</span>
+              </div>
+            </div>
+          </article>
 
-        card.addEventListener('mouseenter', ()=>{
-          cardRect = card.getBoundingClientRect();
-        });
+          <!-- FEPESE -->
+          <article class="grid gap-7 border-b border-[var(--line)] py-10 lg:grid-cols-[.45fr_1fr] reveal">
+            <div>
+              <p class="font-mono text-xs text-[var(--accent)]">2021 — 2023</p>
+              <p class="mt-3 text-sm text-[var(--muted)]">FEPESE</p>
+            </div>
+            <div>
+              <h3 class="text-2xl font-semibold tracking-tight">Analista de Desenvolvimento de Sistemas</h3>
+              <p class="mt-4 max-w-3xl leading-7 text-[var(--muted)]">Projetos para o Ministério da Saúde e UFSC, com desenvolvimento em NestJS, Vue 3 e TypeScript, criação de roteiros de teste e integração de APIs.</p>
 
-        card.addEventListener('mousemove', (e)=>{
-          if(!cardRect) cardRect = card.getBoundingClientRect();
-          const x = e.clientX - cardRect.left;
-          const y = e.clientY - cardRect.top;
-          const rotateY = ((x - cardRect.width / 2) / (cardRect.width / 2)) * 6;
-          const rotateX = -((y - cardRect.height / 2) / (cardRect.height / 2)) * 6;
-          card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-3px)`;
-        });
+              <div class="mt-6 flex flex-wrap gap-2">
+                <span class="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs">NestJS</span>
+                <span class="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs">Vue 3</span>
+                <span class="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs">TypeScript</span>
+                <span class="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs">Testes</span>
+                <span class="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs">Integração de APIs</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-        card.addEventListener('mouseleave', ()=>{
-          card.style.transform = '';
-          cardRect = null;
-        });
+    <!-- PROJETOS -->
+    <section id="projetos" class="scroll-mt-20 border-b border-[var(--line)]">
+      <div class="mx-auto max-w-content px-5 py-20 sm:px-6 md:py-28 lg:px-8">
+        <div class="mb-14 grid gap-6 lg:grid-cols-[.45fr_1fr] reveal">
+          <p class="section-kicker font-mono text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent)]">Projetos</p>
+          <div>
+            <h2 class="text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">Sistemas que conectam software, território e operação.</h2>
+            <p class="mt-5 max-w-3xl text-lg leading-8 text-[var(--muted)]">Uma seleção de produtos e plataformas em que atuei, reunindo soluções para transportes, dados, saúde digital, gestão pública e projetos sociais.</p>
+          </div>
+        </div>
+
+        <div class="grid gap-px overflow-hidden border border-[var(--line)] bg-[var(--line)] lg:grid-cols-12">
+          <article class="group bg-[var(--surface)] p-7 transition hover:bg-[var(--surface-2)] sm:p-9 lg:col-span-7 reveal">
+            <div class="flex items-start justify-between gap-6">
+              <p class="font-mono text-xs uppercase tracking-[0.16em] text-[var(--accent)]">Infra S.A.</p>
+              <span class="font-mono text-xs text-[var(--muted)]">01</span>
+            </div>
+            <h3 class="mt-16 text-3xl font-semibold tracking-[-0.035em] sm:text-4xl">Rota Segura</h3>
+            <p class="mt-5 max-w-2xl leading-7 text-[var(--muted)]">Aplicação full stack para análise de rotas, cálculo de riscos rodoviários, geolocalização e visualização em mapas.</p>
+            <div class="mt-8 flex flex-wrap gap-2 text-xs">
+              <span class="rounded-full border border-[var(--line)] px-3 py-1.5">Full Stack</span>
+              <span class="rounded-full border border-[var(--line)] px-3 py-1.5">Geoprocessamento</span>
+              <span class="rounded-full border border-[var(--line)] px-3 py-1.5">Mapas</span>
+            </div>
+            <a href="https://ontl.infrasa.gov.br/aplicacoes/rota-segura/" target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.14em] text-[var(--accent)] transition hover:gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--surface)]" aria-label="Abrir Rota Segura em uma nova aba">Acessar projeto <span aria-hidden="true">↗</span></a>
+          </article>
+
+          <article class="group bg-[var(--surface)] p-7 transition hover:bg-[var(--surface-2)] sm:p-9 lg:col-span-5 reveal">
+            <div class="flex items-start justify-between gap-6">
+              <p class="font-mono text-xs uppercase tracking-[0.16em] text-[var(--accent)]">Infra S.A.</p>
+              <span class="font-mono text-xs text-[var(--muted)]">02</span>
+            </div>
+            <h3 class="mt-16 text-3xl font-semibold tracking-[-0.035em]">APIM</h3>
+            <p class="mt-5 leading-7 text-[var(--muted)]">Gerenciamento de datasets, APIs, dashboards e documentação automatizada para consulta de dados.</p>
+            <div class="mt-8 flex flex-wrap gap-2 text-xs">
+              <span class="rounded-full border border-[var(--line)] px-3 py-1.5">Datasets</span>
+              <span class="rounded-full border border-[var(--line)] px-3 py-1.5">APIs</span>
+              <span class="rounded-full border border-[var(--line)] px-3 py-1.5">Dados</span>
+            </div>
+            <a href="https://ontl.infrasa.gov.br/dados/consulta-a-base-de-dados/" target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.14em] text-[var(--accent)] transition hover:gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--surface)]" aria-label="Abrir APIM em uma nova aba">Acessar projeto <span aria-hidden="true">↗</span></a>
+          </article>
+
+          <article class="group bg-[var(--surface)] p-7 transition hover:bg-[var(--surface-2)] sm:p-9 lg:col-span-5 reveal">
+            <div class="flex items-start justify-between gap-6">
+              <p class="font-mono text-xs uppercase tracking-[0.16em] text-[var(--accent)]">Infra S.A.</p>
+              <span class="font-mono text-xs text-[var(--muted)]">03</span>
+            </div>
+            <h3 class="mt-16 text-3xl font-semibold tracking-[-0.035em]">Simulador TRIC</h3>
+            <p class="mt-5 leading-7 text-[var(--muted)]">Simulador para Transporte Rodoviário Internacional de Carga, com ferramentas de cálculo para o setor.</p>
+            <div class="mt-8 flex flex-wrap gap-2 text-xs">
+              <span class="rounded-full border border-[var(--line)] px-3 py-1.5">Transportes</span>
+              <span class="rounded-full border border-[var(--line)] px-3 py-1.5">Simulação</span>
+              <span class="rounded-full border border-[var(--line)] px-3 py-1.5">Cálculos</span>
+            </div>
+            <a href="https://ontl.infrasa.gov.br/aplicacoes/simulador-para-transporte-rodoviario-internacional-de-carga-tric/" target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.14em] text-[var(--accent)] transition hover:gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--surface)]" aria-label="Abrir Simulador TRIC em uma nova aba">Acessar projeto <span aria-hidden="true">↗</span></a>
+          </article>
+
+          <article class="group bg-[var(--surface)] p-7 transition hover:bg-[var(--surface-2)] sm:p-9 lg:col-span-7 reveal">
+            <div class="flex items-start justify-between gap-6">
+              <p class="font-mono text-xs uppercase tracking-[0.16em] text-[var(--accent)]">Infra S.A.</p>
+              <span class="font-mono text-xs text-[var(--muted)]">04</span>
+            </div>
+            <h3 class="mt-16 text-3xl font-semibold tracking-[-0.035em] sm:text-4xl">Espaço Conecta</h3>
+            <p class="mt-5 max-w-2xl leading-7 text-[var(--muted)]">Gestão de propostas, startups, instituições e projetos em uma plataforma centralizada.</p>
+            <div class="mt-8 flex flex-wrap gap-2 text-xs">
+              <span class="rounded-full border border-[var(--line)] px-3 py-1.5">Propostas</span>
+              <span class="rounded-full border border-[var(--line)] px-3 py-1.5">Startups</span>
+              <span class="rounded-full border border-[var(--line)] px-3 py-1.5">Instituições</span>
+            </div>
+            <a href="https://conecta.infrasa.gov.br/login" target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.14em] text-[var(--accent)] transition hover:gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--surface)]" aria-label="Abrir Espaço Conecta em uma nova aba">Acessar projeto <span aria-hidden="true">↗</span></a>
+          </article>
+
+          <article class="group bg-[var(--surface)] p-7 transition hover:bg-[var(--surface-2)] sm:p-9 lg:col-span-7 reveal">
+            <div class="flex items-start justify-between gap-6">
+              <p class="font-mono text-xs uppercase tracking-[0.16em] text-[var(--accent)]">Infra S.A.</p>
+              <span class="font-mono text-xs text-[var(--muted)]">05</span>
+            </div>
+            <h3 class="mt-16 text-3xl font-semibold tracking-[-0.035em] sm:text-4xl">Simuladores ONTL</h3>
+            <p class="mt-5 max-w-2xl leading-7 text-[var(--muted)]">Suíte de simuladores e ferramentas de cálculo voltadas para o setor de transportes.</p>
+            <div class="mt-8 flex flex-wrap gap-2 text-xs">
+              <span class="rounded-full border border-[var(--line)] px-3 py-1.5">Transportes</span>
+              <span class="rounded-full border border-[var(--line)] px-3 py-1.5">Simuladores</span>
+              <span class="rounded-full border border-[var(--line)] px-3 py-1.5">Operação</span>
+            </div>
+            <a href="https://simuladores.infrasa.gov.br/" target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.14em] text-[var(--accent)] transition hover:gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--surface)]" aria-label="Abrir Simuladores ONTL em uma nova aba">Acessar projeto <span aria-hidden="true">↗</span></a>
+          </article>
+
+          <article class="group bg-[var(--surface)] p-7 transition hover:bg-[var(--surface-2)] sm:p-9 lg:col-span-5 reveal">
+            <div class="flex items-start justify-between gap-6">
+              <p class="font-mono text-xs uppercase tracking-[0.16em] text-[var(--accent)]">Infra S.A.</p>
+              <span class="font-mono text-xs text-[var(--muted)]">06</span>
+            </div>
+            <h3 class="mt-16 text-3xl font-semibold tracking-[-0.035em]">Painéis ONTL</h3>
+            <p class="mt-5 leading-7 text-[var(--muted)]">Dashboards e painéis analíticos para visualização de dados do setor de transportes.</p>
+            <div class="mt-8 flex flex-wrap gap-2 text-xs">
+              <span class="rounded-full border border-[var(--line)] px-3 py-1.5">Dashboards</span>
+              <span class="rounded-full border border-[var(--line)] px-3 py-1.5">Analytics</span>
+              <span class="rounded-full border border-[var(--line)] px-3 py-1.5">Dados</span>
+            </div>
+            <a href="https://paineis.infrasa.gov.br/" target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.14em] text-[var(--accent)] transition hover:gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--surface)]" aria-label="Abrir Painéis ONTL em uma nova aba">Acessar projeto <span aria-hidden="true">↗</span></a>
+          </article>
+
+          <article class="group bg-[var(--surface)] p-7 transition hover:bg-[var(--surface-2)] sm:p-9 lg:col-span-5 reveal">
+            <div class="flex items-start justify-between gap-6">
+              <p class="font-mono text-xs uppercase tracking-[0.16em] text-[var(--accent)]">Manatus · Ministério da Saúde</p>
+              <span class="font-mono text-xs text-[var(--muted)]">07</span>
+            </div>
+            <h3 class="mt-16 text-3xl font-semibold tracking-[-0.035em]">SIPLAM</h3>
+            <p class="mt-5 leading-7 text-[var(--muted)]">Sistema voltado ao gerenciamento de pessoas e atividades.</p>
+            <div class="mt-8 flex flex-wrap gap-2 text-xs">
+              <span class="rounded-full border border-[var(--line)] px-3 py-1.5">Gestão de pessoas</span>
+              <span class="rounded-full border border-[var(--line)] px-3 py-1.5">Atividades</span>
+            </div>
+            <a href="https://siplam.saude.gov.br/login" target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.14em] text-[var(--accent)] transition hover:gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--surface)]" aria-label="Abrir SIPLAM em uma nova aba">Acessar projeto <span aria-hidden="true">↗</span></a>
+          </article>
+
+          <article class="group bg-[var(--surface)] p-7 transition hover:bg-[var(--surface-2)] sm:p-9 lg:col-span-7 reveal">
+            <div class="flex items-start justify-between gap-6">
+              <p class="font-mono text-xs uppercase tracking-[0.16em] text-[var(--accent)]">MPF / UNOPS</p>
+              <span class="font-mono text-xs text-[var(--muted)]">08</span>
+            </div>
+            <h3 class="mt-16 text-3xl font-semibold tracking-[-0.035em] sm:text-4xl">Nosso Chão Nossa História</h3>
+            <p class="mt-5 max-w-2xl leading-7 text-[var(--muted)]">Projeto da UNOPS e do Ministério Público Federal voltado à informação pública e à memória das comunidades afetadas pelo desastre socioambiental em Maceió. Participação durante a atuação na Manatus.</p>
+            <div class="mt-8 flex flex-wrap gap-2 text-xs">
+              <span class="rounded-full border border-[var(--line)] px-3 py-1.5">Gestão pública</span>
+              <span class="rounded-full border border-[var(--line)] px-3 py-1.5">UNOPS</span>
+              <span class="rounded-full border border-[var(--line)] px-3 py-1.5">MPF</span>
+            </div>
+            <a href="https://nossochaomaceio.org/" target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.14em] text-[var(--accent)] transition hover:gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--surface)]" aria-label="Abrir Nosso Chão Nossa História em uma nova aba">Acessar projeto <span aria-hidden="true">↗</span></a>
+          </article>
+
+          <article class="group bg-[var(--surface)] p-7 transition hover:bg-[var(--surface-2)] sm:p-9 lg:col-span-7 reveal">
+            <div class="flex items-start justify-between gap-6">
+              <p class="font-mono text-xs uppercase tracking-[0.16em] text-[var(--accent)]">Manatus · Ministério da Saúde</p>
+              <span class="font-mono text-xs text-[var(--muted)]">09</span>
+            </div>
+            <h3 class="mt-16 text-3xl font-semibold tracking-[-0.035em] sm:text-4xl">DigiSUS Gestor</h3>
+            <p class="mt-5 max-w-2xl leading-7 text-[var(--muted)]">Plataforma digital do Ministério da Saúde que apoia gestores no planejamento, monitoramento e prestação de contas do SUS. Participação durante a atuação na Manatus.</p>
+            <div class="mt-8 flex flex-wrap gap-2 text-xs">
+              <span class="rounded-full border border-[var(--line)] px-3 py-1.5">Saúde pública</span>
+              <span class="rounded-full border border-[var(--line)] px-3 py-1.5">Gestão</span>
+              <span class="rounded-full border border-[var(--line)] px-3 py-1.5">SUS</span>
+            </div>
+            <a href="https://digisusgmp.saude.gov.br/" target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.14em] text-[var(--accent)] transition hover:gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--surface)]" aria-label="Abrir DigiSUS Gestor em uma nova aba">Acessar projeto <span aria-hidden="true">↗</span></a>
+          </article>
+
+          <article class="group bg-[var(--surface)] p-7 transition hover:bg-[var(--surface-2)] sm:p-9 lg:col-span-5 reveal">
+            <div class="flex items-start justify-between gap-6">
+              <p class="font-mono text-xs uppercase tracking-[0.16em] text-[var(--accent)]">Manatus · Ministério da Saúde</p>
+              <span class="font-mono text-xs text-[var(--muted)]">10</span>
+            </div>
+            <h3 class="mt-16 text-3xl font-semibold tracking-[-0.035em]">Conecte SUS Cidadão</h3>
+            <p class="mt-5 leading-7 text-[var(--muted)]">Participação no antigo Conecte SUS Cidadão, plataforma nacional que evoluiu para o Meu SUS Digital e aproxima cidadãos de seus dados e serviços de saúde.</p>
+            <div class="mt-8 flex flex-wrap gap-2 text-xs">
+              <span class="rounded-full border border-[var(--line)] px-3 py-1.5">Saúde digital</span>
+              <span class="rounded-full border border-[var(--line)] px-3 py-1.5">Serviço público</span>
+              <span class="rounded-full border border-[var(--line)] px-3 py-1.5">Cidadania</span>
+            </div>
+            <a href="https://meususdigital.saude.gov.br/login" target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.14em] text-[var(--accent)] transition hover:gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--surface)]" aria-label="Abrir Meu SUS Digital em uma nova aba">Acessar projeto <span aria-hidden="true">↗</span></a>
+          </article>
+
+          <article class="group bg-[var(--surface)] p-7 transition hover:bg-[var(--surface-2)] sm:p-9 lg:col-span-12 reveal">
+            <div class="grid gap-8 lg:grid-cols-[.35fr_1fr]">
+              <div class="flex items-start justify-between gap-6 lg:block">
+                <p class="font-mono text-xs uppercase tracking-[0.16em] text-[var(--accent)]">Manatus · HAOC</p>
+                <span class="font-mono text-xs text-[var(--muted)] lg:mt-3 lg:block">11</span>
+              </div>
+              <div>
+                <h3 class="text-3xl font-semibold tracking-[-0.035em] sm:text-4xl">Hospital Alemão Oswaldo Cruz</h3>
+                <p class="mt-5 max-w-3xl leading-7 text-[var(--muted)]">Sistema digital de gestão e capacitação de pessoas para apoiar jornadas de aprendizagem e desenvolvimento profissional no Hospital Alemão Oswaldo Cruz. Participação durante a atuação na Manatus.</p>
+                <div class="mt-8 flex flex-wrap gap-2 text-xs">
+                  <span class="rounded-full border border-[var(--line)] px-3 py-1.5">Gestão de pessoas</span>
+                  <span class="rounded-full border border-[var(--line)] px-3 py-1.5">Capacitação</span>
+                  <span class="rounded-full border border-[var(--line)] px-3 py-1.5">Saúde</span>
+                </div>
+                <a href="https://ead.proadihaoc.org.br/" target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.14em] text-[var(--accent)] transition hover:gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--surface)]" aria-label="Abrir plataforma do Hospital Alemão Oswaldo Cruz em uma nova aba">Acessar projeto <span aria-hidden="true">↗</span></a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="scroll-mt-20 border-b border-[var(--line)]">
+      <div class="mx-auto max-w-content px-5 py-20 sm:px-6 md:py-28 lg:px-8">
+        <div class="mb-14 grid gap-6 lg:grid-cols-[.45fr_1fr] reveal">
+          <p class="section-kicker font-mono text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent)]">Skills</p>
+          <h2 class="text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">Stack ampla, organizada por responsabilidade.</h2>
+        </div>
+
+        <div class="grid gap-px overflow-hidden border border-[var(--line)] bg-[var(--line)] md:grid-cols-2 reveal">
+          <div class="bg-[var(--surface)] p-7 sm:p-9">
+            <p class="font-mono text-xs uppercase tracking-[0.16em] text-[var(--accent)]">01 · Linguagens e Core</p>
+            <div class="mt-7 flex flex-wrap gap-2">
+              <span class="rounded-full bg-[var(--surface-2)] px-3 py-2 text-sm">JavaScript</span>
+              <span class="rounded-full bg-[var(--surface-2)] px-3 py-2 text-sm">TypeScript</span>
+              <span class="rounded-full bg-[var(--surface-2)] px-3 py-2 text-sm">Python</span>
+              <span class="rounded-full bg-[var(--surface-2)] px-3 py-2 text-sm">SQL</span>
+              <span class="rounded-full bg-[var(--surface-2)] px-3 py-2 text-sm">HTML</span>
+              <span class="rounded-full bg-[var(--surface-2)] px-3 py-2 text-sm">CSS</span>
+              <span class="rounded-full bg-[var(--surface-2)] px-3 py-2 text-sm">Golang</span>
+            </div>
+          </div>
+
+          <div class="bg-[var(--surface)] p-7 sm:p-9">
+            <p class="font-mono text-xs uppercase tracking-[0.16em] text-[var(--accent)]">02 · Back-end</p>
+            <div class="mt-7 flex flex-wrap gap-2">
+              <span class="rounded-full bg-[var(--surface-2)] px-3 py-2 text-sm">Node.js</span>
+              <span class="rounded-full bg-[var(--surface-2)] px-3 py-2 text-sm">PHP</span>
+              <span class="rounded-full bg-[var(--surface-2)] px-3 py-2 text-sm">Laravel</span>
+              <span class="rounded-full bg-[var(--surface-2)] px-3 py-2 text-sm">Java</span>
+              <span class="rounded-full bg-[var(--surface-2)] px-3 py-2 text-sm">Quarkus</span>
+              <span class="rounded-full bg-[var(--surface-2)] px-3 py-2 text-sm">Spring Boot</span>
+              <span class="rounded-full bg-[var(--surface-2)] px-3 py-2 text-sm">NestJS</span>
+            </div>
+          </div>
+
+          <div class="bg-[var(--surface)] p-7 sm:p-9">
+            <p class="font-mono text-xs uppercase tracking-[0.16em] text-[var(--accent)]">03 · Front-end</p>
+            <div class="mt-7 flex flex-wrap gap-2">
+              <span class="rounded-full bg-[var(--surface-2)] px-3 py-2 text-sm">React</span>
+              <span class="rounded-full bg-[var(--surface-2)] px-3 py-2 text-sm">React Native</span>
+              <span class="rounded-full bg-[var(--surface-2)] px-3 py-2 text-sm">Vue.js 2 e 3</span>
+              <span class="rounded-full bg-[var(--surface-2)] px-3 py-2 text-sm">Angular</span>
+              <span class="rounded-full bg-[var(--surface-2)] px-3 py-2 text-sm">Redux</span>
+              <span class="rounded-full bg-[var(--surface-2)] px-3 py-2 text-sm">Vuetify</span>
+              <span class="rounded-full bg-[var(--surface-2)] px-3 py-2 text-sm">Tailwind CSS</span>
+              <span class="rounded-full bg-[var(--surface-2)] px-3 py-2 text-sm">D3.js</span>
+            </div>
+          </div>
+
+          <div class="bg-[var(--surface)] p-7 sm:p-9">
+            <p class="font-mono text-xs uppercase tracking-[0.16em] text-[var(--accent)]">04 · Dados, DevOps & Qualidade</p>
+            <div class="mt-7 flex flex-wrap gap-2">
+              <span class="rounded-full bg-[var(--surface-2)] px-3 py-2 text-sm">PostgreSQL</span>
+              <span class="rounded-full bg-[var(--surface-2)] px-3 py-2 text-sm">MySQL</span>
+              <span class="rounded-full bg-[var(--surface-2)] px-3 py-2 text-sm">MongoDB</span>
+              <span class="rounded-full bg-[var(--surface-2)] px-3 py-2 text-sm">Docker</span>
+              <span class="rounded-full bg-[var(--surface-2)] px-3 py-2 text-sm">Nginx</span>
+              <span class="rounded-full bg-[var(--surface-2)] px-3 py-2 text-sm">GitLab CI/CD</span>
+              <span class="rounded-full bg-[var(--surface-2)] px-3 py-2 text-sm">Swagger / OpenAPI</span>
+              <span class="rounded-full bg-[var(--surface-2)] px-3 py-2 text-sm">APIs REST</span>
+              <span class="rounded-full bg-[var(--surface-2)] px-3 py-2 text-sm">Cypress</span>
+              <span class="rounded-full bg-[var(--surface-2)] px-3 py-2 text-sm">TDD</span>
+              <span class="rounded-full bg-[var(--surface-2)] px-3 py-2 text-sm">Scrum</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FORMAÇÃO E CERTIFICAÇÕES -->
+    <section id="formacao" class="scroll-mt-20 border-b border-[var(--line)]">
+      <div class="mx-auto max-w-content px-5 py-20 sm:px-6 md:py-28 lg:px-8">
+        <div class="grid gap-16 lg:grid-cols-2">
+          <div class="reveal">
+            <p class="section-kicker font-mono text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent)]">Formação</p>
+            <h2 class="mt-7 text-4xl font-semibold tracking-[-0.04em]">Base acadêmica em evolução contínua.</h2>
+
+            <div class="mt-10 border-t border-[var(--line)]">
+              <article class="border-b border-[var(--line)] py-7">
+                <p class="font-mono text-xs text-[var(--accent)]">CONCLUÍDO · 2021</p>
+                <h3 class="mt-3 text-xl font-semibold">Análise e Desenvolvimento de Sistemas</h3>
+              </article>
+              <article class="border-b border-[var(--line)] py-7">
+                <p class="font-mono text-xs text-[var(--accent)]">CURSANDO</p>
+                <h3 class="mt-3 text-xl font-semibold">Engenharia de Software com Inteligência Artificial</h3>
+              </article>
+            </div>
+          </div>
+
+          <div class="reveal">
+            <p class="section-kicker font-mono text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent)]">Cursos & Certificações</p>
+            <ul class="mt-7 divide-y divide-[var(--line)] border-y border-[var(--line)]">
+              <li class="flex gap-4 py-5">
+                <span class="font-mono text-xs text-[var(--muted)]">01</span>
+                <span class="font-medium">Scrum Foundation Professional Certificate — Certiprof</span>
+              </li>
+              <li class="flex gap-4 py-5">
+                <span class="font-mono text-xs text-[var(--muted)]">02</span>
+                <span class="font-medium">Docker para Desenvolvedores Javascript/Node.js — Udemy</span>
+              </li>
+              <li class="flex gap-4 py-5">
+                <span class="font-mono text-xs text-[var(--muted)]">03</span>
+                <span class="font-medium">Vue JS 3: Desenvolvimento Web Moderno — Udemy/Alura</span>
+              </li>
+              <li class="flex gap-4 py-5">
+                <span class="font-mono text-xs text-[var(--muted)]">04</span>
+                <span class="font-medium">Semana OmniStack 11 — Rocketseat</span>
+              </li>
+              <li class="flex gap-4 py-5">
+                <span class="font-mono text-xs text-[var(--muted)]">05</span>
+                <span class="font-medium">Desenvolvimento Web Avançado com PHP, Laravel e Vue.js — Udemy</span>
+              </li>
+              <li class="flex gap-4 py-5">
+                <span class="font-mono text-xs text-[var(--muted)]">06</span>
+                <span class="font-medium">Node.js & MongoDB — Alura/Udemy</span>
+              </li>
+              <li class="flex gap-4 py-5">
+                <span class="font-mono text-xs text-[var(--muted)]">07</span>
+                <span class="font-medium">Curso Específico de Implementação da LGPD — Infra S.A.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTATO / CTA -->
+    <section id="contato" class="scroll-mt-20">
+      <div class="mx-auto max-w-content px-5 py-20 sm:px-6 md:py-28 lg:px-8">
+        <div class="grid gap-12 lg:grid-cols-[1fr_.55fr] lg:items-end reveal">
+          <div>
+            <p class="section-kicker font-mono text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent)]">Contato</p>
+            <h2 class="mt-8 max-w-4xl text-5xl font-semibold leading-[1] tracking-[-0.055em] sm:text-6xl md:text-7xl">
+              Vamos conversar sobre software que precisa funcionar no mundo real.
+            </h2>
+          </div>
+
+          <div class="space-y-3 lg:pb-2">
+            <a
+              href="mailto:marcello.machilas@gmail.com"
+              class="flex items-center justify-between border-b border-[var(--line)] py-4 font-medium transition hover:border-[var(--accent)]"
+            >
+              <span>E-mail</span>
+              <span class="text-sm text-[var(--muted)]">marcello.machilas@gmail.com</span>
+            </a>
+            <a
+              href="https://wa.me/5561996083943"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Iniciar conversa com Marcello pelo WhatsApp"
+              class="flex items-center justify-between border-b border-[var(--line)] py-4 font-medium transition hover:border-[var(--accent)]"
+            >
+              <span class="inline-flex items-center gap-2">
+                <svg aria-hidden="true" viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20.5 11.7a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.4-4.3A8.5 8.5 0 1 1 20.5 11.7Z"/>
+                  <path d="M8.2 7.8c.3-.3.6-.3.8-.3h.4c.2 0 .4 0 .5.4l.8 2c.1.3.1.5-.1.7l-.6.8c-.2.2-.1.4 0 .6.5 1 1.3 1.8 2.3 2.3.2.1.4.2.6 0l.9-1.1c.2-.2.4-.3.7-.2l1.9.9c.3.1.4.3.4.5 0 .4-.2 1.5-1 2-.5.4-1.2.7-2.2.5-1-.2-2.4-.7-4.1-2.2-1.4-1.2-2.4-2.8-2.7-3.8-.4-1.2 0-2.3.5-3.1Z"/>
+                </svg>
+                WhatsApp
+              </span>
+              <span class="text-sm text-[var(--muted)]">+55 (61) 99608-3943</span>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/marcello-machilas/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center justify-between border-b border-[var(--line)] py-4 font-medium transition hover:border-[var(--accent)]"
+            >
+              <span>LinkedIn</span>
+              <span class="text-sm text-[var(--muted)]">/in/marcello-machilas</span>
+            </a>
+            <a
+              href="https://github.com/Machilas1407"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center justify-between border-b border-[var(--line)] py-4 font-medium transition hover:border-[var(--accent)]"
+            >
+              <span>GitHub</span>
+              <span class="text-sm text-[var(--muted)]">Machilas1407</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-[var(--line)]">
+    <div class="mx-auto flex max-w-content flex-col gap-4 px-5 py-8 text-sm text-[var(--muted)] sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+      <p>© <span id="year"></span> Marcello Queiróz.</p>
+      <div class="flex flex-wrap items-center gap-x-5 gap-y-2">
+        <span>Brasília - DF</span>
+        <a href="#inicio" class="font-medium text-[var(--text)] hover:text-[var(--accent)]">Voltar ao topo ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const themeToggle = document.getElementById('theme-toggle');
+      const sunIcon = document.getElementById('sun-icon');
+      const moonIcon = document.getElementById('moon-icon');
+      const menuToggle = document.getElementById('menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const menuOpenIcon = document.getElementById('menu-open-icon');
+      const menuCloseIcon = document.getElementById('menu-close-icon');
+      const mobileNavLinks = document.querySelectorAll('.mobile-nav');
+      const navLinks = document.querySelectorAll('.nav-link');
+      const sections = [...document.querySelectorAll('main section[id]')];
+
+      const updateThemeUI = () => {
+        const isDark = root.classList.contains('dark');
+        themeToggle.setAttribute('aria-pressed', String(isDark));
+        themeToggle.setAttribute('aria-label', isDark ? 'Ativar tema claro' : 'Ativar tema escuro');
+        sunIcon.classList.toggle('hidden', !isDark);
+        moonIcon.classList.toggle('hidden', isDark);
+      };
+
+      themeToggle.addEventListener('click', () => {
+        const isDark = root.classList.toggle('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        updateThemeUI();
       });
-    }
-  }
-</script>
 
+      updateThemeUI();
+
+      const closeMobileMenu = () => {
+        mobileMenu.classList.add('hidden');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'Abrir menu');
+        menuOpenIcon.classList.remove('hidden');
+        menuCloseIcon.classList.add('hidden');
+      };
+
+      const openMobileMenu = () => {
+        mobileMenu.classList.remove('hidden');
+        menuToggle.setAttribute('aria-expanded', 'true');
+        menuToggle.setAttribute('aria-label', 'Fechar menu');
+        menuOpenIcon.classList.add('hidden');
+        menuCloseIcon.classList.remove('hidden');
+      };
+
+      menuToggle.addEventListener('click', () => {
+        const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+        isOpen ? closeMobileMenu() : openMobileMenu();
+      });
+
+      mobileNavLinks.forEach((link) => link.addEventListener('click', closeMobileMenu));
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth >= 1024) closeMobileMenu();
+      });
+
+      // Destaque do item de navegação conforme a seção visível.
+      const sectionObserver = new IntersectionObserver(
+        (entries) => {
+          const visible = entries
+            .filter((entry) => entry.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+          if (!visible) return;
+
+          navLinks.forEach((link) => {
+            const matches = link.getAttribute('href') === `#${visible.target.id}`;
+            link.setAttribute('aria-current', matches ? 'true' : 'false');
+          });
+        },
+        { rootMargin: '-25% 0px -60% 0px', threshold: [0.05, 0.2, 0.5] }
+      );
+
+      sections.forEach((section) => sectionObserver.observe(section));
+
+      // Entrada sutil de conteúdo. Respeita prefers-reduced-motion via CSS.
+      const revealObserver = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          });
+        },
+        { threshold: 0.12 }
+      );
+
+      document.querySelectorAll('.reveal').forEach((element) => revealObserver.observe(element));
+
+      document.getElementById('year').textContent = new Date().getFullYear();
+    })();
+  </script>
 </body>
 </html>
