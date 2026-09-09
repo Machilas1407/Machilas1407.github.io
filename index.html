@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
 
   <title>Marcello Queiróz — Desenvolvedor Full Stack Sênior | Especialista em Software</title>
   <meta
@@ -248,6 +249,7 @@ body{margin:0}button,a{-webkit-tap-highlight-color:transparent}button{cursor:poi
 /* Mobile 3D control lives beside the theme toggle in the header. */
 #motion-toggle[hidden]{display:none!important}
 #motion-toggle{position:relative}
+#motion-toggle .motion-label{font:600 .72rem/1 'IBM Plex Mono',monospace;letter-spacing:-.04em}
 #motion-toggle .motion-status{position:absolute;right:5px;bottom:5px;width:6px;height:6px;border-radius:50%;background:var(--muted);opacity:.45;transition:opacity .2s ease,background .2s ease,box-shadow .2s ease}
 #motion-toggle[aria-pressed='true']{color:var(--text);background:var(--surface-2);border-color:var(--line)}
 #motion-toggle[aria-pressed='true'] .motion-status{background:var(--accent);opacity:1;box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 15%,transparent)}
@@ -416,10 +418,7 @@ html.motion-paused .project-screenshot::after{display:none}
           aria-pressed="false"
           title="Ativar efeito 3D"
         >
-          <svg viewBox="0 0 24 24" class="size-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M12 3.5 5 7.5v9l7 4 7-4v-9l-7-4Z"/>
-            <path d="m5 7.5 7 4 7-4M12 11.5v9"/>
-          </svg>
+          <span class="motion-label" aria-hidden="true">3D</span>
           <span class="motion-status" aria-hidden="true"></span>
         </button>
 
