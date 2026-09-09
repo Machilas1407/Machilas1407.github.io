@@ -245,13 +245,14 @@ body{margin:0}button,a{-webkit-tap-highlight-color:transparent}button{cursor:poi
  .magnetic-zone>a{transform:none!important}
 }
 
-/* Explicit sensor permission control for browsers such as Safari on iOS. */
-#motion-permission{position:fixed;right:16px;bottom:max(16px,env(safe-area-inset-bottom));z-index:90;display:none;align-items:center;gap:9px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--surface) 94%,transparent);color:var(--text);box-shadow:0 14px 40px #0003;padding:11px 15px;font:600 .78rem 'DM Sans',system-ui,sans-serif;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
-#motion-permission.is-visible{display:inline-flex}
-#motion-permission::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 12%,transparent)}
-#motion-permission:active{transform:scale(.97)}
-#motion-permission[disabled]{opacity:.65;cursor:default}
-@media(prefers-reduced-motion:reduce){#motion-permission{display:none!important}}
+/* Mobile 3D control lives beside the theme toggle in the header. */
+#motion-toggle[hidden]{display:none!important}
+#motion-toggle{position:relative}
+#motion-toggle .motion-status{position:absolute;right:5px;bottom:5px;width:6px;height:6px;border-radius:50%;background:var(--muted);opacity:.45;transition:opacity .2s ease,background .2s ease,box-shadow .2s ease}
+#motion-toggle[aria-pressed='true']{color:var(--text);background:var(--surface-2);border-color:var(--line)}
+#motion-toggle[aria-pressed='true'] .motion-status{background:var(--accent);opacity:1;box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 15%,transparent)}
+#motion-toggle.is-requesting{opacity:.65;cursor:wait}
+@media(prefers-reduced-motion:reduce){#motion-toggle{display:none!important}}
 
 
 /* Editorial layout, consistent project cards and scroll choreography. */
@@ -405,6 +406,22 @@ html.motion-paused .project-screenshot::after{display:none}
         >
           E-mail
         </a>
+
+        <button
+          id="motion-toggle"
+          type="button"
+          hidden
+          class="grid size-10 place-items-center rounded-full border border-transparent text-[var(--muted)] transition hover:bg-[var(--surface-2)] hover:text-[var(--text)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
+          aria-label="Ativar efeito 3D"
+          aria-pressed="false"
+          title="Ativar efeito 3D"
+        >
+          <svg viewBox="0 0 24 24" class="size-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3.5 5 7.5v9l7 4 7-4v-9l-7-4Z"/>
+            <path d="m5 7.5 7 4 7-4M12 11.5v9"/>
+          </svg>
+          <span class="motion-status" aria-hidden="true"></span>
+        </button>
 
         <button
           id="theme-toggle"
@@ -1164,73 +1181,96 @@ html.motion-paused .project-screenshot::after{display:none}
   });
  }
 
- function startSensor() {
+ function updateMotionToggle(active, state='ready') {
+  const button=document.getElementById('motion-toggle');
+  if (!button) return;
+  button.hidden=false;
+  button.classList.toggle('is-requesting',state==='requesting');
+  button.disabled=state==='requesting';
+  button.setAttribute('aria-pressed',String(active));
+  let label=active ? 'Desativar efeito 3D' : 'Ativar efeito 3D';
+  if (state==='requesting') label='Solicitando acesso ao movimento';
+  else if (state==='blocked') label='Movimento bloqueado — toque para tentar novamente';
+  button.setAttribute('aria-label',label);
+  button.title=label;
+ }
+
+ function rememberMotion(enabled) {
+  try { localStorage.setItem('motion-3d', enabled ? 'on' : 'off'); } catch {}
+ }
+
+ function startSensor({remember=true}={}) {
   if (sensorStarted || !touchDevice || reduceMotion.matches || !('DeviceOrientationEvent' in window)) return;
   sensorStarted=true;
+  sensorBase=null;
+  filteredX=0; filteredY=0;
   window.addEventListener('deviceorientation',onOrientation,{passive:true});
+  updateMotionToggle(true);
+  if (remember) rememberMotion(true);
  }
 
- function permissionButton() {
-  let button=document.getElementById('motion-permission');
-  if (button) return button;
-  button=document.createElement('button');
-  button.type='button';
-  button.id='motion-permission';
-  button.textContent='Ativar efeito 3D';
-  button.setAttribute('aria-label','Ativar efeito 3D usando o movimento do celular');
-  document.body.appendChild(button);
-  return button;
+ function stopSensor({remember=true}={}) {
+  if (sensorStarted) window.removeEventListener('deviceorientation',onOrientation);
+  sensorStarted=false;
+  resetSensor({clear:true,recalibrate:true});
+  updateMotionToggle(false);
+  if (remember) rememberMotion(false);
  }
 
- function hidePermissionButton() {
-  const button=document.getElementById('motion-permission');
-  if (button) button.classList.remove('is-visible');
- }
-
- async function requestSensorPermission() {
-  const button=permissionButton();
+ async function enableSensor() {
+  const button=document.getElementById('motion-toggle');
   if (!touchDevice || reduceMotion.matches || !('DeviceOrientationEvent' in window)) return;
   const request=DeviceOrientationEvent.requestPermission;
   if (typeof request !== 'function') {
    startSensor();
-   hidePermissionButton();
    return;
   }
   try {
-   button.disabled=true;
-   button.textContent='Ativando…';
+   updateMotionToggle(false,'requesting');
    const permission=await request.call(DeviceOrientationEvent);
    if (permission==='granted') {
     startSensor();
-    button.textContent='Efeito 3D ativo';
-    setTimeout(()=>hidePermissionButton(),700);
    } else {
-    button.textContent='Movimento bloqueado';
-    button.disabled=false;
+    updateMotionToggle(false,'blocked');
+    rememberMotion(false);
    }
   } catch (_) {
-   button.textContent='Tente ativar novamente';
-   button.disabled=false;
+   updateMotionToggle(false,'blocked');
+  } finally {
+   if (button) button.disabled=false;
   }
  }
 
+ async function toggleSensor() {
+  if (sensorStarted) stopSensor();
+  else await enableSensor();
+ }
+
  function setupSensor() {
-  if (!touchDevice || reduceMotion.matches || !('DeviceOrientationEvent' in window)) return;
-  if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-   const button=permissionButton();
-   button.classList.add('is-visible');
-   if (!button.dataset.bound) {
-    button.dataset.bound='true';
-    /* A real click gives the transient user activation required by Safari/iOS. */
-    button.addEventListener('click',requestSensorPermission);
-   }
-  } else {
-   startSensor();
-   /* If this browser emits orientation data without a permission API, no UI is needed. */
+  const button=document.getElementById('motion-toggle');
+  if (!button) return;
+  if (!touchDevice || reduceMotion.matches || !('DeviceOrientationEvent' in window)) {
+   button.hidden=true;
+   return;
+  }
+  button.hidden=false;
+  updateMotionToggle(sensorStarted);
+  if (!button.dataset.bound) {
+   button.dataset.bound='true';
+   /* A real click provides the transient user activation required by Safari/iOS. */
+   button.addEventListener('click',toggleSensor);
+  }
+
+  let saved=null;
+  try { saved=localStorage.getItem('motion-3d'); } catch {}
+  if (saved==='off') return;
+
+  /* Browsers without requestPermission can start automatically; iOS waits for the header button. */
+  if (typeof DeviceOrientationEvent.requestPermission !== 'function') {
+   startSensor({remember:false});
    setTimeout(()=>{
-    if (!receivedSensorEvent && !reduceMotion.matches) {
-     /* Keep layout untouched; the device/browser may simply expose no orientation sensor. */
-     resetSensor({clear:true,recalibrate:false});
+    if (!receivedSensorEvent && sensorStarted && !reduceMotion.matches) {
+     stopSensor({remember:false});
     }
    },1800);
   }
@@ -1238,9 +1278,11 @@ html.motion-paused .project-screenshot::after{display:none}
 
  fineAllowed.addEventListener('change',()=>{ if (!fineAllowed.matches) resetPointer(); });
  reduceMotion.addEventListener('change',()=>{
-  resetSensor();
-  hidePermissionButton();
-  if (!reduceMotion.matches) setupSensor();
+  if (reduceMotion.matches) {
+   stopSensor({remember:false});
+   const button=document.getElementById('motion-toggle');
+   if (button) button.hidden=true;
+  } else setupSensor();
  });
  window.addEventListener('blur',()=>resetPointer());
  window.addEventListener('resize',()=>{resetPointer();if(sensorStarted)resetSensor({clear:false});},{passive:true});
