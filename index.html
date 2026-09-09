@@ -245,6 +245,14 @@ body{margin:0}button,a{-webkit-tap-highlight-color:transparent}button{cursor:poi
  .magnetic-zone>a{transform:none!important}
 }
 
+/* Explicit sensor permission control for browsers such as Safari on iOS. */
+#motion-permission{position:fixed;right:16px;bottom:max(16px,env(safe-area-inset-bottom));z-index:90;display:none;align-items:center;gap:9px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--surface) 94%,transparent);color:var(--text);box-shadow:0 14px 40px #0003;padding:11px 15px;font:600 .78rem 'DM Sans',system-ui,sans-serif;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+#motion-permission.is-visible{display:inline-flex}
+#motion-permission::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 12%,transparent)}
+#motion-permission:active{transform:scale(.97)}
+#motion-permission[disabled]{opacity:.65;cursor:default}
+@media(prefers-reduced-motion:reduce){#motion-permission{display:none!important}}
+
 
 /* Editorial layout, consistent project cards and scroll choreography. */
 #reading-progress{position:fixed;left:0;top:0;width:100%;height:2px;z-index:100;background:var(--accent);transform:scaleX(var(--reading-progress,0));transform-origin:left;pointer-events:none}
@@ -1024,10 +1032,11 @@ html.motion-paused .project-screenshot::after{display:none}
 })();
 </script>
 <script id="cursor-depth">
-/* Pointer tilt on desktop + DeviceOrientation tilt on touch devices. */
+/* Pointer tilt on desktop + sensor-driven tilt on touch devices. */
 (() => {
  const fineAllowed = matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
- const sensorAllowed = matchMedia('(pointer: coarse) and (prefers-reduced-motion: no-preference)');
+ const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
+ const touchDevice = navigator.maxTouchPoints > 0 || 'ontouchstart' in window;
  const cleanups = [];
  const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
  const tiltTargets = [];
@@ -1092,93 +1101,156 @@ html.motion-paused .project-screenshot::after{display:none}
 
  const resetPointer=()=>cleanups.forEach(reset=>reset());
 
- /* Mobile gyroscope / orientation tilt. The first valid reading becomes the neutral pose. */
+ /* Mobile orientation: calibrates to the first reading and reacts strongly to small phone movements. */
  let sensorStarted=false, sensorFrame=0, sensorReading=null, sensorBase=null;
- function resetSensor({clear=true}={}) {
+ let filteredX=0, filteredY=0, receivedSensorEvent=false;
+
+ function resetSensor({clear=true,recalibrate=true}={}) {
   if (sensorFrame) cancelAnimationFrame(sensorFrame);
-  sensorFrame=0; sensorReading=null; sensorBase=null;
+  sensorFrame=0; sensorReading=null;
+  if (recalibrate) sensorBase=null;
+  filteredX=0; filteredY=0;
   if (clear) tiltTargets.forEach(({host,surface})=>clearSurface(host,surface));
  }
+
  function screenAngle() {
   const raw = (screen.orientation && typeof screen.orientation.angle === 'number')
    ? screen.orientation.angle
    : (typeof window.orientation === 'number' ? window.orientation : 0);
   return ((raw % 360) + 360) % 360;
  }
+
  function renderSensorTilt(beta,gamma) {
   if (!sensorBase) {
    sensorBase={beta,gamma};
    return;
   }
-  const db=clamp(beta-sensorBase.beta,-28,28)/28;
-  const dg=clamp(gamma-sensorBase.gamma,-28,28)/28;
-  let tiltX=-db, tiltY=dg;
-  const angle=screenAngle();
-  if (angle===90) { tiltX=dg; tiltY=db; }
-  else if (angle===270) { tiltX=-dg; tiltY=-db; }
-  else if (angle===180) { tiltX=db; tiltY=-dg; }
 
-  tiltTargets.forEach(({host,surface,max})=>{
-   const mobileMax=Math.max(1.6,max*5);
+  /* Around 8 degrees of physical movement reaches the useful visual range. */
+  const db=clamp(beta-sensorBase.beta,-8,8)/8;
+  const dg=clamp(gamma-sensorBase.gamma,-8,8)/8;
+  let rawX=-db, rawY=dg;
+  const angle=screenAngle();
+  if (angle===90) { rawX=dg; rawY=db; }
+  else if (angle===270) { rawX=-dg; rawY=-db; }
+  else if (angle===180) { rawX=db; rawY=-dg; }
+
+  /* Low-pass smoothing prevents sensor jitter while keeping the response immediate. */
+  filteredX += (rawX-filteredX)*.22;
+  filteredY += (rawY-filteredY)*.22;
+
+  tiltTargets.forEach(({host,surface})=>{
+   const mobileMax = host.classList.contains('depth-card') ? 4 : 3.2;
    host.classList.add('is-tilting');
-   surface.style.setProperty('--tilt-x',(tiltX*mobileMax).toFixed(2)+'deg');
-   surface.style.setProperty('--tilt-y',(tiltY*mobileMax).toFixed(2)+'deg');
-   surface.style.setProperty('--light-x',(50+tiltY*30).toFixed(1)+'%');
-   surface.style.setProperty('--light-y',(50+tiltX*30).toFixed(1)+'%');
+   surface.style.setProperty('--tilt-x',(filteredX*mobileMax).toFixed(2)+'deg');
+   surface.style.setProperty('--tilt-y',(filteredY*mobileMax).toFixed(2)+'deg');
+   surface.style.setProperty('--light-x',clamp(50+filteredY*38,12,88).toFixed(1)+'%');
+   surface.style.setProperty('--light-y',clamp(50+filteredX*38,12,88).toFixed(1)+'%');
    surface.style.setProperty('--lift','0px');
-   surface.style.setProperty('--shine','.65');
+   surface.style.setProperty('--shine','.72');
   });
  }
+
  function onOrientation(event) {
-  if (!sensorAllowed.matches || document.hidden || document.documentElement.classList.contains('motion-paused')) return;
+  if (!touchDevice || reduceMotion.matches || document.hidden || document.documentElement.classList.contains('motion-paused')) return;
   if (event.beta == null || event.gamma == null) return;
+  receivedSensorEvent=true;
   sensorReading={beta:event.beta,gamma:event.gamma};
   if (sensorFrame) return;
   sensorFrame=requestAnimationFrame(()=>{
    sensorFrame=0;
-   if (!sensorReading || !sensorAllowed.matches) return;
+   if (!sensorReading) return;
    renderSensorTilt(sensorReading.beta,sensorReading.gamma);
   });
  }
+
  function startSensor() {
-  if (sensorStarted || !sensorAllowed.matches || !('DeviceOrientationEvent' in window)) return;
+  if (sensorStarted || !touchDevice || reduceMotion.matches || !('DeviceOrientationEvent' in window)) return;
   sensorStarted=true;
   window.addEventListener('deviceorientation',onOrientation,{passive:true});
  }
+
+ function permissionButton() {
+  let button=document.getElementById('motion-permission');
+  if (button) return button;
+  button=document.createElement('button');
+  button.type='button';
+  button.id='motion-permission';
+  button.textContent='Ativar efeito 3D';
+  button.setAttribute('aria-label','Ativar efeito 3D usando o movimento do celular');
+  document.body.appendChild(button);
+  return button;
+ }
+
+ function hidePermissionButton() {
+  const button=document.getElementById('motion-permission');
+  if (button) button.classList.remove('is-visible');
+ }
+
  async function requestSensorPermission() {
-  if (!sensorAllowed.matches || !('DeviceOrientationEvent' in window)) return;
+  const button=permissionButton();
+  if (!touchDevice || reduceMotion.matches || !('DeviceOrientationEvent' in window)) return;
   const request=DeviceOrientationEvent.requestPermission;
-  if (typeof request !== 'function') { startSensor(); return; }
+  if (typeof request !== 'function') {
+   startSensor();
+   hidePermissionButton();
+   return;
+  }
   try {
-   if (await request.call(DeviceOrientationEvent) === 'granted') startSensor();
+   button.disabled=true;
+   button.textContent='Ativando…';
+   const permission=await request.call(DeviceOrientationEvent);
+   if (permission==='granted') {
+    startSensor();
+    button.textContent='Efeito 3D ativo';
+    setTimeout(()=>hidePermissionButton(),700);
+   } else {
+    button.textContent='Movimento bloqueado';
+    button.disabled=false;
+   }
   } catch (_) {
-   /* Permission can only be requested from a user gesture on browsers that require it. */
+   button.textContent='Tente ativar novamente';
+   button.disabled=false;
   }
  }
+
  function setupSensor() {
-  if (!sensorAllowed.matches || !('DeviceOrientationEvent' in window)) return;
+  if (!touchDevice || reduceMotion.matches || !('DeviceOrientationEvent' in window)) return;
   if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-   /* iOS/iPadOS: first touch/click on the page asks for Motion & Orientation permission. */
-   document.addEventListener('pointerdown',requestSensorPermission,{once:true,passive:true});
+   const button=permissionButton();
+   button.classList.add('is-visible');
+   if (!button.dataset.bound) {
+    button.dataset.bound='true';
+    /* A real click gives the transient user activation required by Safari/iOS. */
+    button.addEventListener('click',requestSensorPermission);
+   }
   } else {
    startSensor();
+   /* If this browser emits orientation data without a permission API, no UI is needed. */
+   setTimeout(()=>{
+    if (!receivedSensorEvent && !reduceMotion.matches) {
+     /* Keep layout untouched; the device/browser may simply expose no orientation sensor. */
+     resetSensor({clear:true,recalibrate:false});
+    }
+   },1800);
   }
  }
 
  fineAllowed.addEventListener('change',()=>{ if (!fineAllowed.matches) resetPointer(); });
- sensorAllowed.addEventListener('change',()=>{
+ reduceMotion.addEventListener('change',()=>{
   resetSensor();
-  if (sensorAllowed.matches) setupSensor();
+  hidePermissionButton();
+  if (!reduceMotion.matches) setupSensor();
  });
- window.addEventListener('blur',()=>{resetPointer();resetSensor();});
- window.addEventListener('resize',()=>{resetPointer();resetSensor({clear:false});},{passive:true});
+ window.addEventListener('blur',()=>resetPointer());
+ window.addEventListener('resize',()=>{resetPointer();if(sensorStarted)resetSensor({clear:false});},{passive:true});
  window.addEventListener('scroll',()=>{if(fineAllowed.matches)resetPointer();},{passive:true});
- window.addEventListener('orientationchange',()=>resetSensor({clear:false}),{passive:true});
+ window.addEventListener('orientationchange',()=>{if(sensorStarted)resetSensor({clear:false});},{passive:true});
  if (screen.orientation && screen.orientation.addEventListener) {
-  screen.orientation.addEventListener('change',()=>resetSensor({clear:false}));
+  screen.orientation.addEventListener('change',()=>{if(sensorStarted)resetSensor({clear:false});});
  }
  document.addEventListener('visibilitychange',()=>{
-  if(document.hidden){resetPointer();resetSensor();}
+  if(document.hidden){resetPointer();resetSensor({clear:false,recalibrate:false});}
   else if(sensorStarted) sensorBase=null;
  });
  document.querySelectorAll('[data-filter]').forEach(button=>button.addEventListener('click',()=>{
