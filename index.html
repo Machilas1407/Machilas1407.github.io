@@ -4,8 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
-
   <title>Marcello Queiróz — Desenvolvedor Full Stack Sênior | Especialista em Software</title>
   <meta
     name="description"
@@ -233,7 +231,14 @@ body{margin:0}button,a{-webkit-tap-highlight-color:transparent}button{cursor:poi
 }
 @media(max-width:1023px){.magnetic-zone{width:100%}}
 @media(max-width:700px){.hero-actions>.magnetic-zone{flex:1 1 180px}.project-content{padding:22px}}
-@media(hover:none),(pointer:coarse),(prefers-reduced-motion:reduce){
+/* Touch devices keep the 3D surface active so DeviceOrientation can drive it. */
+@media(hover:none),(pointer:coarse){
+ .tilt-surface{transform-style:preserve-3d}
+ .is-tilting>.tilt-surface{transition:transform 180ms ease-out,box-shadow 250ms ease,border-color 250ms ease;box-shadow:0 22px 42px -26px #0007}
+ .profile-panel.tilt-surface::before{display:none}
+ .magnetic-zone>a{transform:none!important}
+}
+@media(prefers-reduced-motion:reduce){
  .tilt-surface{transform:none!important;transform-style:flat;--shine:0!important}
  .profile-panel .panel-top,.profile-panel .panel-bottom,.profile-panel .expertise-tabs,.profile-panel #expertise-content,.project-content>*{transform:none!important}
  .profile-panel.tilt-surface::before{display:none}
@@ -1019,26 +1024,34 @@ html.motion-paused .project-screenshot::after{display:none}
 })();
 </script>
 <script id="cursor-depth">
-/* Progressive enhancement: no WebGL dependency or perpetual rendering loop. */
+/* Pointer tilt on desktop + DeviceOrientation tilt on touch devices. */
 (() => {
- const allowed = matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
+ const fineAllowed = matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
+ const sensorAllowed = matchMedia('(pointer: coarse) and (prefers-reduced-motion: no-preference)');
  const cleanups = [];
  const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+ const tiltTargets = [];
+
+ function clearSurface(host, surface) {
+  host.classList.remove('is-tilting');
+  ['--tilt-x','--tilt-y','--light-x','--light-y','--lift','--shine','--magnet-x','--magnet-y']
+   .forEach(key => surface.style.removeProperty(key));
+ }
+
  function bindMotion(host, surface, render) {
   let frame = 0, point = null;
   function reset() {
    if (frame) cancelAnimationFrame(frame);
    frame = 0; point = null;
-   host.classList.remove('is-tilting');
-   ['--tilt-x','--tilt-y','--light-x','--light-y','--lift','--shine','--magnet-x','--magnet-y'].forEach(key=>surface.style.removeProperty(key));
+   clearSurface(host, surface);
   }
   function move(event) {
-   if (!allowed.matches || document.documentElement.classList.contains('motion-paused') || event.pointerType === 'touch') return;
+   if (!fineAllowed.matches || document.documentElement.classList.contains('motion-paused') || event.pointerType === 'touch') return;
    point = {x:event.clientX,y:event.clientY};
    if (frame) return;
    frame = requestAnimationFrame(()=>{
     frame = 0;
-    if (!point || !allowed.matches || document.documentElement.classList.contains('motion-paused')) return;
+    if (!point || !fineAllowed.matches || document.documentElement.classList.contains('motion-paused')) return;
     const rect = host.getBoundingClientRect();
     if (!rect.width || !rect.height) return;
     const x = clamp((point.x-rect.left)/rect.width,0,1);
@@ -1053,10 +1066,12 @@ html.motion-paused .project-screenshot::after{display:none}
   host.addEventListener('focusin',reset);
   cleanups.push(reset);
  }
+
  document.querySelectorAll('[data-tilt]').forEach(host=>{
   const surface=host.querySelector('.tilt-surface');
   if (!surface) return;
   const max=Number(host.dataset.tilt);
+  tiltTargets.push({host,surface,max});
   bindMotion(host,surface,(x,y)=>{
    surface.style.setProperty('--tilt-x',((.5-y)*max*2).toFixed(2)+'deg');
    surface.style.setProperty('--tilt-y',((x-.5)*max*2).toFixed(2)+'deg');
@@ -1066,6 +1081,7 @@ html.motion-paused .project-screenshot::after{display:none}
    surface.style.setProperty('--shine','1');
   });
  });
+
  document.querySelectorAll('.magnetic-zone').forEach(host=>{
   const button=host.querySelector('a');
   bindMotion(host,button,(x,y)=>{
@@ -1073,13 +1089,103 @@ html.motion-paused .project-screenshot::after{display:none}
    button.style.setProperty('--magnet-y',((y-.5)*10).toFixed(2)+'px');
   });
  });
- const resetAll=()=>cleanups.forEach(reset=>reset());
- allowed.addEventListener('change',resetAll);
- window.addEventListener('blur',resetAll);
- window.addEventListener('resize',resetAll,{passive:true});
- window.addEventListener('scroll',resetAll,{passive:true});
- document.addEventListener('visibilitychange',()=>{if(document.hidden)resetAll()});
- document.querySelectorAll('[data-filter]').forEach(button=>button.addEventListener('click',resetAll));
+
+ const resetPointer=()=>cleanups.forEach(reset=>reset());
+
+ /* Mobile gyroscope / orientation tilt. The first valid reading becomes the neutral pose. */
+ let sensorStarted=false, sensorFrame=0, sensorReading=null, sensorBase=null;
+ function resetSensor({clear=true}={}) {
+  if (sensorFrame) cancelAnimationFrame(sensorFrame);
+  sensorFrame=0; sensorReading=null; sensorBase=null;
+  if (clear) tiltTargets.forEach(({host,surface})=>clearSurface(host,surface));
+ }
+ function screenAngle() {
+  const raw = (screen.orientation && typeof screen.orientation.angle === 'number')
+   ? screen.orientation.angle
+   : (typeof window.orientation === 'number' ? window.orientation : 0);
+  return ((raw % 360) + 360) % 360;
+ }
+ function renderSensorTilt(beta,gamma) {
+  if (!sensorBase) {
+   sensorBase={beta,gamma};
+   return;
+  }
+  const db=clamp(beta-sensorBase.beta,-28,28)/28;
+  const dg=clamp(gamma-sensorBase.gamma,-28,28)/28;
+  let tiltX=-db, tiltY=dg;
+  const angle=screenAngle();
+  if (angle===90) { tiltX=dg; tiltY=db; }
+  else if (angle===270) { tiltX=-dg; tiltY=-db; }
+  else if (angle===180) { tiltX=db; tiltY=-dg; }
+
+  tiltTargets.forEach(({host,surface,max})=>{
+   const mobileMax=Math.max(1.6,max*5);
+   host.classList.add('is-tilting');
+   surface.style.setProperty('--tilt-x',(tiltX*mobileMax).toFixed(2)+'deg');
+   surface.style.setProperty('--tilt-y',(tiltY*mobileMax).toFixed(2)+'deg');
+   surface.style.setProperty('--light-x',(50+tiltY*30).toFixed(1)+'%');
+   surface.style.setProperty('--light-y',(50+tiltX*30).toFixed(1)+'%');
+   surface.style.setProperty('--lift','0px');
+   surface.style.setProperty('--shine','.65');
+  });
+ }
+ function onOrientation(event) {
+  if (!sensorAllowed.matches || document.hidden || document.documentElement.classList.contains('motion-paused')) return;
+  if (event.beta == null || event.gamma == null) return;
+  sensorReading={beta:event.beta,gamma:event.gamma};
+  if (sensorFrame) return;
+  sensorFrame=requestAnimationFrame(()=>{
+   sensorFrame=0;
+   if (!sensorReading || !sensorAllowed.matches) return;
+   renderSensorTilt(sensorReading.beta,sensorReading.gamma);
+  });
+ }
+ function startSensor() {
+  if (sensorStarted || !sensorAllowed.matches || !('DeviceOrientationEvent' in window)) return;
+  sensorStarted=true;
+  window.addEventListener('deviceorientation',onOrientation,{passive:true});
+ }
+ async function requestSensorPermission() {
+  if (!sensorAllowed.matches || !('DeviceOrientationEvent' in window)) return;
+  const request=DeviceOrientationEvent.requestPermission;
+  if (typeof request !== 'function') { startSensor(); return; }
+  try {
+   if (await request.call(DeviceOrientationEvent) === 'granted') startSensor();
+  } catch (_) {
+   /* Permission can only be requested from a user gesture on browsers that require it. */
+  }
+ }
+ function setupSensor() {
+  if (!sensorAllowed.matches || !('DeviceOrientationEvent' in window)) return;
+  if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+   /* iOS/iPadOS: first touch/click on the page asks for Motion & Orientation permission. */
+   document.addEventListener('pointerdown',requestSensorPermission,{once:true,passive:true});
+  } else {
+   startSensor();
+  }
+ }
+
+ fineAllowed.addEventListener('change',()=>{ if (!fineAllowed.matches) resetPointer(); });
+ sensorAllowed.addEventListener('change',()=>{
+  resetSensor();
+  if (sensorAllowed.matches) setupSensor();
+ });
+ window.addEventListener('blur',()=>{resetPointer();resetSensor();});
+ window.addEventListener('resize',()=>{resetPointer();resetSensor({clear:false});},{passive:true});
+ window.addEventListener('scroll',()=>{if(fineAllowed.matches)resetPointer();},{passive:true});
+ window.addEventListener('orientationchange',()=>resetSensor({clear:false}),{passive:true});
+ if (screen.orientation && screen.orientation.addEventListener) {
+  screen.orientation.addEventListener('change',()=>resetSensor({clear:false}));
+ }
+ document.addEventListener('visibilitychange',()=>{
+  if(document.hidden){resetPointer();resetSensor();}
+  else if(sensorStarted) sensorBase=null;
+ });
+ document.querySelectorAll('[data-filter]').forEach(button=>button.addEventListener('click',()=>{
+  resetPointer();
+  if(sensorStarted) sensorBase=null;
+ }));
+ setupSensor();
 })();
 </script>
 <script id="cinematic-motion">
