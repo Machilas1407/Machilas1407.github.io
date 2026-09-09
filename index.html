@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
 
   <title>Marcello Queiróz — Desenvolvedor Full Stack Sênior | Especialista em Software</title>
   <meta
@@ -224,8 +224,8 @@ body{margin:0}button,a{-webkit-tap-highlight-color:transparent}button{cursor:poi
 .project-content>div.grid{transform:translateZ(22px)}
 .depth-card:focus-within .project-content,.depth-card:hover .project-content{border-color:var(--accent)}
 .magnetic-zone{display:inline-flex;position:relative;min-width:0}
-.magnetic-zone>a{width:100%;transform:translate(var(--magnet-x,0px),var(--magnet-y,0px));transition:transform 300ms cubic-bezier(.22,.8,.25,1),background 200ms ease}
-.magnetic-zone>a:active{transform:translate(var(--magnet-x,0px),var(--magnet-y,0px)) scale(.97)}
+.magnetic-zone>a,.magnetic-zone>button{width:100%;transform:translate(var(--magnet-x,0px),var(--magnet-y,0px));transition:transform 300ms cubic-bezier(.22,.8,.25,1),background 200ms ease}
+.magnetic-zone>a:active,.magnetic-zone>button:active{transform:translate(var(--magnet-x,0px),var(--magnet-y,0px)) scale(.97)}
 @media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
  .is-tilting>.tilt-surface{transition:transform 120ms ease-out,box-shadow 300ms ease,border-color 250ms ease;box-shadow:0 28px 48px -24px #0006}
  .profile-panel.tilt-surface:hover{border-color:var(--accent)}
@@ -237,13 +237,13 @@ body{margin:0}button,a{-webkit-tap-highlight-color:transparent}button{cursor:poi
  .tilt-surface{transform-style:preserve-3d}
  .is-tilting>.tilt-surface{transition:transform 180ms ease-out,box-shadow 250ms ease,border-color 250ms ease;box-shadow:0 22px 42px -26px #0007}
  .profile-panel.tilt-surface::before{display:none}
- .magnetic-zone>a{transform:none!important}
+ .magnetic-zone>a,.magnetic-zone>button{transform:none!important}
 }
 @media(prefers-reduced-motion:reduce){
  .tilt-surface{transform:none!important;transform-style:flat;--shine:0!important}
  .profile-panel .panel-top,.profile-panel .panel-bottom,.profile-panel .expertise-tabs,.profile-panel #expertise-content,.project-content>*{transform:none!important}
  .profile-panel.tilt-surface::before{display:none}
- .magnetic-zone>a{transform:none!important}
+ .magnetic-zone>a,.magnetic-zone>button{transform:none!important}
 }
 
 /* Mobile 3D control lives beside the theme toggle in the header. */
@@ -255,6 +255,27 @@ body{margin:0}button,a{-webkit-tap-highlight-color:transparent}button{cursor:poi
 #motion-toggle[aria-pressed='true'] .motion-status{background:var(--accent);opacity:1;box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 15%,transparent)}
 #motion-toggle.is-requesting{opacity:.65;cursor:wait}
 @media(prefers-reduced-motion:reduce){#motion-toggle{display:none!important}}
+
+/* Contact chooser in the hero. */
+.contact-choice{position:relative;z-index:30}
+.contact-trigger{width:100%;border:1px solid var(--line);background:transparent;color:var(--text);font:600 .9375rem/1.2 'DM Sans',system-ui,sans-serif;text-align:left}
+.contact-trigger .contact-caret{width:18px;height:18px;flex:0 0 auto;transition:transform .22s ease}
+.contact-trigger[aria-expanded='true']{border-color:var(--accent);background:var(--surface)}
+.contact-trigger[aria-expanded='true'] .contact-caret{transform:rotate(180deg)}
+.contact-options[hidden]{display:none!important}
+.contact-options{position:absolute;right:0;top:calc(100% + 10px);width:286px;padding:7px;border:1px solid var(--line);border-radius:12px;background:color-mix(in srgb,var(--surface) 96%,transparent);box-shadow:0 20px 55px rgba(0,0,0,.16);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);animation:contact-menu-in .18s ease both}
+.contact-option{display:grid!important;grid-template-columns:38px 1fr auto;align-items:center;gap:11px;width:100%;padding:11px;border-radius:8px;color:var(--text);text-decoration:none;transition:background .18s ease,transform .18s ease}
+.contact-option:hover,.contact-option:focus-visible{background:var(--surface-2);transform:translateY(-1px)}
+.contact-option-icon{display:grid;place-items:center;width:38px;height:38px;border:1px solid var(--line);border-radius:9px;background:var(--surface);font:600 .82rem/1 'IBM Plex Mono',monospace;color:var(--accent)}
+.contact-option-icon-wa{font-size:.68rem;letter-spacing:-.04em}
+.contact-option-copy{min-width:0;display:block}
+.contact-option-copy strong{display:block;font-size:.875rem;font-weight:600;line-height:1.25}
+.contact-option-copy small{display:block;margin-top:3px;color:var(--muted);font-size:.75rem;line-height:1.25}
+.contact-option-arrow{color:var(--muted);font-size:1rem;transition:transform .18s ease}
+.contact-option:hover .contact-option-arrow{transform:translate(2px,-2px)}
+@keyframes contact-menu-in{from{opacity:0;transform:translateY(-5px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:700px){.contact-choice{flex:1 1 180px}.contact-options{right:0;width:min(286px,calc(100vw - 40px))}}
+@media(prefers-reduced-motion:reduce){.contact-options{animation:none}.contact-option,.contact-option-arrow,.contact-caret{transition:none!important}}
 
 
 /* Editorial layout, consistent project cards and scroll choreography. */
@@ -480,7 +501,33 @@ html.motion-paused .project-screenshot::after{display:none}
       <p class="hero-description hero-enter" style="--delay:300ms">Conecto interfaces, APIs e dados para transformar desafios reais em software.</p>
       <div class="hero-actions hero-enter" style="--delay:400ms">
         <span class="magnetic-zone"><a class="primary-action" href="#projetos">Explorar projetos <span aria-hidden="true">↗</span></a></span>
-        <span class="magnetic-zone"><a class="secondary-action" href="mailto:marcello.machilas@gmail.com">Vamos conversar <span aria-hidden="true">↗</span></a></span>
+        <span class="magnetic-zone contact-choice">
+          <button
+            id="contact-trigger"
+            class="secondary-action contact-trigger"
+            type="button"
+            aria-expanded="false"
+            aria-controls="contact-options"
+            aria-haspopup="menu"
+          >
+            Vamos conversar
+            <svg class="contact-caret" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+              <path d="m6 8 4 4 4-4"/>
+            </svg>
+          </button>
+          <div id="contact-options" class="contact-options" role="menu" hidden>
+            <a class="contact-option" role="menuitem" href="mailto:marcello.machilas@gmail.com">
+              <span class="contact-option-icon" aria-hidden="true">@</span>
+              <span class="contact-option-copy"><strong>E-mail</strong><small>Enviar uma mensagem</small></span>
+              <span class="contact-option-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a class="contact-option" role="menuitem" href="https://wa.me/5561996083943" target="_blank" rel="noopener noreferrer">
+              <span class="contact-option-icon contact-option-icon-wa" aria-hidden="true">WA</span>
+              <span class="contact-option-copy"><strong>WhatsApp</strong><small>Iniciar uma conversa</small></span>
+              <span class="contact-option-arrow" aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </span>
       </div>
       <a class="resume-link hero-enter" style="--delay:450ms" href="./curriculo-marcello-queiroz.pdf" download>Baixar currículo <span aria-hidden="true">↓</span></a>
     </div>
@@ -1047,6 +1094,37 @@ html.motion-paused .project-screenshot::after{display:none}
  document.querySelectorAll('#mobile-menu a').forEach(link=>link.addEventListener('click',()=>{if(document.getElementById('menu-toggle').getAttribute('aria-expanded')==='true')document.getElementById('menu-toggle').click()}));
 })();
 </script>
+<script id="contact-chooser">
+(() => {
+ const trigger = document.getElementById('contact-trigger');
+ const menu = document.getElementById('contact-options');
+ if (!trigger || !menu) return;
+
+ const setOpen = (open) => {
+  trigger.setAttribute('aria-expanded', String(open));
+  menu.hidden = !open;
+ };
+
+ trigger.addEventListener('click', (event) => {
+  event.preventDefault();
+  const open = trigger.getAttribute('aria-expanded') !== 'true';
+  setOpen(open);
+ });
+
+ menu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setOpen(false)));
+
+ document.addEventListener('pointerdown', (event) => {
+  if (trigger.getAttribute('aria-expanded') !== 'true') return;
+  if (!event.target.closest('.contact-choice')) setOpen(false);
+ });
+
+ document.addEventListener('keydown', (event) => {
+  if (event.key !== 'Escape' || trigger.getAttribute('aria-expanded') !== 'true') return;
+  setOpen(false);
+  trigger.focus();
+ });
+})();
+</script>
 <script id="cursor-depth">
 /* Pointer tilt on desktop + sensor-driven tilt on touch devices. */
 (() => {
@@ -1108,7 +1186,7 @@ html.motion-paused .project-screenshot::after{display:none}
  });
 
  document.querySelectorAll('.magnetic-zone').forEach(host=>{
-  const button=host.querySelector('a');
+  const button=host.querySelector(':scope > a, :scope > button');
   bindMotion(host,button,(x,y)=>{
    button.style.setProperty('--magnet-x',((x-.5)*12).toFixed(2)+'px');
    button.style.setProperty('--magnet-y',((y-.5)*10).toFixed(2)+'px');
