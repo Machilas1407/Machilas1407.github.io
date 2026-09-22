@@ -73,7 +73,7 @@
   </script>
 
   <style>
-/* 01. Tokens: altere cores e intensidade do fundo aqui. */
+
 :root {
   --page: #f5f5f6; --surface: #fff; --surface-2: #e8e8eb;
   --text: #15171a; --muted: #686b70; --line: #d5d5da;
@@ -107,22 +107,17 @@ h2 { line-height: 1.12 !important; }
 .nav-link::after { content: ''; display: block; height: 1px; margin-top: .25rem; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 180ms ease; }
 .nav-link[aria-current='true']::after, .nav-link:hover::after { transform: scaleX(1); }
 #reading-progress { position: fixed; inset: 0 0 auto; height: 2px; z-index: 100; background: var(--accent); transform: scaleX(var(--reading-progress,0)); transform-origin: left; pointer-events: none; }
-/* 03. Fundo: luz difusa e linhas, sem bloquear cliques ou leitura. */
-.scroll-backdrop { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; opacity: var(--background-opacity); contain: strict; mask-image: linear-gradient(90deg,#000 0%,#0005 18%,#0002 32%,#0002 68%,#0005 82%,#000 100%); -webkit-mask-image: linear-gradient(90deg,#000 0%,#0005 18%,#0002 32%,#0002 68%,#0005 82%,#000 100%); }
-.scroll-backdrop__light { position: absolute; width: 110vmax; height: 110vmax; left: calc(50% - 55vmax); top: calc(50% - 55vmax); background: radial-gradient(ellipse at 50% 50%,color-mix(in srgb,var(--accent) 18%,transparent),transparent 64%); transform: translate3d(var(--bg-x,18vw),var(--bg-y,-20vh),0); }
-.scroll-backdrop__lines { position: absolute; inset: -100px; background-image: linear-gradient(115deg,transparent 49.8%,var(--line) 50%,transparent 50.2%),linear-gradient(65deg,transparent 49.8%,var(--line) 50%,transparent 50.2%); background-size: 420px 420px; opacity: .5; mask-image: linear-gradient(90deg,#000,#0002 36%,#0002 64%,#000); transform: translate3d(0,var(--bg-grid-y,0px),0); }
-/* Movimento atmosférico contínuo; a camada externa acompanha o scroll. */
-.scroll-backdrop__light::after {
-  content: ''; position: absolute; inset: 12%; border-radius: 50%;
-  background: conic-gradient(from 30deg,transparent 0deg,color-mix(in srgb,var(--accent) 12%,transparent) 70deg,transparent 140deg,transparent 180deg,color-mix(in srgb,var(--accent) 9%,transparent) 260deg,transparent 330deg);
-  filter: blur(72px);
+/* 03. Scroll-driven 3D backdrop; foreground stays clear. */
+.scroll-backdrop { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; contain: strict; }
+#scroll-scene { display: block; width: 100%; height: 100%; opacity: .64;
+ mask-image: linear-gradient(90deg,#000 0%,#000c 9%,#0003 20%,#0000 31%,#0000 69%,#0003 80%,#000c 91%,#000 100%);
+ -webkit-mask-image: linear-gradient(90deg,#000 0%,#000c 9%,#0003 20%,#0000 31%,#0000 69%,#0003 80%,#000c 91%,#000 100%);
 }
-.scroll-backdrop__lines::after {
-  content: ''; position: absolute; width: 76vmax; height: 76vmax; left: 48%; top: 18%;
-  border-radius: 50%; border: 1px solid color-mix(in srgb,var(--accent) 16%,transparent);
-  box-shadow: 0 0 0 47px color-mix(in srgb,var(--accent) 2%,transparent);
+.dark #scroll-scene { opacity: .45; }
+@media (max-width:700px) {
+ #scroll-scene { opacity: .32; mask-image: linear-gradient(90deg,#000,transparent 23%,transparent 77%,#000); -webkit-mask-image: linear-gradient(90deg,#000,transparent 23%,transparent 77%,#000); }
+ .dark #scroll-scene { opacity: .27; }
 }
-@keyframes background-orbit { from { transform: rotate(0deg) scale(.94); } 50% { transform: rotate(180deg) scale(1.06); } to { transform: rotate(360deg) scale(.94); } }
 /* 04. Hero e ações */
 .hero { position: relative; padding: 128px 24px 0; border-bottom: 1px solid var(--line); isolation: isolate; overflow: hidden; }
 .hero-ambient { position: absolute; inset: 0; z-index: -1; background: radial-gradient(ellipse at 80% 30%,color-mix(in srgb,var(--accent) 12%,transparent),transparent 55%); }
@@ -256,7 +251,6 @@ h2 { line-height: 1.12 !important; }
 .motion-ready .reveal:not(.is-visible) { opacity: 0; transform: translateY(36px); }
 @keyframes hero-in { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
 @media (prefers-reduced-motion:no-preference) {
-  .scroll-backdrop__light::after { animation: background-orbit 52s linear infinite; animation-play-state: var(--background-play-state,running); }
   .hero-enter { animation: hero-in .85s cubic-bezier(.2,.7,.2,1) both; animation-delay: var(--delay,0ms); }
 }
 @media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
@@ -313,7 +307,6 @@ h2 { line-height: 1.12 !important; }
   .tilt-surface, .tilt-surface>*, .magnetic-zone>a, .magnetic-zone>button, .hero-copy, .project-screenshot img { transform: none !important; }
   .tilt-surface { transform-style: flat; }
   .profile-panel::before, .tilt-surface::after, .project-screenshot::after, #motion-toggle { display: none !important; }
-  .scroll-backdrop__light, .scroll-backdrop__lines { transform: none; }
 }
 
 </style>
@@ -366,7 +359,7 @@ h2 { line-height: 1.12 !important; }
 </head>
 
 <body class="min-h-screen font-sans antialiased bg-[var(--page)] text-[var(--text)]">
-<div class="scroll-backdrop" aria-hidden="true"><div class="scroll-backdrop__light"></div><div class="scroll-backdrop__lines"></div></div>
+<div class="scroll-backdrop" aria-hidden="true"><canvas id="scroll-scene"></canvas></div>
   <a
     href="#conteudo"
     class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-[var(--text)] focus:px-4 focus:py-2 focus:text-[var(--page)]"
@@ -677,7 +670,7 @@ h2 { line-height: 1.12 !important; }
  <a class="card-link" href="https://ead.proadihaoc.org.br/" target="_blank" rel="noopener noreferrer" aria-label="Abrir Hospital Alemão Oswaldo Cruz em uma nova aba">Acessar projeto <span aria-hidden="true">↗</span></a>
  </div></article>
 </div>
-<div class="projects-footer" hidden><p id="projects-summary"></p><button id="projects-toggle" type="button" class="secondary-action" aria-expanded="false" aria-controls="project-grid">Ver todos os projetos <span aria-hidden="true">+</span></button></div>
+<div class="projects-footer" hidden><p id="projects-summary" hidden></p><button id="projects-toggle" type="button" class="secondary-action" aria-expanded="false" aria-controls="project-grid">Ver todos os projetos <span aria-hidden="true">+</span></button></div>
 </div>
 </section>
 
@@ -1603,5 +1596,115 @@ h2 { line-height: 1.12 !important; }
  theme();resize();sync();
 })();
 </script>
+<script id="scroll-depth-scene">
+(() => {
+ const canvas=document.getElementById('scroll-scene');
+ if(!canvas)return;
+ const ctx=canvas.getContext('2d');if(!ctx)return;
+ const root=document.documentElement;
+ const reduce=matchMedia('(prefers-reduced-motion: reduce)');
+ let w=0,h=0,frame=0,ink='';
+ const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+ const smooth=x=>{x=clamp(x);return x*x*(3-2*x);};
+ // Geometric scenes: interface layers, service graph, globe and spatial grid.
+ function geometry(kind){
+  const points=[],edges=[];
+  const point=(x,y,z)=>{points.push([x,y,z]);return points.length-1;};
+  const line=(a,b)=>edges.push([a,b]);
+  if(kind===0){
+   for(let layer=0;layer<3;layer++){
+    const z=(layer-1)*.55;
+    const corners=[point(-1,-.7,z),point(1,-.7,z),point(1,.7,z),point(-1,.7,z)];
+    corners.forEach((a,i)=>line(a,corners[(i+1)%4]));
+    line(point(-1,-.42,z),point(1,-.42,z));
+    for(let row=0;row<4;row++)line(point(-.73,-.16+row*.17,z),point(row%2?.38:.7,-.16+row*.17,z));
+    if(layer)for(let c=0;c<4;c++)line(corners[c],corners[c]-14);
+   }
+  }else if(kind===1){
+   for(const [cx,cy,cz] of [[-.65,-.6,0],[.65,-.15,.15],[-.4,.7,-.25]]){
+    const base=points.length;
+    for(let z of [-.28,.28])for(let y of [-.28,.28])for(let x of [-.28,.28])point(cx+x,cy+y,cz+z);
+    for(let i=0;i<8;i++)for(let axis of [1,2,4])if((i^axis)>i)line(base+i,base+(i^axis));
+   }
+   line(7,8);line(15,16);line(23,0);
+  }else if(kind===2){
+   for(let lat=-60;lat<=60;lat+=30){
+    const a=lat*Math.PI/180,base=points.length;
+    for(let i=0;i<48;i++){const u=i/48*Math.PI*2;point(Math.cos(a)*Math.cos(u),Math.sin(a),Math.cos(a)*Math.sin(u));}
+    for(let i=0;i<48;i++)line(base+i,base+(i+1)%48);
+   }
+   for(let mer=0;mer<6;mer++){
+    const u=mer/6*Math.PI,base=points.length;
+    for(let i=0;i<48;i++){const v=i/48*Math.PI*2;point(Math.cos(v)*Math.cos(u),Math.sin(v),Math.cos(v)*Math.sin(u));}
+    for(let i=0;i<48;i++)line(base+i,base+(i+1)%48);
+   }
+  }else{
+   const n=12;
+   for(let r=0;r<n;r++)for(let c=0;c<n;c++){
+    const x=(c/(n-1)-.5)*2.3,z=(r/(n-1)-.5)*2.3;
+    point(x,Math.sin(x*2.8)*Math.cos(z*2)*.22,z);
+   }
+   for(let r=0;r<n;r++)for(let c=0;c<n;c++){
+    const i=r*n+c;if(c<n-1)line(i,i+1);if(r<n-1)line(i,i+n);
+   }
+  }
+  return {points,edges};
+ }
+ const shapes=[0,1,2,3].map(geometry);
+ function object(shape,cx,cy,size,rx,ry,reveal,alpha){
+  const projected=shape.points.map(([x,y,z])=>{
+   const xx=x*Math.cos(ry)+z*Math.sin(ry),zz=-x*Math.sin(ry)+z*Math.cos(ry);
+   const yy=y*Math.cos(rx)-zz*Math.sin(rx),depth=y*Math.sin(rx)+zz*Math.cos(rx);
+   const perspective=4/(4-depth);
+   return {x:cx+xx*size*perspective,y:cy+yy*size*perspective,z:depth};
+  });
+  const amount=clamp(reveal)*shape.edges.length;
+  shape.edges.forEach(([ia,ib],i)=>{
+   const portion=clamp(amount-i);if(!portion)return;
+   const a=projected[ia],b=projected[ib];if(!a||!b)return;
+   ctx.globalAlpha=alpha*clamp(.52+(a.z+b.z)*.15,.15,.85);
+   ctx.lineWidth=.85;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(a.x+(b.x-a.x)*portion,a.y+(b.y-a.y)*portion);ctx.stroke();
+  });
+  // A few anchors help communicate layers without obscuring the content.
+  projected.forEach((p,i)=>{if(i%17||i/projected.length>reveal)return;ctx.globalAlpha=alpha*.6;ctx.beginPath();ctx.arc(p.x,p.y,1.6,0,Math.PI*2);ctx.fill();});
+ }
+ function paint(){
+  frame=0;if(document.hidden)return;
+  ctx.clearRect(0,0,w,h);ctx.strokeStyle=ink;ctx.fillStyle=ink;
+  // Every viewport advances construction, including when projects expand.
+  const travel=reduce.matches?.65:scrollY/Math.max(h,1);
+  const chapter=travel/1.65,base=Math.floor(chapter),local=chapter-base;
+  const phase=smooth((local-.68)/.32);
+  const layers=[{x:.035,y:.26,z:1.12,offset:0},{x:.965,y:.74,z:.9,offset:1}];
+  for(const layer of layers){
+   const sign=layer.x<.5?1:-1;
+   const size=Math.min(w*.19,h*.26,245)*layer.z;
+   const cx=w*layer.x+Math.sin(travel*.55+layer.offset)*size*.18;
+   const cy=h*(layer.y+Math.sin(travel*.4+layer.offset)*.07);
+   const rx=.38+Math.sin(travel*.27)*.17,ry=sign*.45+travel*.16;
+   const kind=(base+layer.offset)%shapes.length;
+   object(shapes[kind],cx,cy,size,rx,ry,.35+.65*smooth(local/.62),1-phase);
+   if(phase>0)object(shapes[(kind+1)%shapes.length],cx,cy,size*(.82+.18*phase),rx,ry,.35,phase);
+   // Small distant layer has a different scroll speed: visible parallax.
+   object(shapes[(kind+2)%shapes.length],w*(sign>0?.14:.86),h*(sign>0?.85:.15),size*.38,-.3,travel*.09,1,.2);
+  }
+  ctx.globalAlpha=1;
+ }
+ function requestPaint(){if(!frame&&!document.hidden)frame=requestAnimationFrame(paint);}
+ function resize(){
+  w=innerWidth;h=innerHeight;const dpr=Math.min(devicePixelRatio||1,1.5);
+  canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);
+  requestPaint();
+ }
+ function theme(){ink=root.classList.contains('dark')?'#b6c0d0':'#667080';requestPaint();}
+ window.addEventListener('scroll',requestPaint,{passive:true});
+ window.addEventListener('resize',resize,{passive:true});
+ document.addEventListener('visibilitychange',()=>{if(document.hidden&&frame){cancelAnimationFrame(frame);frame=0;}else requestPaint();});
+ reduce.addEventListener('change',requestPaint);
+ new MutationObserver(theme).observe(root,{attributes:true,attributeFilter:['class']});
+ theme();resize();
+})();
+</script>
+
 </body>
 </html>
